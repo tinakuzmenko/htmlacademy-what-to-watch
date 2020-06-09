@@ -5,7 +5,7 @@ const Main = (props) => {
   const {movieTitle, movieGenre, movieDate} = props;
 
   return (
-    <div>
+    <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt={movieTitle} />
@@ -304,7 +304,7 @@ const Main = (props) => {
           </div>
         </footer>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
