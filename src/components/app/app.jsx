@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
+const titleClickHandler = (evt) => {
+  evt.preventDefault();
+};
+
 const App = (props) => {
   const {movieTitle, movieGenre, movieDate, moviesTitles} = props;
 
@@ -9,7 +13,8 @@ const App = (props) => {
     movieTitle={movieTitle}
     movieGenre={movieGenre}
     movieDate={movieDate}
-    moviesTitles={moviesTitles} />;
+    moviesTitles={moviesTitles}
+    onTitleClick={titleClickHandler} />;
 };
 
 App.propTypes = {
