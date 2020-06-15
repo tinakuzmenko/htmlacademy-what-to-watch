@@ -11,7 +11,8 @@ describe(`App`, () => {
         movieTitle={`The Grand Budapest Hotel`}
         movieGenre={`Drama`}
         movieDate={`2014`}
-        moviesTitles={MOVIES_TITLES} />)
+        moviesTitles={MOVIES_TITLES}
+      />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
