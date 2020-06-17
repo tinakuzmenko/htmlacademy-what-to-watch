@@ -12,7 +12,8 @@ describe(`SmallMovieCard`, () => {
     const tree = renderer
       .create(<SmallMovieCard
         movie={movie}
-        onTitleClick={() => {}} />)
+        onTitleClick={() => {}}
+        onCardHover={() => {}} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

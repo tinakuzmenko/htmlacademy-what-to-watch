@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
-const titleClickHandler = (evt) => {
-  evt.preventDefault();
-};
-
 const App = (props) => {
   const {promoMovie, movies} = props;
 
-  return <Main
-    promoMovie={promoMovie}
-    movies={movies}
-    onTitleClick={titleClickHandler} />;
+  const handleTitleClick = (evt) => {
+    evt.preventDefault();
+  };
+
+  return (
+    <Main
+      promoMovie={promoMovie}
+      movies={movies}
+      onTitleClick={handleTitleClick} />
+  );
 };
 
 App.propTypes = {

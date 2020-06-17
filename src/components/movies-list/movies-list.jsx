@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
 const MoviesList = ({movies, onTitleClick}) => {
+  const handleCardHover = () => {};
+
   return (
     <div className="catalog__movies-list">
       {movies.map((movie, index) => {
@@ -10,7 +12,9 @@ const MoviesList = ({movies, onTitleClick}) => {
           <SmallMovieCard
             key={movie.title + index}
             movie={movie}
-            onTitleClick={onTitleClick} />
+            onTitleClick={onTitleClick}
+            onCardHover={handleCardHover}
+          />
         );
       })}
     </div>
