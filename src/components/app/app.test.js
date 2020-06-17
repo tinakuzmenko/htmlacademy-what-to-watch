@@ -2,16 +2,16 @@ import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
-const MOVIES_TITLES = [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`, `Johnny English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`, `Moonrise Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`, `Dardjeeling Limited`, `Orlando`, `Mindhunter`, `Midnight Special`];
+const movies = [`The Shawshank Redemption`, `The Godfather`, `The Dark Knight`, `12 Angry Men`, `Schindler's List`, `The Lord of the Rings: The Return of the King`, `The Good, the Bad and the Ugly`, `Fight Club`, `Shutter Island`, ` Inception`];
 
 describe(`App`, () => {
   it(`Should render correctly with movies titles array`, () => {
     const tree = renderer
       .create(<App
-        movieTitle={`The Grand Budapest Hotel`}
-        movieGenre={`Drama`}
-        movieDate={`2014`}
-        moviesTitles={MOVIES_TITLES}
+        movieTitle={`The Dark Knight`}
+        movieGenre={`Action`}
+        movieDate={`2009`}
+        moviesTitles={movies}
       />)
       .toJSON();
 
