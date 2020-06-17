@@ -2,16 +2,37 @@ import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
-const movies = [`The Shawshank Redemption`, `The Godfather`, `The Dark Knight`, `12 Angry Men`, `Schindler's List`, `The Lord of the Rings: The Return of the King`, `The Good, the Bad and the Ugly`, `Fight Club`, `Shutter Island`, ` Inception`];
+const promoMovie = {
+  TITLE: `The Dark Knight`,
+  GENRE: `Action`,
+  DATE: `2008`,
+};
+
+const movies = [
+  {
+    title: `title-1`,
+    image: `image-1`
+  },
+  {
+    title: `title-2`,
+    image: `image-2`
+  },
+  {
+    title: `title-3`,
+    image: `image-3`
+  },
+  {
+    title: `title-4`,
+    image: `image-4`
+  }
+];
 
 describe(`App`, () => {
   it(`Should render correctly with movies titles array`, () => {
     const tree = renderer
       .create(<App
-        movieTitle={`The Dark Knight`}
-        movieGenre={`Action`}
-        movieDate={`2009`}
-        moviesTitles={movies}
+        promoMovie={promoMovie}
+        movies={movies}
       />)
       .toJSON();
 

@@ -94,7 +94,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              2009
+              2008
             </span>
           </p>
           <div
@@ -264,9 +264,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="The Shawshank Redemption"
+              alt="title-1"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="image-1"
               width="280"
             />
           </div>
@@ -278,7 +278,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              The Shawshank Redemption
+              title-1
             </a>
           </h3>
         </article>
@@ -289,9 +289,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="The Godfather"
+              alt="title-2"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="image-2"
               width="280"
             />
           </div>
@@ -303,7 +303,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              The Godfather
+              title-2
             </a>
           </h3>
         </article>
@@ -314,9 +314,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="The Dark Knight"
+              alt="title-3"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="image-3"
               width="280"
             />
           </div>
@@ -328,7 +328,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              The Dark Knight
+              title-3
             </a>
           </h3>
         </article>
@@ -339,9 +339,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="12 Angry Men"
+              alt="title-4"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="image-4"
               width="280"
             />
           </div>
@@ -353,157 +353,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              12 Angry Men
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Schindler's List"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Schindler's List
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="The Lord of the Rings: The Return of the King"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              The Lord of the Rings: The Return of the King
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="The Good, the Bad and the Ugly"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              The Good, the Bad and the Ugly
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Fight Club"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Fight Club
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Shutter Island"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Shutter Island
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt=" Inception"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-               Inception
+              title-4
             </a>
           </h3>
         </article>
