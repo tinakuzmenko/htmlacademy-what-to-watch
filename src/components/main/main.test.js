@@ -2,16 +2,37 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
-const MOVIES_TITLES = [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`, `Johnny English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`, `Moonrise Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`, `Dardjeeling Limited`, `Orlando`, `Mindhunter`, `Midnight Special`];
+const promoMovie = {
+  TITLE: `The Dark Knight`,
+  GENRE: `Action`,
+  DATE: `2008`,
+};
+
+const movies = [
+  {
+    title: `title-1`,
+    image: `image-1`
+  },
+  {
+    title: `title-2`,
+    image: `image-2`
+  },
+  {
+    title: `title-3`,
+    image: `image-3`
+  },
+  {
+    title: `title-4`,
+    image: `image-4`
+  }
+];
 
 describe(`Main`, () => {
   it(`Should render correctly with movies titles array`, () => {
     const tree = renderer
       .create(<Main
-        movieTitle={`The Grand Budapest Hotel`}
-        movieGenre={`Drama`}
-        movieDate={`2014`}
-        moviesTitles={MOVIES_TITLES}
+        promoMovie={promoMovie}
+        movies={movies}
         onTitleClick={() => {}} />)
       .toJSON();
 
