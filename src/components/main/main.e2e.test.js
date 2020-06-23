@@ -3,28 +3,42 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
-const promoMovie = {
-  TITLE: `The Dark Knight`,
-  GENRE: `Action`,
-  DATE: `2008`,
+const movieCard = {
+  title: `Johnny English`,
+  genre: `Comedy`,
+  date: `2003`,
+  image: `img/johnny-english.jpg`,
+  id: 145231,
 };
 
 const movies = [
   {
-    title: `title-1`,
-    image: `image-1`
+    title: `Bohemian Rhapsody`,
+    genre: `Documentary`,
+    date: `2019`,
+    image: `img/bohemian-rhapsody.jpg`,
+    id: 324235,
   },
   {
-    title: `title-2`,
-    image: `image-2`
+    title: `Aviator`,
+    genre: `Drama`,
+    date: `2004`,
+    image: `img/aviator.jpg`,
+    id: 435342,
   },
   {
-    title: `title-3`,
-    image: `image-3`
+    title: `Shutter Island`,
+    genre: `Thriller`,
+    date: `2010`,
+    image: `img/shutter-island.jpg`,
+    id: 123155,
   },
   {
-    title: `title-4`,
-    image: `image-4`
+    title: `Pulp Fiction`,
+    genre: `Crime`,
+    date: `1994`,
+    image: `img/pulp-fiction.jpg`,
+    id: 346223,
   }];
 
 
@@ -38,7 +52,7 @@ describe(`Main e2e tests`, () => {
 
     const mainComponent = mount(
         <Main
-          promoMovie={promoMovie}
+          movieCard={movieCard}
           movies={movies}
           onTitleClick={titleClickHandler} />
     );

@@ -1,39 +1,65 @@
-export const Movie = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  DATE: `2014`,
+export const movieCard = {
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  date: `2014`,
+  image: `img/the-grand-budapest-hotel-poster.jpg`,
+  id: 190123,
 };
 
 export const movies = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+    genre: `Kids & Family`,
+    date: `2018`,
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    id: 189234,
   },
   {
     title: `Bohemian Rhapsody`,
-    image: `img/bohemian-rhapsody.jpg`
+    genre: `Documentary`,
+    date: `2019`,
+    image: `img/bohemian-rhapsody.jpg`,
+    id: 178345,
   },
   {
     title: `Aviator`,
-    image: `img/aviator.jpg`
+    genre: `Drama`,
+    date: `2004`,
+    image: `img/aviator.jpg`,
+    id: 167456,
   },
   {
     title: `Shutter Island`,
-    image: `img/shutter-island.jpg`
+    genre: `Thriller`,
+    date: `2010`,
+    image: `img/shutter-island.jpg`,
+    id: 156567,
   },
   {
     title: `Pulp Fiction`,
-    image: `img/pulp-fiction.jpg`
+    genre: `Crime`,
+    date: `1994`,
+    image: `img/pulp-fiction.jpg`,
+    id: 145678,
   },
   {
     title: `No Country for Old Men`,
-    image: `img/no-country-for-old-men.jpg`
+    genre: `Thriller`,
+    date: `2007`,
+    image: `img/no-country-for-old-men.jpg`,
+    id: 134789,
   },
   {
     title: `Snatch`,
-    image: `img/snatch.jpg`
+    genre: `Crime`,
+    date: `2000`,
+    image: `img/snatch.jpg`,
+    id: 123890,
   },
   {
     title: `Johnny English`,
-    image: `img/johnny-english.jpg`
+    genre: `Comedy`,
+    date: `2003`,
+    image: `img/johnny-english.jpg`,
+    id: 109321,
   }];

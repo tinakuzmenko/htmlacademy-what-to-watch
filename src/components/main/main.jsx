@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
 
-const Main = ({promoMovie, movies, onTitleClick}) => {
+const Main = ({movieCard, movies, onTitleClick}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt={promoMovie.TITLE} />
+          <img src="img/bg-the-grand-budapest-hotel.jpg" alt={movieCard.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -31,14 +31,14 @@ const Main = ({promoMovie, movies, onTitleClick}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={promoMovie.TITLE} width="218" height="327" />
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt={movieCard.title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoMovie.TITLE}</h2>
+              <h2 className="movie-card__title">{movieCard.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoMovie.GENRE}</span>
-                <span className="movie-card__year">{promoMovie.DATE}</span>
+                <span className="movie-card__genre">{movieCard.genre}</span>
+                <span className="movie-card__year">{movieCard.date}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -126,15 +126,20 @@ const Main = ({promoMovie, movies, onTitleClick}) => {
 };
 
 Main.propTypes = {
-  promoMovie: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    DATE: PropTypes.string.isRequired,
+  movieCard: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
       }).isRequired
   ).isRequired,
   onTitleClick: PropTypes.func.isRequired,

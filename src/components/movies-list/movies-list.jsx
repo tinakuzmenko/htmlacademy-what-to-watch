@@ -16,10 +16,10 @@ export default class MoviesList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {movies.map((movie, index) => {
+        {movies.map((movie) => {
           return (
             <SmallMovieCard
-              key={movie.title + index}
+              key={movie.id}
               movie={movie}
               onTitleClick={onTitleClick}
               onCardHover={() => {
