@@ -3,41 +3,48 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
 const movieCard = {
-  title: `Johnny English`,
-  genre: `Comedy`,
-  date: `2003`,
-  image: `img/johnny-english.jpg`,
-  id: 145231,
+  title: `Aviator`,
+  genre: `Drama`,
+  date: `2004`,
+  background: `https://placeimg.com/1300/512/nature`,
+  poster: `img/aviator.jpg`,
+  id: 167456,
+  description: [`A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`],
+  rating: `7,5`,
+  ratingDescription: `Normal`,
+  votes: 1650,
+  director: `Martin Scorsese`,
+  starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`]
 };
 
 const movies = [
   {
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    genre: `Kids & Family`,
+    date: `2018`,
+    background: `https://placeimg.com/1300/512/nature`,
+    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    id: 189234,
+    description: [`The second installment of the "Fantastic Beasts" series featuring the adventures of Magizoologist Newt Scamander.`],
+    rating: `6,6`,
+    ratingDescription: `Normal`,
+    votes: 500,
+    director: `David Yates`,
+    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`]
+  },
+  {
     title: `Bohemian Rhapsody`,
     genre: `Documentary`,
-    date: `2019`,
-    image: `img/bohemian-rhapsody.jpg`,
-    id: 324235,
-  },
-  {
-    title: `Aviator`,
-    genre: `Drama`,
-    date: `2004`,
-    image: `img/aviator.jpg`,
-    id: 435342,
-  },
-  {
-    title: `Shutter Island`,
-    genre: `Thriller`,
-    date: `2010`,
-    image: `img/shutter-island.jpg`,
-    id: 123155,
-  },
-  {
-    title: `Pulp Fiction`,
-    genre: `Crime`,
-    date: `1994`,
-    image: `img/pulp-fiction.jpg`,
-    id: 346223,
+    date: `2018`,
+    background: `https://placeimg.com/1300/512/nature`,
+    poster: `img/bohemian-rhapsody.jpg`,
+    id: 178345,
+    description: [`The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).`],
+    rating: `8,0`,
+    ratingDescription: `Good`,
+    votes: 800,
+    director: `Bryan Singer`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
   }];
 
 describe(`Main`, () => {
@@ -46,7 +53,7 @@ describe(`Main`, () => {
       .create(<Main
         movieCard={movieCard}
         movies={movies}
-        onTitleClick={() => {}} />)
+        onMovieClick={() => {}} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

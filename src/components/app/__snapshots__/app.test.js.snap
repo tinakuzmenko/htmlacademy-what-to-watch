@@ -9,7 +9,7 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Johnny English"
+        alt="Bohemian Rhapsody"
         src="img/bg-the-grand-budapest-hotel.jpg"
       />
     </div>
@@ -69,7 +69,7 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="Johnny English"
+            alt="Bohemian Rhapsody"
             height="327"
             src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -81,7 +81,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Johnny English
+            Bohemian Rhapsody
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Comedy
+              Documentary
             </span>
             <span
               className="movie-card__year"
             >
-              2003
+              2018
             </span>
           </p>
           <div
@@ -263,6 +263,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Bohemian Rhapsody"
@@ -289,6 +290,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="Aviator"
@@ -306,58 +308,6 @@ Array [
               href="movie-page.html"
             >
               Aviator
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Shutter Island"
-              height="175"
-              src="img/shutter-island.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Shutter Island
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Pulp Fiction"
-              height="175"
-              src="img/pulp-fiction.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Pulp Fiction
             </a>
           </h3>
         </article>

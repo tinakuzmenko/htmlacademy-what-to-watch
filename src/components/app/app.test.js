@@ -3,41 +3,48 @@ import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
 const movieCard = {
-  title: `Johnny English`,
-  genre: `Comedy`,
-  date: `2003`,
-  image: `img/johnny-english.jpg`,
-  id: 145231,
+  title: `Bohemian Rhapsody`,
+  genre: `Documentary`,
+  date: `2018`,
+  background: `https://placeimg.com/1300/512/nature`,
+  poster: `img/bohemian-rhapsody.jpg`,
+  id: 178345,
+  description: [`The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).`],
+  rating: `8,0`,
+  ratingDescription: `Good`,
+  votes: 800,
+  director: `Bryan Singer`,
+  starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
 };
 
 const movies = [
   {
     title: `Bohemian Rhapsody`,
     genre: `Documentary`,
-    date: `2019`,
-    image: `img/bohemian-rhapsody.jpg`,
-    id: 324235,
+    date: `2018`,
+    background: `https://placeimg.com/1300/512/nature`,
+    poster: `img/bohemian-rhapsody.jpg`,
+    id: 178345,
+    description: [`The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).`],
+    rating: `8,0`,
+    ratingDescription: `Good`,
+    votes: 800,
+    director: `Bryan Singer`,
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
   },
   {
     title: `Aviator`,
     genre: `Drama`,
     date: `2004`,
-    image: `img/aviator.jpg`,
-    id: 435342,
-  },
-  {
-    title: `Shutter Island`,
-    genre: `Thriller`,
-    date: `2010`,
-    image: `img/shutter-island.jpg`,
-    id: 123155,
-  },
-  {
-    title: `Pulp Fiction`,
-    genre: `Crime`,
-    date: `1994`,
-    image: `img/pulp-fiction.jpg`,
-    id: 346223,
+    background: `https://placeimg.com/1300/512/nature`,
+    poster: `img/aviator.jpg`,
+    id: 167456,
+    description: [`A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`],
+    rating: `7,5`,
+    ratingDescription: `Normal`,
+    votes: 1650,
+    director: `Martin Scorsese`,
+    starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`]
   }];
 
 describe(`App`, () => {

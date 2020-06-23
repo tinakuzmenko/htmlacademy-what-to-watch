@@ -11,9 +11,10 @@ const SmallMovieCard = ({movie, onMovieClick, onCardHover}) => {
     <article
       className="small-movie-card catalog__movies-card"
       onMouseOver={onCardHover}
-      onClick={handleMovieClick}
     >
-      <div className="small-movie-card__image">
+      <div
+        onClick={handleMovieClick}
+        className="small-movie-card__image">
         <img src={movie.poster} alt={movie.title} width="280" height="175" />
       </div>
       <h3
