@@ -43,4 +43,31 @@ describe(`SmallMovieCard e2e tests`, () => {
     expect(onCardHover).toHaveBeenCalledTimes(1);
     expect(onCardHover.mock.calls[0][0]).toMatchObject(movie);
   });
+
+  it(`SmallMovieCard be clicked`, () => {
+    const onMovieClick = jest.fn();
+
+    const mainComponent = shallow(
+        <SmallMovieCard
+          movie={movie}
+          onMovieClick={onMovieClick}
+          onCardHover={() => {}} />
+    );
+
+    const movieCards = mainComponent.find(`.small-movie-card`);
+
+    movieCards.forEach((movieCard) => {
+      const movieTitle = movieCard.find(`.small-movie-card__title`);
+      movieTitle.simulate(`click`, {
+        preventDefault: onMovieClick,
+      });
+
+      const movieImage = movieCard.find(`.small-movie-card__image`);
+      movieImage.simulate(`click`, {
+        preventDefault: onMovieClick,
+      });
+    });
+
+    expect(onMovieClick).toHaveBeenCalledTimes(4);
+  });
 });

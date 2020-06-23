@@ -54,7 +54,7 @@ Enzyme.configure({
 });
 
 describe(`Main e2e tests`, () => {
-  it(`Should movie be clicked`, () => {
+  it(`Should be clicked on title`, () => {
     const titleClickHandler = jest.fn();
 
     const mainComponent = mount(
@@ -65,11 +65,26 @@ describe(`Main e2e tests`, () => {
     );
 
     const movieTitles = mainComponent.find(`.small-movie-card__title`);
-    const movieImages = mainComponent.find(`.small-movie-card__image`);
 
     movieTitles.forEach((movieTitle) => movieTitle.simulate(`click`));
+
+    expect(titleClickHandler.mock.calls.length).toBe((movies.length));
+  });
+
+  it(`Should be clicked on image`, () => {
+    const titleClickHandler = jest.fn();
+
+    const mainComponent = mount(
+        <Main
+          movieCard={movieCard}
+          movies={movies}
+          onMovieClick={titleClickHandler} />
+    );
+
+    const movieImages = mainComponent.find(`.small-movie-card__image`);
+
     movieImages.forEach((movieImage) => movieImage.simulate(`click`));
 
-    expect(titleClickHandler.mock.calls.length).toBe((movies.length) * 2);
+    expect(titleClickHandler.mock.calls.length).toBe((movies.length));
   });
 });
