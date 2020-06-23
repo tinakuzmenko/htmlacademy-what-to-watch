@@ -1,34 +1,99 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
+import MoviePage from '../movie-page/movie-page.jsx';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-const App = (props) => {
-  const {promoMovie, movies} = props;
 
-  const handleTitleClick = (evt) => {
-    evt.preventDefault();
-  };
+export default class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Main
-      promoMovie={promoMovie}
-      movies={movies}
-      onTitleClick={handleTitleClick} />
-  );
-};
+    this.state = {
+      currentPage: `main`,
+      currentMovie: this.props.movieCard,
+    };
+
+    this.handleMovieClick = this.handleMovieClick.bind(this);
+  }
+
+
+  _renderApp() {
+    const {movieCard, movies} = this.props;
+    const {currentPage, currentMovie} = this.state;
+
+    if (currentPage === `main`) {
+      return (
+        <Main
+          movieCard={movieCard}
+          movies={movies}
+          onMovieClick={this.handleMovieClick} />
+      );
+    }
+
+    if (currentPage === `film`) {
+      return (
+        <MoviePage
+          movieCard={currentMovie} />
+      );
+    }
+
+    return null;
+  }
+
+  handleMovieClick(movie) {
+    this.setState({
+      currentPage: `film`,
+      currentMovie: movie,
+    });
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-film">
+            <MoviePage
+              movieCard={this.state.currentMovie} />
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 App.propTypes = {
-  promoMovie: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    DATE: PropTypes.string.isRequired,
+  movieCard: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    rating: PropTypes.string.isRequired,
+    ratingDescription: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        background: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        rating: PropTypes.string.isRequired,
+        ratingDescription: PropTypes.string.isRequired,
+        votes: PropTypes.number.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
       }).isRequired
   ).isRequired,
 };
-
-export default App;

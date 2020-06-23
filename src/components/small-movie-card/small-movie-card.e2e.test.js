@@ -4,8 +4,18 @@ import Adapter from "enzyme-adapter-react-16";
 import SmallMovieCard from "./small-movie-card.jsx";
 
 const movie = {
-  title: `The Grand Budapest Hotel`,
-  image: `movie-image`,
+  title: `No Country for Old Men`,
+  genre: `Thriller`,
+  date: `2007`,
+  background: `https://placeimg.com/1300/512/nature`,
+  poster: `img/no-country-for-old-men.jpg`,
+  id: 134789,
+  description: [`Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.`],
+  rating: `8,1`,
+  ratingDescription: `Good`,
+  votes: 870,
+  director: `Ethan Coen, Joel Coen`,
+  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`]
 };
 
 
@@ -20,7 +30,7 @@ describe(`SmallMovieCard e2e tests`, () => {
     const mainComponent = shallow(
         <SmallMovieCard
           movie={movie}
-          onTitleClick={() => {}}
+          onMovieClick={() => {}}
           onCardHover={onCardHover} />
     );
 
@@ -32,5 +42,32 @@ describe(`SmallMovieCard e2e tests`, () => {
 
     expect(onCardHover).toHaveBeenCalledTimes(1);
     expect(onCardHover.mock.calls[0][0]).toMatchObject(movie);
+  });
+
+  it(`SmallMovieCard be clicked`, () => {
+    const onMovieClick = jest.fn();
+
+    const mainComponent = shallow(
+        <SmallMovieCard
+          movie={movie}
+          onMovieClick={onMovieClick}
+          onCardHover={() => {}} />
+    );
+
+    const movieCards = mainComponent.find(`.small-movie-card`);
+
+    movieCards.forEach((movieCard) => {
+      const movieTitle = movieCard.find(`.small-movie-card__title`);
+      movieTitle.simulate(`click`, {
+        preventDefault: onMovieClick,
+      });
+
+      const movieImage = movieCard.find(`.small-movie-card__image`);
+      movieImage.simulate(`click`, {
+        preventDefault: onMovieClick,
+      });
+    });
+
+    expect(onMovieClick).toHaveBeenCalledTimes(4);
   });
 });
