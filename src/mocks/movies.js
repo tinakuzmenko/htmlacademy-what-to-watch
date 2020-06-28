@@ -28,7 +28,7 @@ export const movies = [
     votes: 500,
     director: `David Yates`,
     starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/a/a8/Solis_Viaduct%2C_Schinschlucht_and_Solis_dam%2C_aerial_video.webm`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -43,7 +43,7 @@ export const movies = [
     votes: 800,
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/3/35/Snoqualmie_Depot_-_Historic_Place_in_King_County%2C_Washington.webm`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
   },
   {
     title: `Aviator`,
