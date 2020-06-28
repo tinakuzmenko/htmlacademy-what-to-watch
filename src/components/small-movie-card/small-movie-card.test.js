@@ -14,7 +14,8 @@ const movie = {
   ratingDescription: `Good`,
   votes: 870,
   director: `Ethan Coen, Joel Coen`,
-  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`]
+  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
 };
 
 describe(`SmallMovieCard`, () => {
@@ -23,7 +24,11 @@ describe(`SmallMovieCard`, () => {
       .create(<SmallMovieCard
         movie={movie}
         onMovieClick={() => {}}
-        onCardHover={() => {}} />)
+        onCardHover={() => {}} />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

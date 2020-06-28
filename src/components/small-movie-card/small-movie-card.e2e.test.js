@@ -15,7 +15,8 @@ const movie = {
   ratingDescription: `Good`,
   votes: 870,
   director: `Ethan Coen, Joel Coen`,
-  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`]
+  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
 };
 
 
@@ -30,18 +31,15 @@ describe(`SmallMovieCard e2e tests`, () => {
     const mainComponent = shallow(
         <SmallMovieCard
           movie={movie}
-          onMovieClick={() => {}}
-          onCardHover={onCardHover} />
+          onCardHover={onCardHover}
+          onMovieClick={() => {}} />
     );
 
-    const movieCards = mainComponent.find(`.small-movie-card`);
+    const movieCard = mainComponent.find(`.small-movie-card`);
 
-    movieCards.forEach((movieCard) => {
-      movieCard.simulate(`mouseover`, movie);
-    });
-
+    movieCard.simulate(`mouseenter`, movie);
     expect(onCardHover).toHaveBeenCalledTimes(1);
-    expect(onCardHover.mock.calls[0][0]).toMatchObject(movie);
+    expect(onCardHover).toHaveBeenCalledWith(movie);
   });
 
   it(`SmallMovieCard be clicked`, () => {
@@ -54,18 +52,16 @@ describe(`SmallMovieCard e2e tests`, () => {
           onCardHover={() => {}} />
     );
 
-    const movieCards = mainComponent.find(`.small-movie-card`);
+    const movieCard = mainComponent.find(`.small-movie-card`);
+    const movieTitle = movieCard.find(`.small-movie-card__title`);
+    const movieImage = movieCard.find(`.small-movie-card__image`);
 
-    movieCards.forEach((movieCard) => {
-      const movieTitle = movieCard.find(`.small-movie-card__title`);
-      movieTitle.simulate(`click`, {
-        preventDefault: onMovieClick,
-      });
+    movieTitle.simulate(`click`, {
+      preventDefault: onMovieClick,
+    });
 
-      const movieImage = movieCard.find(`.small-movie-card__image`);
-      movieImage.simulate(`click`, {
-        preventDefault: onMovieClick,
-      });
+    movieImage.simulate(`click`, {
+      preventDefault: onMovieClick,
     });
 
     expect(onMovieClick).toHaveBeenCalledTimes(4);

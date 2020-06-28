@@ -9,16 +9,15 @@ export default class VideoPlayer extends PureComponent {
 
     this._videoRef = React.createRef();
     this._playTimeout = null;
-
-    this.isPlaying = props.isPlaying;
   }
 
   componentDidMount() {
-    const {source, poster} = this.props;
+    const {muted, source, poster} = this.props;
     const video = this._videoRef.current;
 
     video.src = source;
     video.poster = poster;
+    video.muted = muted;
   }
 
   componentWillUnmount() {
@@ -26,32 +25,28 @@ export default class VideoPlayer extends PureComponent {
 
     video.src = ``;
     video.poster = ``;
-    video.onplay = null;
+    video.muted = null;
 
     clearTimeout(this._playTimeout);
   }
 
   render() {
     return (
-      <React.Fragment>
-        <video
-          width="280"
-          height="175"
-          ref={this._videoRef}
-          onMouseOver={(evt) => evt.target.play()}
-          onMouseOut={(evt) => evt.target.pause()}
-          muted
-        >
-          {ERROR_MESSAGE}
-        </video>
-      </React.Fragment>
+      <video
+        width="280"
+        height="175"
+        ref={this._videoRef}
+      >
+        {ERROR_MESSAGE}
+      </video>
     );
   }
 
   componentDidUpdate() {
+    const isPlaying = this.props.isPlaying;
     const video = this._videoRef.current;
 
-    if (this.props.isPlaying) {
+    if (isPlaying) {
       this._playTimeout = setTimeout(() => {
         video.play();
       }, 1000);
@@ -63,6 +58,7 @@ export default class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
+  muted: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   source: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,

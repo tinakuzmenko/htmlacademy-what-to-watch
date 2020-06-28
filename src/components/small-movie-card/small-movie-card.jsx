@@ -32,7 +32,7 @@ export default class SmallMovieCard extends PureComponent {
           this.setState({
             isPlaying: true,
           });
-          onCardHover();
+          onCardHover(this._movie);
         }}
         onMouseOut={() => {
           this.setState({
@@ -44,6 +44,7 @@ export default class SmallMovieCard extends PureComponent {
           onClick={this._handleMovieClick}
           className="small-movie-card__image">
           <VideoPlayer
+            muted
             isPlaying={this.state.isPlaying}
             source={this._movie.preview}
             poster={this._movie.poster}

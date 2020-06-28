@@ -259,18 +259,19 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
+          onMouseEnter={[Function]}
+          onMouseOut={[Function]}
         >
           <div
             className="small-movie-card__image"
             onClick={[Function]}
           >
-            <img
-              alt="Bohemian Rhapsody"
+            <video
               height="175"
-              src="img/bohemian-rhapsody.jpg"
               width="280"
-            />
+            >
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
           <h3
             className="small-movie-card__title"
@@ -286,18 +287,19 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
+          onMouseEnter={[Function]}
+          onMouseOut={[Function]}
         >
           <div
             className="small-movie-card__image"
             onClick={[Function]}
           >
-            <img
-              alt="Aviator"
+            <video
               height="175"
-              src="img/aviator.jpg"
               width="280"
-            />
+            >
+              Sorry, your browser doesn't support embedded videos.
+            </video>
           </div>
           <h3
             className="small-movie-card__title"

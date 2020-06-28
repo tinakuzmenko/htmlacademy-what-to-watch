@@ -14,7 +14,8 @@ const movie = {
   ratingDescription: `Good`,
   votes: 1500,
   director: `Guy Ritchie`,
-  starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`]
+  starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
 };
 
 describe(`MoviePage`, () => {
