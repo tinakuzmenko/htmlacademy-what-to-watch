@@ -56,21 +56,9 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const mockVideoElement = () => {
-  Object.defineProperty(global.window.HTMLMediaElement.prototype, `play`, {
-    configurable: true,
-
-    get() {
-      setTimeout(() => (this.onloadeddata && this.onloadeddata()));
-      return () => {};
-    }
-  });
-};
-
 describe(`Main e2e tests`, () => {
   it(`Should be clicked on title`, () => {
     const titleClickHandler = jest.fn();
-    mockVideoElement();
 
     const mainComponent = mount(
         <Main
@@ -88,7 +76,6 @@ describe(`Main e2e tests`, () => {
 
   it(`Should be clicked on image`, () => {
     const titleClickHandler = jest.fn();
-    mockVideoElement();
 
     const mainComponent = mount(
         <Main
