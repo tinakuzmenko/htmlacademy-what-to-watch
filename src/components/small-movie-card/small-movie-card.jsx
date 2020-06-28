@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VideoPlayer from '../video-player/video-player.jsx';
 
 const SmallMovieCard = ({movie, onMovieClick, onCardHover}) => {
   const handleMovieClick = (evt) => {
@@ -10,12 +11,18 @@ const SmallMovieCard = ({movie, onMovieClick, onCardHover}) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseOver={onCardHover}
+      onMouseOver={() => {
+        onCardHover();
+      }}
     >
       <div
         onClick={handleMovieClick}
         className="small-movie-card__image">
-        <img src={movie.poster} alt={movie.title} width="280" height="175" />
+        <VideoPlayer
+          isPlaying={false}
+          source={movie.preview}
+          poster={movie.poster}
+        />
       </div>
       <h3
         onClick={handleMovieClick}
@@ -40,6 +47,7 @@ SmallMovieCard.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
