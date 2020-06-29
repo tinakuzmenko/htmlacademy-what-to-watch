@@ -139,6 +139,7 @@ Main.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   }).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -154,6 +155,7 @@ Main.propTypes = {
         votes: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        preview: PropTypes.string.isRequired,
       }).isRequired
   ).isRequired,
   onMovieClick: PropTypes.func.isRequired,

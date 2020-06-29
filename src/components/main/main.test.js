@@ -14,7 +14,8 @@ const movieCard = {
   ratingDescription: `Normal`,
   votes: 1650,
   director: `Martin Scorsese`,
-  starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`]
+  starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
 };
 
 const movies = [
@@ -30,7 +31,8 @@ const movies = [
     ratingDescription: `Normal`,
     votes: 500,
     director: `David Yates`,
-    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`]
+    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -44,7 +46,8 @@ const movies = [
     ratingDescription: `Good`,
     votes: 800,
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   }];
 
 describe(`Main`, () => {
@@ -53,7 +56,11 @@ describe(`Main`, () => {
       .create(<Main
         movieCard={movieCard}
         movies={movies}
-        onMovieClick={() => {}} />)
+        onMovieClick={() => {}} />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

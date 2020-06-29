@@ -15,7 +15,8 @@ const movieCard = {
   ratingDescription: `Good`,
   votes: 870,
   director: `Ethan Coen, Joel Coen`,
-  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`]
+  starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
 };
 
 const movies = [
@@ -31,7 +32,8 @@ const movies = [
     ratingDescription: `Good`,
     votes: 1500,
     director: `Guy Ritchie`,
-    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`]
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
   {
     title: `Johnny English`,
@@ -45,7 +47,8 @@ const movies = [
     ratingDescription: `Normal`,
     votes: 300,
     director: `David Kerr`,
-    starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`]
+    starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   }];
 
 

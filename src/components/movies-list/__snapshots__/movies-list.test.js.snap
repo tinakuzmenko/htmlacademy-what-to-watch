@@ -6,18 +6,19 @@ exports[`MoviesList Should render correctly movie card 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Fantastic Beasts: The Crimes of Grindelwald"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -33,18 +34,19 @@ exports[`MoviesList Should render correctly movie card 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
         height="175"
-        src="img/bohemian-rhapsody.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"

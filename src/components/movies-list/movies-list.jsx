@@ -9,6 +9,14 @@ export default class MoviesList extends PureComponent {
     this.state = {
       currentMovie: null
     };
+
+    this._handleCardHover = this._handleCardHover.bind(this);
+  }
+
+  _handleCardHover(movie) {
+    this.setState({
+      currentMovie: movie,
+    });
   }
 
   render() {
@@ -22,11 +30,7 @@ export default class MoviesList extends PureComponent {
               key={movie.id}
               movie={movie}
               onMovieClick={onMovieClick}
-              onCardHover={() => {
-                this.setState({
-                  currentMovie: movie
-                });
-              }}
+              onCardHover={this._handleCardHover}
             />
           );
         })}
@@ -50,6 +54,7 @@ MoviesList.propTypes = {
         votes: PropTypes.number.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+        preview: PropTypes.string.isRequired,
       }).isRequired
   ).isRequired,
   onMovieClick: PropTypes.func.isRequired,
