@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MoviePage from './movie-page.jsx';
+import MoviesLikeThis from './movies-like-this.jsx';
 import {movie, movies} from '../../utils/test-data.js';
 
 describe(`MoviePage`, () => {
   it(`Should render correctly`, () => {
     const tree = renderer
-      .create(<MoviePage
+      .create(<MoviesLikeThis
         movieCard={movie}
         movies={movies}
         onSmallMovieCardClick={() => {}} />)
