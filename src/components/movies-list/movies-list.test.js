@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import MoviesList from "./movies-list.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import MoviesList from './movies-list.jsx';
 
 const movies = [
   {

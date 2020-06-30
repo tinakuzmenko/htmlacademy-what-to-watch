@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import VideoPlayer from "./video-player.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import VideoPlayer from './video-player.jsx';
 
 const videoData = {
   poster: `img/bg-the-grand-budapest-hotel.jpg`,

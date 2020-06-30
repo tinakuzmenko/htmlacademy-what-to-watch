@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import SmallMovieCard from "./small-movie-card.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import SmallMovieCard from './small-movie-card.jsx';
 
 const movie = {
   title: `No Country for Old Men`,

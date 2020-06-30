@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import MoviePage from "./movie-page.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import MoviePage from './movie-page.jsx';
 
 const movie = {
   title: `Snatch`,
