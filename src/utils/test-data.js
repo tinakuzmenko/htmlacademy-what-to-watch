@@ -45,3 +45,19 @@ export const movies = [
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   }];
+
+export const currentMovie = {
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  date: `2014`,
+  background: `img/bg-the-grand-budapest-hotel.jpg`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  id: 190123,
+  description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege`,
+  rating: `8,9`,
+  ratingDescription: `Very good`,
+  votes: 240,
+  director: `Wes Andreson`,
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`
+};

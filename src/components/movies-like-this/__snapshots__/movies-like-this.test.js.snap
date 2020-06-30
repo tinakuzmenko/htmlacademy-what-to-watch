@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviePage Should render correctly 1`] = `
+exports[`MoviesLikeThis Should render correctly 1`] = `
 <section
   className="catalog catalog--like-this"
 >
