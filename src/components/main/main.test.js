@@ -56,7 +56,7 @@ describe(`Main`, () => {
       .create(<Main
         movieCard={movieCard}
         movies={movies}
-        onMovieClick={() => {}} />, {
+        onSmallMovieCardClick={() => {}} />, {
         createNodeMock: () => {
           return {};
         }

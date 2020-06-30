@@ -16,14 +16,14 @@ export default class SmallMovieCard extends PureComponent {
   }
 
   _handleMovieClick(evt) {
-    const onMovieClick = this.props.onMovieClick;
+    const onSmallMovieCardClick = this.props. onSmallMovieCardClick;
 
     evt.preventDefault();
-    onMovieClick(this._movie);
+    onSmallMovieCardClick(this._movie);
   }
 
   render() {
-    const onCardHover = this.props.onCardHover;
+    const onSmallMovieCardHover = this.props.onSmallMovieCardHover;
 
     return (
       <article
@@ -32,7 +32,7 @@ export default class SmallMovieCard extends PureComponent {
           this.setState({
             isPlaying: true,
           });
-          onCardHover(this._movie);
+          onSmallMovieCardHover(this._movie);
         }}
         onMouseOut={() => {
           this.setState({
@@ -76,6 +76,6 @@ SmallMovieCard.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
+  onSmallMovieCardHover: PropTypes.func.isRequired,
 };

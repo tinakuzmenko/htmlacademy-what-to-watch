@@ -64,7 +64,7 @@ describe(`Main e2e tests`, () => {
         <Main
           movieCard={movieCard}
           movies={movies}
-          onMovieClick={titleClickHandler} />
+          onSmallMovieCardClick={titleClickHandler} />
     );
 
     const movieTitles = mainComponent.find(`.small-movie-card__title`);
@@ -81,7 +81,7 @@ describe(`Main e2e tests`, () => {
         <Main
           movieCard={movieCard}
           movies={movies}
-          onMovieClick={titleClickHandler} />
+          onSmallMovieCardClick={titleClickHandler} />
     );
 
     const movieImages = mainComponent.find(`.small-movie-card__image`);

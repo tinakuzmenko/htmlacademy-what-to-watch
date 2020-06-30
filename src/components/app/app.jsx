@@ -14,7 +14,7 @@ export default class App extends PureComponent {
       currentMovie: this.props.movieCard,
     };
 
-    this.handleMovieClick = this.handleMovieClick.bind(this);
+    this._handleMovieClick = this._handleMovieClick.bind(this);
   }
 
 
@@ -27,7 +27,7 @@ export default class App extends PureComponent {
         <Main
           movieCard={movieCard}
           movies={movies}
-          onMovieClick={this.handleMovieClick} />
+          onSmallMovieCardClick={this._handleMovieClick} />
       );
     }
 
@@ -41,7 +41,7 @@ export default class App extends PureComponent {
     return null;
   }
 
-  handleMovieClick(movie) {
+  _handleMovieClick(movie) {
     this.setState({
       currentPage: `film`,
       currentMovie: movie,

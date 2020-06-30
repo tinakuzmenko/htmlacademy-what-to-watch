@@ -23,8 +23,8 @@ describe(`SmallMovieCard`, () => {
     const tree = renderer
       .create(<SmallMovieCard
         movie={movie}
-        onMovieClick={() => {}}
-        onCardHover={() => {}} />, {
+        onSmallMovieCardClick={() => {}}
+        onSmallMovieCardHover={() => {}} />, {
         createNodeMock: () => {
           return {};
         }

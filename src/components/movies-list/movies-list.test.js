@@ -40,7 +40,7 @@ describe(`MoviesList`, () => {
     const tree = renderer
       .create(<MoviesList
         movies={movies}
-        onMovieClick={() => {}} />, {
+        onSmallMovieCardClick={() => {}} />, {
         createNodeMock: () => {
           return {};
         }
