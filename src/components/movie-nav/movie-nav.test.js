@@ -1,12 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MovieNav from './movie-nav.jsx';
-
-const NavTabs = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
+import {NavTabs} from '../../utils/constants.js';
 
 
 describe(`MovieNav`, () => {

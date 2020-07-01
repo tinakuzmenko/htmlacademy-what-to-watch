@@ -1,18 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../footer/footer.jsx';
-import {CustomPropTypes} from '../../utils/custom-prop-types.js';
 import MovieNav from '../movie-nav/movie-nav.jsx';
 import MoviesLikeThis from '../movies-like-this/movies-like-this.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-
-const NavTabs = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
+import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import {NavTabs} from '../../utils/constants.js';
 
 export default class MoviePage extends PureComponent {
   constructor(props) {
@@ -35,25 +30,24 @@ export default class MoviePage extends PureComponent {
     const {movieCard, movieReviews} = this.props;
     const {currentTab} = this.state;
 
-    if (currentTab === NavTabs.OVERVIEW) {
-      return <MovieOverview
-        movie={movieCard}
-      />;
+    switch (currentTab) {
+      case NavTabs.OVERVIEW:
+        return <MovieOverview
+          movie={movieCard}
+        />;
+      case NavTabs.DETAILS:
+        return <MovieDetails
+          movie={movieCard}
+        />;
+      case NavTabs.REVIEWS:
+        return <MovieReviews
+          movieReviews={movieReviews}
+        />;
+      default:
+        return <MovieOverview
+          movie={movieCard}
+        />;
     }
-
-    if (currentTab === NavTabs.DETAILS) {
-      return <MovieDetails
-        movie={movieCard}
-      />;
-    }
-
-    if (currentTab === NavTabs.REVIEWS) {
-      return <MovieReviews
-        movieReviews={movieReviews}
-      />;
-    }
-
-    return null;
   }
 
   render() {

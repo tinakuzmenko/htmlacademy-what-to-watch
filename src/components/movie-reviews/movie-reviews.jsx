@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../utils/custom-prop-types.js';
-import Review from '../movie-review/movie-review.jsx';
+import MovieReview from '../movie-review/movie-review.jsx';
 
 const sliceReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);
@@ -18,12 +18,13 @@ const MovieReviews = ({movieReviews}) => {
   return (
     <React.Fragment>
       <div className="movie-card__reviews movie-card__row">
-        <div className="movie-card__reviews-col">
-          {slicedReviews[0].map((review) => <Review movieReview={review} key={Math.random() + review.id} />)}
-        </div>
-        <div className="movie-card__reviews-col">
-          {slicedReviews[1].map((review) => <Review movieReview={review} key={Math.random() + review.id} />)}
-        </div>
+        {slicedReviews.map((slicedReview, index) => {
+          return (
+            <div key={Math.random() + index} className="movie-card__reviews-col">
+              {slicedReview.map((review) => <MovieReview movieReview={review} key={Math.random() + review.id} />)}
+            </div>
+          );
+        })}
       </div>
     </React.Fragment>
   );
