@@ -5,6 +5,8 @@ import Footer from '../footer/footer.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 
 const Main = ({movieCard, movies, onSmallMovieCardClick}) => {
+  const isMainPage = true;
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -109,7 +111,9 @@ const Main = ({movieCard, movies, onSmallMovieCardClick}) => {
           </div>
         </section>
 
-        <Footer />
+        <Footer
+          isMainPage={isMainPage}
+        />
       </div>
     </React.Fragment>
   );

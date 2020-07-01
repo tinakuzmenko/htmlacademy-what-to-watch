@@ -23,6 +23,8 @@ export default class App extends PureComponent {
     const {movieCard, movies, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
+    this._movieReviews = this._getCurrentMovieReviews(moviesReviews, currentMovie);
+
     if (currentPage === `main`) {
       return (
         <Main
@@ -37,7 +39,7 @@ export default class App extends PureComponent {
         <MoviePage
           movieCard={currentMovie}
           movies={movies}
-          reviews={moviesReviews}
+          movieReviews={this._movieReviews}
           onSmallMovieCardClick={this._handleMovieClick} />
       );
     }
@@ -52,7 +54,14 @@ export default class App extends PureComponent {
     });
   }
 
+  _getCurrentMovieReviews(allReviews, movie) {
+    const currentMovieReviews = allReviews.filter((movieReviews) => movieReviews.movie === movie.title);
+    return currentMovieReviews;
+  }
+
   render() {
+    const {moviesReviews} = this.props;
+
     return (
       <Router>
         <Switch>
@@ -61,9 +70,9 @@ export default class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePage
-              movieCard={this.state.currentMovie}
+              movieCard={this.props.movies[1]}
               movies={this.props.movies}
-              reviews={this.props.moviesReviews}
+              movieReviews={this._getCurrentMovieReviews(moviesReviews, this.props.movies[1])}
               onSmallMovieCardClick={this._handleMovieClick} />
           </Route>
         </Switch>

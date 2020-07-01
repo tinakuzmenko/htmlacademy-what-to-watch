@@ -14,6 +14,7 @@ export const CustomPropTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    runTime: PropTypes.string.isRequired,
   }).isRequired,
 
   REVIEW: PropTypes.shape({
@@ -24,6 +25,7 @@ export const CustomPropTypes = {
           rating: PropTypes.string.isRequired,
           date: PropTypes.string.isRequired,
           content: PropTypes.string.isRequired,
+          id: PropTypes.number.isRequired,
         }).isRequired
     ).isRequired,
   }).isRequired,

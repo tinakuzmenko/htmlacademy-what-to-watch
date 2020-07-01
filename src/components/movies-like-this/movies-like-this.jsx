@@ -7,7 +7,7 @@ const MAX_SIMILAR_MOVIES_AMOUNT = 4;
 
 const getFilteredMovies = (movies, currentMovie) => {
   const filteredMovies = movies.filter((movie) => {
-    return movie.genre === currentMovie.genre && movie !== currentMovie;
+    return movie.genre === currentMovie.genre && movie.title !== currentMovie.title;
   });
 
   return filteredMovies;

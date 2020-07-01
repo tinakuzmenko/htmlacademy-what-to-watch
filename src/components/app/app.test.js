@@ -11,6 +11,7 @@ describe(`App`, () => {
       .create(<App
         movieCard={movieCard}
         movies={movies}
+        moviesReviews={[]}
       />, {
         createNodeMock: () => {
           return {};

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MoviePage from './movie-page.jsx';
-import {movie, movies} from '../../utils/test-data.js';
+import {movie, movies, reviews} from '../../utils/test-data.js';
 
 describe(`MoviePage`, () => {
   it(`Should render correctly`, () => {
@@ -9,6 +9,7 @@ describe(`MoviePage`, () => {
       .create(<MoviePage
         movieCard={movie}
         movies={movies}
+        movieReviews={reviews}
         onSmallMovieCardClick={() => {}} />)
       .toJSON();
 

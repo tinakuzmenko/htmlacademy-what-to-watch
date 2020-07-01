@@ -5,7 +5,9 @@ import Footer from './footer.jsx';
 describe(`Footer`, () => {
   it(`Should render correctly`, () => {
     const tree = renderer
-      .create(<Footer />)
+      .create(<Footer
+        isMainPage={true}
+      />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
