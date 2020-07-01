@@ -8,13 +8,21 @@ import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 
+const NavTabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
+
 export default class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentTab: `reviews`,
+      currentTab: NavTabs.OVERVIEW,
     };
+
+    this._handleTabClick = this._handleTabClick.bind(this);
   }
 
   _handleTabClick(activeTab) {
@@ -27,19 +35,19 @@ export default class MoviePage extends PureComponent {
     const {movieCard, movieReviews} = this.props;
     const {currentTab} = this.state;
 
-    if (currentTab === `overview`) {
+    if (currentTab === NavTabs.OVERVIEW) {
       return <MovieOverview
         movie={movieCard}
       />;
     }
 
-    if (currentTab === `details`) {
+    if (currentTab === NavTabs.DETAILS) {
       return <MovieDetails
         movie={movieCard}
       />;
     }
 
-    if (currentTab === `reviews`) {
+    if (currentTab === NavTabs.REVIEWS) {
       return <MovieReviews
         movieReviews={movieReviews}
       />;
@@ -112,6 +120,8 @@ export default class MoviePage extends PureComponent {
 
               <div className="movie-card__desc">
                 <MovieNav
+                  navTabs={NavTabs}
+                  currentActiveTab={this.state.currentTab}
                   onTabClick={this._handleTabClick}
                 />
 
