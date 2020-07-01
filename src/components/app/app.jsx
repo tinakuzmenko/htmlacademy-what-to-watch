@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {CustomPropTypes} from '../../utils/custom-prop-types.js';
 
 
@@ -20,7 +20,7 @@ export default class App extends PureComponent {
 
 
   _renderApp() {
-    const {movieCard, movies} = this.props;
+    const {movieCard, movies, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
     if (currentPage === `main`) {
@@ -37,6 +37,7 @@ export default class App extends PureComponent {
         <MoviePage
           movieCard={currentMovie}
           movies={movies}
+          reviews={moviesReviews}
           onSmallMovieCardClick={this._handleMovieClick} />
       );
     }
@@ -62,6 +63,7 @@ export default class App extends PureComponent {
             <MoviePage
               movieCard={this.state.currentMovie}
               movies={this.props.movies}
+              reviews={this.props.moviesReviews}
               onSmallMovieCardClick={this._handleMovieClick} />
           </Route>
         </Switch>
@@ -73,4 +75,5 @@ export default class App extends PureComponent {
 App.propTypes = {
   movieCard: CustomPropTypes.MOVIE,
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  moviesReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired
 };

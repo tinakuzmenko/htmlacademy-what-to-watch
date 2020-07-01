@@ -14,5 +14,17 @@ export const CustomPropTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired
+  }).isRequired,
+
+  REVIEW: PropTypes.shape({
+    movie: PropTypes.string.isRequired,
+    reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          author: PropTypes.string.isRequired,
+          rating: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
+          content: PropTypes.string.isRequired,
+        }).isRequired
+    ).isRequired,
+  }).isRequired,
 };
