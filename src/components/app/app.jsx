@@ -1,8 +1,9 @@
 import React, {PureComponent} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {CustomPropTypes} from '../../utils/custom-prop-types.js';
 
 
 export default class App extends PureComponent {
@@ -14,41 +15,53 @@ export default class App extends PureComponent {
       currentMovie: this.props.movieCard,
     };
 
-    this.handleMovieClick = this.handleMovieClick.bind(this);
+    this._handleMovieClick = this._handleMovieClick.bind(this);
   }
 
 
   _renderApp() {
-    const {movieCard, movies} = this.props;
+    const {movieCard, movies, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
+
+    this._movieReviews = this._getCurrentMovieReviews(moviesReviews, currentMovie);
 
     if (currentPage === `main`) {
       return (
         <Main
           movieCard={movieCard}
           movies={movies}
-          onMovieClick={this.handleMovieClick} />
+          onSmallMovieCardClick={this._handleMovieClick} />
       );
     }
 
     if (currentPage === `film`) {
       return (
         <MoviePage
-          movieCard={currentMovie} />
+          movieCard={currentMovie}
+          movies={movies}
+          movieReviews={this._movieReviews}
+          onSmallMovieCardClick={this._handleMovieClick} />
       );
     }
 
     return null;
   }
 
-  handleMovieClick(movie) {
+  _handleMovieClick(movie) {
     this.setState({
       currentPage: `film`,
       currentMovie: movie,
     });
   }
 
+  _getCurrentMovieReviews(allReviews, movie) {
+    const currentMovieReviews = allReviews.filter((movieReviews) => movieReviews.movie === movie.title);
+    return currentMovieReviews;
+  }
+
   render() {
+    const {moviesReviews} = this.props;
+
     return (
       <Router>
         <Switch>
@@ -57,7 +70,10 @@ export default class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePage
-              movieCard={this.state.currentMovie} />
+              movieCard={this.props.movies[1]}
+              movies={this.props.movies}
+              movieReviews={this._getCurrentMovieReviews(moviesReviews, this.props.movies[1])}
+              onSmallMovieCardClick={this._handleMovieClick} />
           </Route>
         </Switch>
       </Router>
@@ -66,36 +82,7 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  movieCard: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        rating: PropTypes.string.isRequired,
-        ratingDescription: PropTypes.string.isRequired,
-        votes: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        preview: PropTypes.string.isRequired,
-      }).isRequired
-  ).isRequired,
+  movieCard: CustomPropTypes.MOVIE,
+  movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  moviesReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired
 };

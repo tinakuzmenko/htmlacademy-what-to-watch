@@ -1,8 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import Footer from '../footer/footer.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 
-const Main = ({movieCard, movies, onMovieClick}) => {
+const Main = ({movieCard, movies, onSmallMovieCardClick}) => {
+  const isMainPage = true;
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -99,7 +103,7 @@ const Main = ({movieCard, movies, onMovieClick}) => {
 
           <MoviesList
             movies={movies}
-            onMovieClick={onMovieClick}
+            onSmallMovieCardClick={onSmallMovieCardClick}
           />
 
           <div className="catalog__more">
@@ -107,58 +111,18 @@ const Main = ({movieCard, movies, onMovieClick}) => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer
+          isMainPage={isMainPage}
+        />
       </div>
     </React.Fragment>
   );
 };
 
 Main.propTypes = {
-  movieCard: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        background: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        rating: PropTypes.string.isRequired,
-        ratingDescription: PropTypes.string.isRequired,
-        votes: PropTypes.number.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        preview: PropTypes.string.isRequired,
-      }).isRequired
-  ).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
+  movieCard: CustomPropTypes.MOVIE,
+  movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default Main;

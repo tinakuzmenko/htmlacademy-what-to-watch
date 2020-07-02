@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player.jsx';
+import {CustomPropTypes} from '../../utils/custom-prop-types.js';
 
 export default class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -16,14 +17,14 @@ export default class SmallMovieCard extends PureComponent {
   }
 
   _handleMovieClick(evt) {
-    const onMovieClick = this.props.onMovieClick;
+    const onSmallMovieCardClick = this.props. onSmallMovieCardClick;
 
     evt.preventDefault();
-    onMovieClick(this._movie);
+    onSmallMovieCardClick(this._movie);
   }
 
   render() {
-    const onCardHover = this.props.onCardHover;
+    const onSmallMovieCardHover = this.props.onSmallMovieCardHover;
 
     return (
       <article
@@ -32,7 +33,7 @@ export default class SmallMovieCard extends PureComponent {
           this.setState({
             isPlaying: true,
           });
-          onCardHover(this._movie);
+          onSmallMovieCardHover(this._movie);
         }}
         onMouseOut={() => {
           this.setState({
@@ -61,21 +62,7 @@ export default class SmallMovieCard extends PureComponent {
 }
 
 SmallMovieCard.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
+  movie: CustomPropTypes.MOVIE,
+  onSmallMovieCardClick: PropTypes.func.isRequired,
+  onSmallMovieCardHover: PropTypes.func.isRequired,
 };

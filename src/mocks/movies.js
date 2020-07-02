@@ -2,16 +2,17 @@ export const movieCard = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   date: `2014`,
-  background: `img/the-grand-budapest-hotel-background.jpg`,
-  poster: `img/bg-the-grand-budapest-hotel.jpg`,
+  background: `img/bg-the-grand-budapest-hotel.jpg`,
+  poster: `img/the-grand-budapest-hotel-poster.jpg`,
   id: 190123,
   description: [`In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege`, `Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`],
   rating: `8,9`,
   ratingDescription: `Very good`,
   votes: 240,
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`, `Owen Wilkinson`, `Adrien Brody`, `Ralph Fiennes`, `Jeff Goldblum`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
+  runTime: `1h 39m`,
 };
 
 export const movies = [
@@ -29,6 +30,7 @@ export const movies = [
     director: `David Yates`,
     starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    runTime: `2h 13m`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -44,6 +46,7 @@ export const movies = [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
+    runTime: `2h 14m`,
   },
   {
     title: `Aviator`,
@@ -59,6 +62,7 @@ export const movies = [
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
+    runTime: `2h 50m`,
   },
   {
     title: `Shutter Island`,
@@ -74,6 +78,7 @@ export const movies = [
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
+    runTime: `2h 19m`,
   },
   {
     title: `Pulp Fiction`,
@@ -89,6 +94,7 @@ export const movies = [
     director: `Quentin Tarantino`,
     starring: [`John Travolta`, `Uma Thurman`, `Samuel L. Jackson`, `Bruce Willis`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/9/95/Aerial_View_of_The_Vessel_at_Hudson_Yards%2C_New_York_City.webm`,
+    runTime: `2h 58m`,
   },
   {
     title: `No Country for Old Men`,
@@ -104,6 +110,7 @@ export const movies = [
     director: `Ethan Coen, Joel Coen`,
     starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
+    runTime: `2h 3m`,
   },
   {
     title: `Snatch`,
@@ -119,6 +126,7 @@ export const movies = [
     director: `Guy Ritchie`,
     starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
+    runTime: `1h 44m`,
   },
   {
     title: `Johnny English`,
@@ -134,4 +142,5 @@ export const movies = [
     director: `David Kerr`,
     starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/d/da/Geroldsauer_Wasserfall_2020-03-13.webm`,
+    runTime: `1h 29m`,
   }];
