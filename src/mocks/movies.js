@@ -141,6 +141,6 @@ export const movies = [
     votes: 300,
     director: `David Kerr`,
     starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/d/da/Geroldsauer_Wasserfall_2020-03-13.webm`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `1h 29m`,
   }];
