@@ -129,3 +129,5 @@ export const reviews =
     id: 3456345437,
   }]
 }];
+
+export const genres = [`All genres`, `Drama`, `Thriller`, `Comedy`];
