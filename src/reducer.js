@@ -25,8 +25,8 @@ const filterMoviesByGenre = (allMovies, activeGenre) => {
 };
 
 const ActionCreator = {
-  getMoviesByGenre: (allMovies, activeGenre) => {
-    const moviesByGenre = filterMoviesByGenre(allMovies, activeGenre);
+  getMoviesByGenre: (activeGenre) => {
+    const moviesByGenre = filterMoviesByGenre(movies, activeGenre);
 
     return {
       type: ActionType.GET_MOVIES_BY_GENRE,
@@ -44,11 +44,14 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_GENRE:
+    case ActionType.GET_MOVIES_BY_GENRE:
       return extend(state, {
-        movies: action.payload,
+        moviesByGenre: action.payload,
       });
-
+    case ActionType.GET_ACTIVE_GENRE:
+      return extend(state, {
+        activeGenre: action.payload,
+      });
   }
 
   return state;

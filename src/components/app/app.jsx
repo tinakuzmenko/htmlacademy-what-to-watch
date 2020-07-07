@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import {Pages} from '../../helpers/constants.js';
@@ -23,7 +23,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movieCard, movies, moviesReviews} = this.props;
+    const {movies, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
     this._moviesReviews = getMoviesReviews(moviesReviews, currentMovie);
@@ -31,8 +31,6 @@ class App extends PureComponent {
     if (currentPage === Pages.MAIN) {
       return (
         <Main
-          movieCard={movieCard}
-          movies={movies}
           onSmallMovieCardClick={this._handleMovieClick}
         />
       );
