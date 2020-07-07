@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MovieNav from './movie-nav.jsx';
-import {NavTabs} from '../../utils/constants.js';
+import {NavTabs} from '../../helpers/constants.js';
 
 
 describe(`MovieNav`, () => {

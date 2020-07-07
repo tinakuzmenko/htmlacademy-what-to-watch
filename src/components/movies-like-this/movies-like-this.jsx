@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
-import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 
 const MAX_SIMILAR_MOVIES_AMOUNT = 4;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
-import {movie, movies} from '../../utils/test-data.js';
+import {movie, movies} from '../../helpers/test-data.js';
 
 const movieCard = movie;
 

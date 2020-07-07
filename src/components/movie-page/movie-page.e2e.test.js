@@ -5,8 +5,8 @@ import MoviePage from './movie-page.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-import {NavTabs} from '../../utils/constants.js';
-import {movie, movies, reviews} from '../../utils/test-data.js';
+import {NavTabs} from '../../helpers/constants.js';
+import {movie, movies, reviews} from '../../helpers/test-data.js';
 
 Enzyme.configure({
   adapter: new Adapter(),

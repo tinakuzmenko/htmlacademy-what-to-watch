@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import SmallMovieCard from './small-movie-card.jsx';
-import {movie} from '../../utils/test-data.js';
+import {movie} from '../../helpers/test-data.js';
 
 describe(`SmallMovieCard`, () => {
   it(`Should render correctly movie card`, () => {

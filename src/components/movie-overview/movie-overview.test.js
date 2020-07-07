@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MovieOverview from './movie-overview.jsx';
-import {movie} from '../../utils/test-data.js';
+import {movie} from '../../helpers/test-data.js';
 
 describe(`MovieOverview`, () => {
   it(`Should render correctly`, () => {

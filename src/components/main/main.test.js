@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main.jsx';
-import {movie, movies} from '../../utils/test-data.js';
+import {movie, movies} from '../../helpers/test-data.js';
 
 const movieCard = movie;
 
