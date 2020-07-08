@@ -1,7 +1,7 @@
-import {movieCard, movies} from './mocks/movies.js';
-import {allMoviesReviews} from './mocks/reviews.js';
-import {extend} from './helpers/utils.js';
-import {ALL_GENRES} from './helpers/constants.js';
+import {movieCard, movies} from '../mocks/movies.js';
+import {allMoviesReviews} from '../mocks/reviews.js';
+import {extend, filterMoviesByGenre} from '../helpers/utils.js';
+import {ALL_GENRES} from '../helpers/constants.js';
 
 const initialState = {
   movieCard,
@@ -14,14 +14,6 @@ const initialState = {
 const ActionType = {
   GET_MOVIES_BY_GENRE: `GET_MOVIES_BY_GENRE`,
   GET_ACTIVE_GENRE: `GET_ACTIVE_GENRE`,
-};
-
-const filterMoviesByGenre = (allMovies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
-    return allMovies;
-  }
-
-  return allMovies.filter((movie) => movie.genre === activeGenre);
 };
 
 const ActionCreator = {
@@ -57,4 +49,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActionCreator};
+export {initialState, reducer, ActionType, ActionCreator};

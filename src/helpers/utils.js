@@ -12,3 +12,11 @@ export const getMoviesGenres = (movies) => {
   const genres = new Set(movies.map((movie) => movie.genre));
   return [ALL_GENRES].concat(...genres);
 };
+
+export const filterMoviesByGenre = (allMovies, activeGenre) => {
+  if (activeGenre === ALL_GENRES) {
+    return allMovies;
+  }
+
+  return allMovies.filter((movie) => movie.genre === activeGenre);
+};
