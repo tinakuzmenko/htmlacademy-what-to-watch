@@ -6,6 +6,7 @@ import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import {getMoviesGenres} from '../../helpers/utils.js';
 import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
+import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import Footer from '../footer/footer.jsx';
 
 export const Main = ({movieCard, movies, onSmallMovieCardClick, activeGenre, moviesByGenre, onGenreClick}) => {
@@ -83,9 +84,11 @@ export const Main = ({movieCard, movies, onSmallMovieCardClick, activeGenre, mov
             onSmallMovieCardClick={onSmallMovieCardClick}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton
+            onShowMoreButtonClick={() => {
+              console.log(`Button Show More was clicked!`);
+            }}
+          />
         </section>
 
         <Footer
