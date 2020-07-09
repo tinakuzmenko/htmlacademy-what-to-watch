@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import MovieReview from '../movie-review/movie-review.jsx';
 
 const sliceReviews = (reviews) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MoviesLikeThis, {getFilteredMovies} from './movies-like-this.jsx';
-import {movie, movies, currentMovie} from '../../utils/test-data.js';
+import {movie, movies, currentMovie} from '../../helpers/test-data.js';
 
 describe(`MoviesLikeThis`, () => {
   it(`Should render correctly`, () => {

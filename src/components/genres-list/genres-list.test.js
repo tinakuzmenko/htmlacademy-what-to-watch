@@ -1,13 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieDetails from './movie-details.jsx';
-import {movie} from '../../helpers/test-data.js';
+import GenresList from './genres-list.jsx';
+import {genres} from '../../helpers/test-data.js';
+
 
 describe(`MovieDetails`, () => {
   it(`Should render correctly`, () => {
     const tree = renderer
-      .create(<MovieDetails
-        movie={movie}
+      .create(<GenresList
+        genres={genres}
+        currentActiveGenre={`All genres`}
+        onGenreClick={() => {}}
       />)
       .toJSON();
 

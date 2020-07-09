@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 
 export default class MoviesList extends PureComponent {
   constructor(props) {

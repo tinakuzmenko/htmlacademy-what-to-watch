@@ -1,5 +1,5 @@
 import React from 'react';
-import {CustomPropTypes} from '../../utils/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 
 const getMovieActorsList = (actors) => {
   return actors.map((actor) => {

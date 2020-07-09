@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MoviePage from './movie-page.jsx';
-import {movie, movies, reviews} from '../../utils/test-data.js';
+import {movie, movies, reviews} from '../../helpers/test-data.js';
 
 describe(`MoviePage`, () => {
   it(`Should render correctly`, () => {
