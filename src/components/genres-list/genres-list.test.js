@@ -11,6 +11,7 @@ describe(`MovieDetails`, () => {
         genres={genres}
         currentActiveGenre={`All genres`}
         onGenreClick={() => {}}
+        onGenreFilterChange={() => {}}
       />)
       .toJSON();
 
