@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import {SHOWN_MOVIES} from '../../helpers/constants.js';
 import {ActionCreator} from '../../reducer/reducer.js';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import {getMoviesGenres} from '../../helpers/utils.js';
@@ -8,8 +9,6 @@ import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import Footer from '../footer/footer.jsx';
-
-const SHOWN_MOVIES = 8;
 
 export class Main extends PureComponent {
   constructor(props) {
@@ -121,9 +120,9 @@ export class Main extends PureComponent {
               onSmallMovieCardClick={onSmallMovieCardClick}
             />
 
-            {moviesByGenre.length > shownMovies.length ? <ShowMoreButton
+            {moviesByGenre.length > shownMovies.length && <ShowMoreButton
               onShowMoreButtonClick={this._handleShowMoreButtonClick}
-            /> : ``}
+            />}
           </section>
 
           <Footer
