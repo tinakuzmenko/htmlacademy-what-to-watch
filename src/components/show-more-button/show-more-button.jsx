@@ -7,7 +7,10 @@ const ShowMoreButton = ({onShowMoreButtonClick}) => {
       <button
         className="catalog__button"
         type="button"
-        onClick={onShowMoreButtonClick}>
+        onClick={(evt) => {
+          evt.preventDefault();
+          onShowMoreButtonClick();
+        }}>
           Show more
       </button>
     </div>
