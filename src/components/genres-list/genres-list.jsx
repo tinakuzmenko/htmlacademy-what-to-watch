@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MAX_SHOWN_GENRES} from '../../helpers/constants.js';
 
-const GenresList = ({genres, currentActiveGenre, onGenreClick, onGenreFilterChange}) => {
+const GenresList = ({genres, currentActiveGenre, onGenreClick}) => {
   const shownGenres = genres.slice(0, MAX_SHOWN_GENRES);
 
   return (
@@ -17,7 +17,6 @@ const GenresList = ({genres, currentActiveGenre, onGenreClick, onGenreFilterChan
             onClick={(evt) => {
               evt.preventDefault();
               onGenreClick(genre);
-              onGenreFilterChange();
             }}>{genre}</a>
         </li>);
       })}
@@ -29,7 +28,6 @@ GenresList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentActiveGenre: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,
-  onGenreFilterChange: PropTypes.func.isRequired,
 };
 
 export default GenresList;

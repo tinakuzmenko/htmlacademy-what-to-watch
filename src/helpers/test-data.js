@@ -47,7 +47,8 @@ export const movies = [
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `2h 50m`,
-  }];
+  },
+];
 
 export const currentMovie = {
   title: `The Grand Budapest Hotel`,

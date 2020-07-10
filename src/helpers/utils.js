@@ -10,7 +10,7 @@ export const getMoviesReviews = (allReviews, movie) => {
 
 export const getMoviesGenres = (movies) => {
   const genres = new Set(movies.map((movie) => movie.genre));
-  return [ALL_GENRES].concat(...genres);
+  return [ALL_GENRES, ...genres];
 };
 
 export const filterMoviesByGenre = (allMovies, activeGenre) => {

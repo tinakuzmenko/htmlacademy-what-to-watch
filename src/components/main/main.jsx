@@ -11,29 +11,43 @@ import Footer from '../footer/footer.jsx';
 
 const SHOWN_MOVIES = 8;
 
-class Main extends PureComponent {
+export class Main extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentShownFilms: SHOWN_MOVIES,
+      shownMovies: props.moviesByGenre.slice(0, SHOWN_MOVIES),
     };
 
     this._handleShowMoreButtonClick = this._handleShowMoreButtonClick.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.activeGenre !== this.props.activeGenre) {
+      this.setState({
+        shownMovies: this.props.moviesByGenre.slice(0, SHOWN_MOVIES),
+      });
+    }
+  }
+
   _handleShowMoreButtonClick() {
-    this.setState((prevState) => ({currentShownFilms: prevState.currentShownFilms + SHOWN_MOVIES}));
+    this.setState((prevState) => ({
+      shownMovies: [
+        ...prevState.shownMovies,
+        ...this.props.moviesByGenre.slice(
+            prevState.shownMovies.length,
+            prevState.shownMovies.length + SHOWN_MOVIES
+        )
+      ]
+    }));
   }
 
   render() {
     const {movieCard, movies, onSmallMovieCardClick, activeGenre, moviesByGenre, onGenreClick} = this.props;
-    const {currentShownFilms} = this.state;
+    const {shownMovies} = this.state;
 
     const isMainPage = true;
     const moviesGenres = getMoviesGenres(movies);
-
-    this._shownMovies = moviesByGenre.slice(0, currentShownFilms);
 
     return (
       <React.Fragment>
@@ -100,17 +114,14 @@ class Main extends PureComponent {
               genres={moviesGenres}
               currentActiveGenre={activeGenre}
               onGenreClick={onGenreClick}
-              onGenreFilterChange={() => this.setState({
-                currentShownFilms: SHOWN_MOVIES,
-              })}
             />
 
             <MoviesList
-              movies={this._shownMovies}
+              movies={shownMovies}
               onSmallMovieCardClick={onSmallMovieCardClick}
             />
 
-            {moviesByGenre.length > this._shownMovies.length ? <ShowMoreButton
+            {moviesByGenre.length > shownMovies.length ? <ShowMoreButton
               onShowMoreButtonClick={this._handleShowMoreButtonClick}
             /> : ``}
           </section>
@@ -147,5 +158,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

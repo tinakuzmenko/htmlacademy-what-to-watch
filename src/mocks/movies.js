@@ -191,4 +191,5 @@ export const movies = [
     starring: [`Jemaine Clement`, `Taika Waititi`, `Cori Gonzalez-Macuer`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `1h 26m`,
-  }];
+  },
+];
