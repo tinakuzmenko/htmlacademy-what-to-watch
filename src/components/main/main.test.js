@@ -16,7 +16,7 @@ const store = mockStore({
 });
 
 describe(`Main`, () => {
-  it(`Should render correctly with movies titles array`, () => {
+  it(`Should render correctly`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
