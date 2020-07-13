@@ -1,15 +1,31 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import MoviesLikeThis, {getFilteredMovies} from './movies-like-this.jsx';
 import {movie, movies, currentMovie} from '../../helpers/test-data.js';
 
+const mockStore = configureStore([]);
+
 describe(`MoviesLikeThis`, () => {
   it(`Should render correctly`, () => {
+    const store = mockStore({
+      moviesByGenre: movies,
+      activeGenre: `All genres`,
+    });
+
     const tree = renderer
-      .create(<MoviesLikeThis
-        movieCard={movie}
-        movies={movies}
-        onSmallMovieCardClick={() => {}} />)
+      .create(
+          <Provider store={store}>
+            <MoviesLikeThis
+              movieCard={movie}
+              movies={movies}
+              onSmallMovieCardClick={() => {}} />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

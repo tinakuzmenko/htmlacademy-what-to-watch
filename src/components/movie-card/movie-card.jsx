@@ -1,8 +1,10 @@
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import React from 'react';
+import PropTypes from 'prop-types';
+import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import {connect} from "react-redux";
 import PageHeader from '../page-header/page-header.jsx';
 
-const MovieCard = ({movieCard}) => {
+const MovieCard = ({movieCard, isMainPage}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -11,7 +13,7 @@ const MovieCard = ({movieCard}) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <PageHeader />
+      <PageHeader isMainPage={isMainPage} />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -49,6 +51,11 @@ const MovieCard = ({movieCard}) => {
 
 MovieCard.propTypes = {
   movieCard: CustomPropTypes.MOVIE,
+  isMainPage: PropTypes.bool.isRequired,
 };
 
-export default MovieCard;
+const mapStateToProps = (state) => ({
+  movieCard: state.movieCard,
+});
+
+export default connect(mapStateToProps)(MovieCard);

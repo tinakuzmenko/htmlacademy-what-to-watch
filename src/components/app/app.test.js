@@ -3,10 +3,9 @@ import renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from './app.jsx';
-import {movie, movies, reviews} from '../../helpers/test-data.js';
+import {movie, movies, reviews, genres} from '../../helpers/test-data.js';
 
 const mockStore = configureStore([]);
-
 const movieCard = movie;
 
 describe(`App`, () => {
@@ -17,6 +16,7 @@ describe(`App`, () => {
       moviesReviews: reviews,
       activeGenre: `Drama`,
       moviesByGenre: movies,
+      allMoviesGenres: genres,
     });
 
     const tree = renderer

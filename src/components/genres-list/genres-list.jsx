@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer/reducer.js';
 import {MAX_SHOWN_GENRES} from '../../helpers/constants.js';
 
-const GenresList = ({genres, currentActiveGenre, onGenreClick}) => {
-  const shownGenres = genres.slice(0, MAX_SHOWN_GENRES);
+const GenresList = ({allMoviesGenres, currentActiveGenre, onGenreClick}) => {
+  const shownGenres = allMoviesGenres.slice(0, MAX_SHOWN_GENRES);
 
   return (
     <ul className="catalog__genres-list">
@@ -25,9 +27,21 @@ const GenresList = ({genres, currentActiveGenre, onGenreClick}) => {
 };
 
 GenresList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  allMoviesGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentActiveGenre: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 
-export default GenresList;
+const mapStateToProps = (state) => ({
+  allMoviesGenres: state.allMoviesGenres,
+  currentActiveGenre: state.activeGenre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(ActionCreator.getMoviesByGenre(genre));
+    dispatch(ActionCreator.getActiveGenre(genre));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const PageHeader = () => {
+const PageHeader = ({isMainPage}) => {
   return (
     <header className="page-header movie-card__head">
       <div className="logo">
-        <a className="logo__link">
+        <a
+          className="logo__link"
+          href={!isMainPage ? `main.html` : null}
+        >
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
@@ -18,6 +22,10 @@ const PageHeader = () => {
       </div>
     </header>
   );
+};
+
+PageHeader.propTypes = {
+  isMainPage: PropTypes.bool.isRequired,
 };
 
 export default PageHeader;

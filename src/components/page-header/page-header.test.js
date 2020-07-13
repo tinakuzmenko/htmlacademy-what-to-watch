@@ -5,7 +5,9 @@ import PageHeader from './page-header.jsx';
 describe(`PageHeader`, () => {
   it(`Should render correctly`, () => {
     const tree = renderer
-      .create(<PageHeader />)
+      .create(<PageHeader
+        isMainPage={true}
+      />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

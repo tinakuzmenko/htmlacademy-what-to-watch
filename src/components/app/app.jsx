@@ -17,6 +17,7 @@ class App extends PureComponent {
     this.state = {
       currentPage: Pages.MAIN,
       currentMovie: this.props.movieCard,
+      isMainPage: true,
     };
 
     this._handleMovieClick = this._handleMovieClick.bind(this);
@@ -31,6 +32,7 @@ class App extends PureComponent {
     if (currentPage === Pages.MAIN) {
       return (
         <Main
+          isMainPage={this.state.isMainPage}
           onSmallMovieCardClick={this._handleMovieClick}
         />
       );
@@ -39,6 +41,7 @@ class App extends PureComponent {
     if (currentPage === Pages.FILM) {
       return (
         <MoviePage
+          isMainPage={this.state.isMainPage}
           movieCard={currentMovie}
           movies={movies}
           movieReviews={this._moviesReviews}
@@ -53,6 +56,7 @@ class App extends PureComponent {
     this.setState({
       currentPage: Pages.FILM,
       currentMovie: movie,
+      isMainPage: false
     });
   }
 
@@ -67,6 +71,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePage
+              isMainPage={this.state.isMainPage}
               movieCard={movieCard}
               movies={movies}
               movieReviews={this._moviesReviews}

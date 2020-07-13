@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {shallow, mount} from 'enzyme';
+import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import MoviePage from './movie-page.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
@@ -16,6 +16,7 @@ describe(`MoviePage e2e tests`, () => {
   it(`Should render right screens on different states`, () => {
     const moviePageComponent = shallow(
         <MoviePage
+          isMainPage={false}
           movieCard={movie}
           movies={movies}
           movieReviews={reviews}
@@ -37,8 +38,9 @@ describe(`MoviePage e2e tests`, () => {
   it(`Should render right screen on current tab click`, () => {
     const tabs = Object.values(NavTabs);
 
-    const moviePageComponent = mount(
+    const moviePageComponent = shallow(
         <MoviePage
+          isMainPage={false}
           movieCard={movie}
           movies={movies}
           movieReviews={reviews}

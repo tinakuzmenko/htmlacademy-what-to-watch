@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Footer from '../footer/footer.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 import MovieNav from '../movie-nav/movie-nav.jsx';
 import MoviesLikeThis from '../movies-like-this/movies-like-this.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
@@ -8,6 +8,7 @@ import MovieDetails from '../movie-details/movie-details.jsx';
 import MovieReviews from '../movie-reviews/movie-reviews.jsx';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import {NavTabs} from '../../helpers/constants.js';
+import PageHeader from '../page-header/page-header.jsx';
 
 export default class MoviePage extends PureComponent {
   constructor(props) {
@@ -51,7 +52,7 @@ export default class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movieCard, movies, onSmallMovieCardClick} = this.props;
+    const {movieCard, movies, onSmallMovieCardClick, isMainPage} = this.props;
 
     return (
       <React.Fragment>
@@ -63,21 +64,7 @@ export default class MoviePage extends PureComponent {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <header className="page-header movie-card__head">
-              <div className="logo">
-                <a href="main.html" className="logo__link">
-                  <span className="logo__letter logo__letter--1">W</span>
-                  <span className="logo__letter logo__letter--2">T</span>
-                  <span className="logo__letter logo__letter--3">W</span>
-                </a>
-              </div>
-
-              <div className="user-block">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </div>
-            </header>
+            <PageHeader isMainPage={isMainPage} />
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
@@ -131,8 +118,8 @@ export default class MoviePage extends PureComponent {
             movies={movies}
             onSmallMovieCardClick={onSmallMovieCardClick}
           />
-          <Footer
-            isMainPage={false}
+          <PageFooter
+            isMainPage={isMainPage}
           />
         </div>
       </React.Fragment>
@@ -145,5 +132,6 @@ MoviePage.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  isMainPage: PropTypes.bool.isRequired,
 };
 
