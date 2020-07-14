@@ -26,7 +26,7 @@ Array [
       >
         <a
           className="logo__link"
-          href={null}
+          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -173,29 +173,18 @@ Array [
             href="#"
             onClick={[Function]}
           >
+            Documentary
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
             Drama
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Thriller
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Comedy
           </a>
         </li>
       </ul>
@@ -268,7 +257,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href={null}
+          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"
