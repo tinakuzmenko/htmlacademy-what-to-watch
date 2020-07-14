@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/reducer.js';
 import {MAX_SHOWN_GENRES} from '../../helpers/constants.js';
+import {getMoviesGenres} from '../../helpers/utils.js';
 
-const GenresList = ({allMoviesGenres, currentActiveGenre, onGenreClick}) => {
-  const shownGenres = allMoviesGenres.slice(0, MAX_SHOWN_GENRES);
-
+const GenresList = ({moviesGenres, currentActiveGenre, onGenreClick}) => {
   return (
     <ul className="catalog__genres-list">
-      {shownGenres.map((genre, index) => {
+      {moviesGenres.map((genre, index) => {
         return (<li
-          key={genre + index}
+          key={`${genre}-${index}`}
           className={`catalog__genres-item ${genre === currentActiveGenre ? `catalog__genres-item--active` : ``}`}>
           <a
             href="#"
@@ -27,20 +26,19 @@ const GenresList = ({allMoviesGenres, currentActiveGenre, onGenreClick}) => {
 };
 
 GenresList.propTypes = {
-  allMoviesGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  moviesGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentActiveGenre: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  allMoviesGenres: state.allMoviesGenres,
+  moviesGenres: getMoviesGenres(state.movies).slice(0, MAX_SHOWN_GENRES),
   currentActiveGenre: state.activeGenre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
-    dispatch(ActionCreator.getMoviesByGenre(genre));
-    dispatch(ActionCreator.getActiveGenre(genre));
+    dispatch(ActionCreator.setActiveGenre(genre));
   },
 });
 

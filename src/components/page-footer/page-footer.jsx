@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {Pages} from '../../helpers/constants.js';
 
 const PageFooter = ({isMainPage}) => {
   return (
@@ -26,4 +28,8 @@ PageFooter.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
 };
 
-export default PageFooter;
+const mapStateToProps = (state) => ({
+  isMainPage: state.currentPage === Pages.MAIN,
+});
+
+export default connect(mapStateToProps)(PageFooter);

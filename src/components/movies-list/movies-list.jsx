@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {SHOWN_MOVIES} from '../../helpers/constants.js';
+import {filterMoviesByGenre} from '../../helpers/utils.js';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
@@ -11,35 +12,27 @@ class MoviesList extends PureComponent {
     super(props);
 
     this.state = {
-      currentMovie: null,
-      shownMovies: props.moviesByGenre.slice(0, SHOWN_MOVIES),
+      shownMovies: props.movies.slice(0, SHOWN_MOVIES),
     };
 
-    this._handleSmallMovieCardHover = this._handleSmallMovieCardHover.bind(this);
     this._handleShowMoreButtonClick = this._handleShowMoreButtonClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    const {activeGenre, moviesByGenre} = this.props;
+    const {activeGenre, movies} = this.props;
 
     if (prevProps.activeGenre !== activeGenre) {
       this.setState({
-        shownMovies: moviesByGenre.slice(0, SHOWN_MOVIES),
+        shownMovies: movies.slice(0, SHOWN_MOVIES),
       });
     }
-  }
-
-  _handleSmallMovieCardHover(movie) {
-    this.setState({
-      currentMovie: movie,
-    });
   }
 
   _handleShowMoreButtonClick() {
     this.setState((prevState) => ({
       shownMovies: [
         ...prevState.shownMovies,
-        ...this.props.moviesByGenre.slice(
+        ...this.props.movies.slice(
             prevState.shownMovies.length,
             prevState.shownMovies.length + SHOWN_MOVIES
         )
@@ -48,7 +41,7 @@ class MoviesList extends PureComponent {
   }
 
   render() {
-    const {moviesByGenre, onSmallMovieCardClick} = this.props;
+    const {movies} = this.props;
     const {shownMovies} = this.state;
 
     return (
@@ -59,13 +52,11 @@ class MoviesList extends PureComponent {
               <SmallMovieCard
                 key={movie.id}
                 movie={movie}
-                onSmallMovieCardClick={onSmallMovieCardClick}
-                onSmallMovieCardHover={this._handleSmallMovieCardHover}
               />
             );
           })}
         </div>
-        {moviesByGenre.length > shownMovies.length && <ShowMoreButton
+        {movies.length > shownMovies.length && <ShowMoreButton
           onShowMoreButtonClick={this._handleShowMoreButtonClick}
         />}
       </React.Fragment>
@@ -74,13 +65,12 @@ class MoviesList extends PureComponent {
 }
 
 MoviesList.propTypes = {
-  moviesByGenre: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   activeGenre: PropTypes.string.isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  moviesByGenre: state.moviesByGenre,
+  movies: filterMoviesByGenre(state.movies, state.activeGenre),
   activeGenre: state.activeGenre,
 });
 
