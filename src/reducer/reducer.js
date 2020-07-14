@@ -12,11 +12,13 @@ const initialState = {
   allMoviesGenres: getMoviesGenres(movies),
   currentPage: Pages.MAIN,
   currentMovie: movieCard,
+  isMainPage: true,
 };
 
 const ActionType = {
   GET_MOVIES_BY_GENRE: `GET_MOVIES_BY_GENRE`,
   GET_ACTIVE_GENRE: `GET_ACTIVE_GENRE`,
+  GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
 };
 
 const ActionCreator = {
@@ -35,6 +37,13 @@ const ActionCreator = {
       payload: activeGenre,
     };
   },
+
+  goToMoviePage: (chosenMovie) => {
+    return {
+      type: ActionType.GO_TO_MOVIE_PAGE,
+      payload: chosenMovie
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +55,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_ACTIVE_GENRE:
       return extend(state, {
         activeGenre: action.payload,
+      });
+
+    case ActionType.GO_TO_MOVIE_PAGE:
+      return extend(state, {
+        currentMovie: action.payload,
+        activeGenre: action.payload.genre,
+        currentPage: Pages.MOVIE,
+        isMainPage: false,
       });
   }
 

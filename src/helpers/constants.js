@@ -2,7 +2,7 @@ export const MAX_SHOWN_GENRES = 10;
 
 export const Pages = {
   MAIN: `main`,
-  FILM: `film`,
+  MOVIE: `movie`,
 };
 
 export const NavTabs = {

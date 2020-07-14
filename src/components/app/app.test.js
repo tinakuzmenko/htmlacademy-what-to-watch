@@ -14,14 +14,19 @@ describe(`App`, () => {
       movieCard,
       movies,
       moviesReviews: reviews,
-      activeGenre: `Drama`,
+      activeGenre: `All genres`,
       moviesByGenre: movies,
       allMoviesGenres: genres,
+      currentPage: `Main`,
+      currentMovie: movie,
+      isMainPage: true,
     });
 
     const tree = renderer
       .create(<Provider store={store}>
-        <App />
+        <App
+          onSmallMovieCardClick={() => {}}
+        />
       </Provider>, {
         createNodeMock: () => {
           return {};
