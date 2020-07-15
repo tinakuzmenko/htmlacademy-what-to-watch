@@ -1,9 +1,9 @@
 import React from 'react';
 import GenresList from '../genres-list/genres-list.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
-import withLoadMore from '../../hocs/with-load-more/with-load-more.jsx';
+import withShowMore from '../../hocs/with-show-more/with-show-more.jsx';
 
-const MoviesListWrapped = withLoadMore(MoviesList);
+const MoviesListWrapped = withShowMore(MoviesList);
 
 const Catalog = () => {
   return (

@@ -7,10 +7,10 @@ import MoviesList from '../movies-list/movies-list.jsx';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import {NavTabs} from '../../helpers/constants.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import withLoadMore from '../../hocs/with-load-more/with-load-more.jsx';
+import withShowMore from '../../hocs/with-show-more/with-show-more.jsx';
 
 const MovieCardInfoWrapped = withActiveItem(MovieCardInfo);
-const MoviesListWrapped = withLoadMore(MoviesList);
+const MoviesListWrapped = withShowMore(MoviesList);
 
 const MoviePage = ({currentMovie}) => {
   return (

@@ -4,9 +4,10 @@ import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import {MAX_SHOWN_MOVIES_LIKE_THIS, SHOWN_MOVIES, Pages} from '../../helpers/constants.js';
 import {filterMoviesByGenre} from '../../helpers/utils.js';
 import {connect} from 'react-redux';
+import ShowMoreButton from '../../components/show-more-button/show-more-button.jsx';
 
-const withLoadMore = (Component) => {
-  class WithLoadMore extends PureComponent {
+const withShowMore = (Component) => {
+  class WithShowMore extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -14,6 +15,7 @@ const withLoadMore = (Component) => {
         shownMovies: props.movies.slice(0, SHOWN_MOVIES),
       };
 
+      this._renderButtonShowMore = this._renderButtonShowMore.bind(this);
       this._handleShowMoreButtonClick = this._handleShowMoreButtonClick.bind(this);
     }
 
@@ -37,19 +39,24 @@ const withLoadMore = (Component) => {
       }));
     }
 
+    _renderButtonShowMore() {
+      return (this.props.movies.length > this.state.shownMovies.length && <ShowMoreButton
+        onShowMoreButtonClick={this._handleShowMoreButtonClick}
+      />);
+    }
+
     render() {
       return (
         <Component
           {...this.props}
-          onShowMoreButtonClick={this._handleShowMoreButtonClick}
-          shownMovies={this.state.shownMovies}
-          movies={this.props.movies}
+          movies={this.state.shownMovies}
+          render={this._renderButtonShowMore}
         />
       );
     }
   }
 
-  WithLoadMore.propTypes = {
+  WithShowMore.propTypes = {
     movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   };
 
@@ -69,7 +76,7 @@ const withLoadMore = (Component) => {
     };
   };
 
-  return connect(mapStateToProps)(WithLoadMore);
+  return connect(mapStateToProps)(WithShowMore);
 };
 
-export default withLoadMore;
+export default withShowMore;

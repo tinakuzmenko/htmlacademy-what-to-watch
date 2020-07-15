@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
-import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
+import withActiveVideo from '../../hocs/with-active-video/with-active-video.jsx';
 
-const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
+const SmallMovieCardWrapped = withActiveVideo(SmallMovieCard);
 
-const MoviesList = ({movies, shownMovies, onShowMoreButtonClick}) => {
+const MoviesList = ({movies, render}) => {
   return (
     <React.Fragment>
       <div className="catalog__movies-list">
-        {shownMovies.map((movie) => {
+        {movies.map((movie) => {
           return (
             <SmallMovieCardWrapped
               key={movie.id}
@@ -20,18 +19,14 @@ const MoviesList = ({movies, shownMovies, onShowMoreButtonClick}) => {
           );
         })}
       </div>
-      {movies.length > shownMovies.length && <ShowMoreButton
-        onShowMoreButtonClick={onShowMoreButtonClick}
-      />}
+      {render()}
     </React.Fragment>
   );
 };
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
-  shownMovies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  render: PropTypes.func.isRequired,
 };
 
 export default MoviesList;
