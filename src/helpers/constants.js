@@ -14,3 +14,4 @@ export const NavTabs = {
 export const ALL_GENRES = `All genres`;
 
 export const SHOWN_MOVIES = 8;
+export const MAX_SHOWN_MOVIES_LIKE_THIS = 4;

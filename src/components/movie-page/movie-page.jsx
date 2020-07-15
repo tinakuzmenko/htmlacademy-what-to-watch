@@ -5,7 +5,12 @@ import MovieCardHero from '../movie-card-hero/movie-card-hero.jsx';
 import MovieCardInfo from '../movie-card-info/movie-card-info.jsx';
 import MoviesList from '../movies-list/movies-list.jsx';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import {NavTabs} from '../../helpers/constants.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withLoadMore from '../../hocs/with-load-more/with-load-more.jsx';
 
+const MovieCardInfoWrapped = withActiveItem(MovieCardInfo);
+const MoviesListWrapped = withLoadMore(MoviesList);
 
 const MoviePage = ({currentMovie}) => {
   return (
@@ -14,14 +19,15 @@ const MoviePage = ({currentMovie}) => {
         <MovieCardHero
           currentMovie={currentMovie}
         />
-        <MovieCardInfo
+        <MovieCardInfoWrapped
           currentMovie={currentMovie}
+          defaultActiveItem={NavTabs.OVERVIEW}
         />
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoviesList />
+          <MoviesListWrapped />
         </section>
         <PageFooter />
       </div>

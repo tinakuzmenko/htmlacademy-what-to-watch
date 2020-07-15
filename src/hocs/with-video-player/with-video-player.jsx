@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 
-
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends PureComponent {
     constructor(props) {
@@ -33,7 +32,8 @@ const withVideoPlayer = (Component) => {
           isPlaying={this.state.isPlaying}
           onSmallMovieCardMouseEnter={this._handleSmallMovieCardMouseEnter}
           onSmallMovieCardMouseOut={this._handleSmallMovieCardMouseOut}
-        />);
+        />
+      );
     }
   }
 

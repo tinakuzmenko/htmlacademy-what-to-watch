@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import MovieNav from '../movie-nav/movie-nav.jsx';
 import MovieOverview from '../movie-overview/movie-overview.jsx';
 import MovieDetails from '../movie-details/movie-details.jsx';
@@ -7,27 +8,10 @@ import {NavTabs} from '../../helpers/constants.js';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 
 class MovieCardInfo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentTab: NavTabs.OVERVIEW,
-    };
-
-    this._handleTabClick = this._handleTabClick.bind(this);
-  }
-
-  _handleTabClick(activeTab) {
-    this.setState({
-      currentTab: activeTab,
-    });
-  }
-
   _renderScreen() {
-    const {currentMovie} = this.props;
-    const {currentTab} = this.state;
+    const {currentMovie, currentActiveItem} = this.props;
 
-    switch (currentTab) {
+    switch (currentActiveItem) {
       case NavTabs.OVERVIEW:
         return <MovieOverview
           movie={currentMovie}
@@ -46,7 +30,7 @@ class MovieCardInfo extends PureComponent {
   }
 
   render() {
-    const {currentMovie} = this.props;
+    const {currentMovie, onItemClick, currentActiveItem} = this.props;
 
     return (
       <div className="movie-card__wrap movie-card__translate-top">
@@ -58,8 +42,8 @@ class MovieCardInfo extends PureComponent {
           <div className="movie-card__desc">
             <MovieNav
               navTabs={NavTabs}
-              currentActiveTab={this.state.currentTab}
-              onTabClick={this._handleTabClick}
+              currentActiveItem={currentActiveItem}
+              onItemClick={onItemClick}
             />
 
             {this._renderScreen()}
@@ -72,6 +56,9 @@ class MovieCardInfo extends PureComponent {
 
 MovieCardInfo.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
+  defaultActiveItem: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func.isRequired,
+  currentActiveItem: PropTypes.string.isRequired,
 };
 
 export default MovieCardInfo;
