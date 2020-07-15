@@ -1,4 +1,4 @@
-import {ALL_GENRES} from './constants.js';
+import {ALL_GENRES} from './constants';
 
 export const extend = (state, newStateValue) => {
   return Object.assign({}, state, newStateValue);

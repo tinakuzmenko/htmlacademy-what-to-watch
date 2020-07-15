@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import MoviePage from './movie-page.jsx';
-import {movie, movies, reviews} from '../../helpers/test-data.js';
+import MoviePage from './movie-page';
+import {movie, movies, reviews} from '../../helpers/test-data';
 
 const mockStore = configureStore([]);
 

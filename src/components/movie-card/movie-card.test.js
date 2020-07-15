@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import MovieCard from './movie-card.jsx';
-import {movie} from '../../helpers/test-data.js';
+import MovieCard from './movie-card';
+import {movie} from '../../helpers/test-data';
 
 const mockStore = configureStore([]);
 

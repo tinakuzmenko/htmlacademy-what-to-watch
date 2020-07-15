@@ -1,7 +1,7 @@
 import React from 'react';
-import Catalog from '../catalog/catalog.jsx';
-import MovieCard from '../movie-card/movie-card.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
+import Catalog from '../catalog/catalog';
+import MovieCard from '../movie-card/movie-card';
+import PageFooter from '../page-footer/page-footer';
 
 const Main = () => {
   return (

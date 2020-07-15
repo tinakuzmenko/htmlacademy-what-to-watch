@@ -1,7 +1,7 @@
 import React from 'react';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {connect} from "react-redux";
-import PageHeader from '../page-header/page-header.jsx';
+import PageHeader from '../page-header/page-header';
 
 const MovieCard = ({movieCard}) => {
   return (

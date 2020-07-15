@@ -1,6 +1,6 @@
 import React from 'react';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import PageHeader from '../page-header/page-header.jsx';
+import PageHeader from '../page-header/page-header';
 
 const MovieCardHero = ({currentMovie}) => {
   return (

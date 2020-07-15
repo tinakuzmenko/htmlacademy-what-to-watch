@@ -1,7 +1,7 @@
-import {movieCard, movies} from '../mocks/movies.js';
-import {allMoviesReviews} from '../mocks/reviews.js';
-import {extend} from '../helpers/utils.js';
-import {Pages, ALL_GENRES} from '../helpers/constants.js';
+import {movieCard, movies} from '../mocks/movies';
+import {allMoviesReviews} from '../mocks/reviews';
+import {extend} from '../helpers/utils';
+import {Pages, ALL_GENRES} from '../helpers/constants';
 
 const initialState = {
   movieCard,

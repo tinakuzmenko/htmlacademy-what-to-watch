@@ -1,6 +1,6 @@
-import {initialState, reducer, ActionType} from './reducer.js';
-import {filterMoviesByGenre} from '../helpers/utils.js';
-import {movies} from '../helpers/test-data.js';
+import {initialState, reducer, ActionType} from './reducer';
+import {filterMoviesByGenre} from '../helpers/utils';
+import {movies} from '../helpers/test-data';
 
 describe(`Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {

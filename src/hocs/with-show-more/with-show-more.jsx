@@ -1,10 +1,11 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
-import {MAX_SHOWN_MOVIES_LIKE_THIS, SHOWN_MOVIES, Pages} from '../../helpers/constants.js';
-import {filterMoviesByGenre} from '../../helpers/utils.js';
 import {connect} from 'react-redux';
-import ShowMoreButton from '../../components/show-more-button/show-more-button.jsx';
+
+import {MAX_SHOWN_MOVIES_LIKE_THIS, SHOWN_MOVIES, Pages} from '../../helpers/constants';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import {filterMoviesByGenre} from '../../helpers/utils';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 
 const withShowMore = (Component) => {
   class WithShowMore extends PureComponent {
@@ -40,9 +41,11 @@ const withShowMore = (Component) => {
     }
 
     _renderButtonShowMore() {
-      return (this.props.movies.length > this.state.shownMovies.length && <ShowMoreButton
-        onShowMoreButtonClick={this._handleShowMoreButtonClick}
-      />);
+      return (
+        this.props.movies.length > this.state.shownMovies.length && <ShowMoreButton
+          onShowMoreButtonClick={this._handleShowMoreButtonClick}
+        />
+      );
     }
 
     render() {

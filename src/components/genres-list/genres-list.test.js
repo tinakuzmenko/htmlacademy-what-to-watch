@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import GenresList from './genres-list.jsx';
-import {genres} from '../../helpers/test-data.js';
+import GenresList from './genres-list';
+import {genres} from '../../helpers/test-data';
 
 const mockStore = configureStore([]);
 

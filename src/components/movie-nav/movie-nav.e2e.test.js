@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieNav from './movie-nav.jsx';
-import {NavTabs} from '../../helpers/constants.js';
+import MovieNav from './movie-nav';
+import {NavTabs} from '../../helpers/constants';
 
 Enzyme.configure({
   adapter: new Adapter(),

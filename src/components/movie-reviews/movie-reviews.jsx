@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
-import MovieReview from '../movie-review/movie-review.jsx';
-import {getMoviesReviews} from '../../helpers/utils.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import MovieReview from '../movie-review/movie-review';
+import {getMoviesReviews} from '../../helpers/utils';
 
 const sliceReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);

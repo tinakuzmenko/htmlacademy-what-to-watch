@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
-import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import withActiveVideo from '../../hocs/with-active-video/with-active-video.jsx';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import SmallMovieCard from '../small-movie-card/small-movie-card';
+import withActiveVideo from '../../hocs/with-active-video/with-active-video';
 
 const SmallMovieCardWrapped = withActiveVideo(SmallMovieCard);
 

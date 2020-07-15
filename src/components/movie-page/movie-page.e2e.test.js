@@ -1,12 +1,12 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MoviePage from './movie-page.jsx';
-import MovieOverview from '../movie-overview/movie-overview.jsx';
-import MovieDetails from '../movie-details/movie-details.jsx';
-import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-import {NavTabs} from '../../helpers/constants.js';
-import {movie, movies, reviews} from '../../helpers/test-data.js';
+import MoviePage from './movie-page';
+import MovieOverview from '../movie-overview/movie-overview';
+import MovieDetails from '../movie-details/movie-details';
+import MovieReviews from '../movie-reviews/movie-reviews';
+import {NavTabs} from '../../helpers/constants';
+import {movie, movies, reviews} from '../../helpers/test-data';
 
 Enzyme.configure({
   adapter: new Adapter(),

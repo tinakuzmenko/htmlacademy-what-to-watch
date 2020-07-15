@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/reducer.js';
-import {MAX_SHOWN_GENRES} from '../../helpers/constants.js';
-import {getMoviesGenres} from '../../helpers/utils.js';
+import {ActionCreator} from '../../reducer/reducer';
+import {MAX_SHOWN_GENRES} from '../../helpers/constants';
+import {getMoviesGenres} from '../../helpers/utils';
 
 const GenresList = ({moviesGenres, currentActiveGenre, onGenreClick}) => {
   return (

@@ -1,11 +1,11 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import MovieNav from '../movie-nav/movie-nav.jsx';
-import MovieOverview from '../movie-overview/movie-overview.jsx';
-import MovieDetails from '../movie-details/movie-details.jsx';
-import MovieReviews from '../movie-reviews/movie-reviews.jsx';
-import {NavTabs} from '../../helpers/constants.js';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import MovieNav from '../movie-nav/movie-nav';
+import MovieOverview from '../movie-overview/movie-overview';
+import MovieDetails from '../movie-details/movie-details';
+import MovieReviews from '../movie-reviews/movie-reviews';
+import {NavTabs} from '../../helpers/constants';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
 class MovieCardInfo extends PureComponent {
   _renderScreen() {

@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
-import {Pages} from '../../helpers/constants.js';
-import Main from '../main/main.jsx';
-import MoviePage from '../movie-page/movie-page.jsx';
+import {Pages} from '../../helpers/constants';
+import Main from '../main/main';
+import MoviePage from '../movie-page/movie-page';
 
 class App extends PureComponent {
   constructor(props) {

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import {reducer} from "./reducer/reducer.js";
-import App from './components/app/app.jsx';
+import {reducer} from "./reducer/reducer";
+import App from './components/app/app';
 
 const store = createStore(
     reducer,

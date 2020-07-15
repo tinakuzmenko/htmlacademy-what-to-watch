@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PageFooter from './page-footer.jsx';
+import PageFooter from './page-footer';
 
 describe(`Footer`, () => {
   it(`Should render correctly`, () => {
