@@ -2,59 +2,51 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {ActionCreator} from '../../reducer/reducer.js';
-import VideoPlayer from '../video-player/video-player.jsx';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import VideoPlayer from '../../components/video-player/video-player.jsx';
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movie = props.movie;
-
-    this.state = {
-      isPlaying: false,
-    };
-
     this._handleMovieClick = this._handleMovieClick.bind(this);
   }
 
   _handleMovieClick(evt) {
-    const onSmallMovieCardClick = this.props.onSmallMovieCardClick;
+    const {movie, onSmallMovieCardClick} = this.props;
 
     evt.preventDefault();
-    onSmallMovieCardClick(this._movie);
+    onSmallMovieCardClick(movie);
   }
 
   render() {
+    const {movie, isPlaying, onSmallMovieCardMouseEnter, onSmallMovieCardMouseOut} = this.props;
     return (
       <article
         className="small-movie-card catalog__movies-card"
         onMouseEnter={() => {
-          this.setState({
-            isPlaying: true,
-          });
+          onSmallMovieCardMouseEnter();
         }}
         onMouseOut={() => {
-          this.setState({
-            isPlaying: false,
-          });
+          onSmallMovieCardMouseOut();
         }}
       >
         <div
           onClick={this._handleMovieClick}
-          className="small-movie-card__image">
+          className="small-movie-card__image"
+        >
           <VideoPlayer
             muted
-            isPlaying={this.state.isPlaying}
-            source={this._movie.preview}
-            poster={this._movie.poster}
+            isPlaying={isPlaying}
+            source={movie.preview}
+            poster={movie.poster}
           />
         </div>
         <h3
           onClick={this._handleMovieClick}
           className="small-movie-card__title"
         >
-          <a className="small-movie-card__link" href="movie-page.html">{this._movie.title}</a>
+          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
         </h3>
       </article>);
   }
@@ -62,7 +54,10 @@ class SmallMovieCard extends PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
+  isPlaying: PropTypes.bool.isRequired,
   onSmallMovieCardClick: PropTypes.func.isRequired,
+  onSmallMovieCardMouseEnter: PropTypes.func.isRequired,
+  onSmallMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

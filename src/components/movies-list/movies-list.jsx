@@ -6,6 +6,9 @@ import {filterMoviesByGenre} from '../../helpers/utils.js';
 import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
+
+const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
 
 class MoviesList extends PureComponent {
   constructor(props) {
@@ -49,7 +52,7 @@ class MoviesList extends PureComponent {
         <div className="catalog__movies-list">
           {shownMovies.map((movie) => {
             return (
-              <SmallMovieCard
+              <SmallMovieCardWrapped
                 key={movie.id}
                 movie={movie}
               />
