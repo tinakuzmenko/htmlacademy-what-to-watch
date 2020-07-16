@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import MovieReview from './movie-review';
 
 const review = {

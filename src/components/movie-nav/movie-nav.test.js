@@ -9,8 +9,8 @@ describe(`MovieNav`, () => {
     const tree = renderer
       .create(<MovieNav
         navTabs={NavTabs}
-        currentActiveTab={NavTabs.DETAILS}
-        onTabClick={() => {}}
+        currentActiveItem={NavTabs.DETAILS}
+        onItemClick={() => {}}
       />)
       .toJSON();
 

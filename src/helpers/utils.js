@@ -20,3 +20,11 @@ export const filterMoviesByGenre = (allMovies, activeGenre) => {
 
   return allMovies.filter((movie) => movie.genre === activeGenre);
 };
+
+export const sliceReviews = (reviews) => {
+  const sliceIndex = Math.ceil(reviews.length / 2);
+  const firstColReviews = reviews.slice(0, sliceIndex);
+  const secondColReviews = reviews.slice(sliceIndex, reviews.length);
+
+  return [firstColReviews, secondColReviews];
+};

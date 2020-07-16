@@ -56,4 +56,5 @@ const mapStateToProps = (state) => ({
   movieCard: state.movieCard,
 });
 
+export {MovieCard};
 export default connect(mapStateToProps)(MovieCard);

@@ -32,4 +32,5 @@ const mapStateToProps = (state) => ({
   isMainPage: state.currentPage === Pages.MAIN,
 });
 
+export {PageFooter};
 export default connect(mapStateToProps)(PageFooter);

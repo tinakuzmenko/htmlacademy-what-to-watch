@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieReviews from './movie-reviews';
+
 import {reviews} from '../../helpers/test-data';
+import {MovieReviews} from './movie-reviews';
 
 describe(`MovieReviews`, () => {
   it(`Should render correctly`, () => {

@@ -1,17 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {connect} from 'react-redux';
+
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import {getMoviesReviews, sliceReviews} from '../../helpers/utils';
 import MovieReview from '../movie-review/movie-review';
-import {getMoviesReviews} from '../../helpers/utils';
-
-const sliceReviews = (reviews) => {
-  const sliceIndex = Math.ceil(reviews.length / 2);
-  const firstColReviews = reviews.slice(0, sliceIndex);
-  const secondColReviews = reviews.slice(sliceIndex, reviews.length);
-
-  return [firstColReviews, secondColReviews];
-};
 
 const MovieReviews = ({movieReviews}) => {
   const [usersReviews] = movieReviews;
@@ -40,4 +33,5 @@ const mapStateToProps = (state) => ({
   movieReviews: getMoviesReviews(state.moviesReviews, state.currentMovie),
 });
 
+export {MovieReviews};
 export default connect(mapStateToProps)(MovieReviews);

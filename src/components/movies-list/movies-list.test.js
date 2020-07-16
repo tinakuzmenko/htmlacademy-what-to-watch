@@ -1,16 +1,17 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
+import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import MoviesList from './movies-list';
+
 import {movies} from '../../helpers/test-data';
+import MoviesList from './movies-list';
 
 const mockStore = configureStore([]);
 
 describe(`MoviesList`, () => {
   it(`Should render correctly movie card`, () => {
     const store = mockStore({
-      moviesByGenre: movies,
+      movies,
       activeGenre: `All genres`,
     });
 
@@ -18,13 +19,20 @@ describe(`MoviesList`, () => {
       .create(
           <Provider store={store}>
             <MoviesList
+              movies={movies}
+              moviesByGenre={movies}
               onSmallMovieCardClick={() => {}}
+              onSmallMovieCardMouseEnter={() => {}}
+              onSmallMovieCardMouseOut={() => {}}
+              render={() => {}}
+              isPlaying={true}
             />
           </Provider>, {
             createNodeMock: () => {
               return {};
             }
-          })
+          }
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
