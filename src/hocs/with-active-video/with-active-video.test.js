@@ -9,7 +9,7 @@ const MockComponent = () => {
   );
 };
 
-it(`withActiveItem is rendered correctly`, () => {
+it(`withActiveVideo is rendered correctly`, () => {
   const MockComponentWrapped = withActiveVideo(MockComponent);
 
   const tree = renderer.create((

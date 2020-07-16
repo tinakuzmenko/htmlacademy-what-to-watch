@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Enzyme, {shallow, mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import withActiveVideo from './with-active-video';
@@ -25,7 +25,7 @@ MockComponent.propTypes = {
   onSmallMovieCardMouseEnter: PropTypes.func.isRequired,
 };
 
-describe(`HOC withActiveItem e2e tests`, () => {
+describe(`HOC withActiveVideo e2e tests`, () => {
   it(`Should return correct state on HOC's callback`, () => {
     const MockComponentWrapped = withActiveVideo(MockComponent);
     const onItemMouseEnter = jest.fn();
