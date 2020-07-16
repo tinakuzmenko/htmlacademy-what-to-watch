@@ -30,7 +30,7 @@ MockComponent.propTypes = {
 const mockStore = configureStore([]);
 
 describe(`HOC withShowMore e2e tests`, () => {
-  it(`Should call props callback`, () => {
+  it(`Should call props callback on child button click`, () => {
     const MockComponentWrapped = withShowMore(MockComponent);
     const onShowMoreButtonClick = jest.fn();
 
