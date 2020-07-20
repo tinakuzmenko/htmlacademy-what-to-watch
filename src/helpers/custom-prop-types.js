@@ -4,17 +4,16 @@ export const CustomPropTypes = {
   MOVIE: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.number.isRequired,
     poster: PropTypes.string.isRequired,
     background: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }).isRequired,
 
   REVIEW: PropTypes.shape({

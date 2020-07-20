@@ -13,10 +13,12 @@ const withVideoControls = (Component) => {
 
       this._videoRef = React.createRef();
       this.state = {
-        isPlaying: false,
+        isPlaying: true,
       };
 
       this._renderVideoPlayer = this._renderVideoPlayer.bind(this);
+      this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
+      this._handlePauseButtonClick = this._handlePauseButtonClick.bind(this);
     }
 
     componentDidMount() {
@@ -25,6 +27,8 @@ const withVideoControls = (Component) => {
 
       video.src = currentMovie.videoLink;
       video.poster = currentMovie.poster;
+
+      video.play();
     }
 
     componentWillUnmount() {
@@ -45,13 +49,13 @@ const withVideoControls = (Component) => {
       }
     }
 
-    _handleSmallMovieCardMouseEnter() {
+    _handlePlayButtonClick() {
       this.setState({
         isPlaying: true
       });
     }
 
-    _handleSmallMovieCardMouseOut() {
+    _handlePauseButtonClick() {
       this.setState({
         isPlaying: false
       });
@@ -74,9 +78,12 @@ const withVideoControls = (Component) => {
       return (
         <Component
           {...this.props}
+          isPlaying={this.state.isPlaying}
           renderVideoPlayer={this._renderVideoPlayer}
           currentMovie={currentMovie}
           onExitClick={onExitClick}
+          onPlayButtonClick={this._handlePlayButtonClick}
+          onPauseButtonClick={this._handlePauseButtonClick}
         />
       );
     }

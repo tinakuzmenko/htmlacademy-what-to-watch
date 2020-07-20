@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
-const MoviePlayer = ({renderVideoPlayer, currentMovie, onExitClick}) => {
+const MoviePlayer = ({isPlaying, renderVideoPlayer, currentMovie, onExitClick, onPlayButtonClick, onPauseButtonClick}) => {
   return (
     <div className="player">
       {renderVideoPlayer()}
@@ -22,12 +22,27 @@ const MoviePlayer = ({renderVideoPlayer, currentMovie, onExitClick}) => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
+          {isPlaying ?
+            <button
+              type="button"
+              className="player__play"
+              onClick={onPauseButtonClick}>
+              <svg viewBox="0 0 14 21" width="14" height="21">
+                <use xlinkHref="#pause"></use>
+              </svg>
+              <span>Pause</span>
+            </button>
+            :
+            <button
+              type="button"
+              className="player__play"
+              onClick={onPlayButtonClick}>
+              <svg viewBox="0 0 19 19" width="19" height="19">
+                <use xlinkHref="#play-s"></use>
+              </svg>
+              <span>Play</span>
+            </button>}
+
           <div className="player__name">{currentMovie.title}</div>
 
           <button type="button" className="player__full-screen">
@@ -43,9 +58,12 @@ const MoviePlayer = ({renderVideoPlayer, currentMovie, onExitClick}) => {
 };
 
 MoviePlayer.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
   currentMovie: CustomPropTypes.MOVIE,
   onExitClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onPauseButtonClick: PropTypes.func.isRequired,
 };
 
 export default MoviePlayer;
