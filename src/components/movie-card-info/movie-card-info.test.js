@@ -22,6 +22,7 @@ describe(`MovieCardInfo`, () => {
               defaultActiveItem={`Overview`}
               onItemClick={() => {}}
               currentActiveItem={`Reviews`}
+              onPlayButtonClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {

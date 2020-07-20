@@ -6,6 +6,7 @@ import {getRatingFormat} from '../../helpers/utils';
 const MovieReview = ({movieReview}) => {
   const rating = getRatingFormat(movieReview.rating);
   const date = moment(movieReview.date).format(`MMMM D, YYYY`);
+  const dateToISO = moment(movieReview.date).toISOString;
 
   return (
     <React.Fragment>
@@ -15,7 +16,7 @@ const MovieReview = ({movieReview}) => {
 
           <footer className="review__details">
             <cite className="review__author">{movieReview.author}</cite>
-            <time className="review__date" dateTime={movieReview.date}>{date}</time>
+            <time className="review__date" dateTime={dateToISO}>{date}</time>
           </footer>
         </blockquote>
 

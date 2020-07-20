@@ -1,12 +1,14 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {ActionCreator} from '../../reducer/reducer.js';
 import {connect} from "react-redux";
 import {Pages} from '../../helpers/constants';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import MoviePlayer from '../movie-player/movie-player';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
@@ -16,11 +18,14 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {currentPage, isMoviePlayerActive} = this.props;
+    const {currentPage, currentMovie, isMoviePlayerActive, onExitButtonClick} = this.props;
 
     if (isMoviePlayerActive) {
       return (
-        <MoviePlayerWrapped />
+        <MoviePlayerWrapped
+          currentMovie={currentMovie}
+          onExitButtonClick={onExitButtonClick}
+        />
       );
     }
 
@@ -41,6 +46,8 @@ class App extends PureComponent {
   }
 
   render() {
+    const {currentMovie, onExitButtonClick} = this.props;
+
     return (
       <Router>
         <Switch>
@@ -51,7 +58,10 @@ class App extends PureComponent {
             <MoviePage />
           </Route>
           <Route exact path="/dev-watch">
-            <MoviePlayerWrapped />
+            <MoviePlayerWrapped
+              currentMovie={currentMovie}
+              onExitButtonClick={onExitButtonClick}
+            />
           </Route>
         </Switch>
       </Router>
@@ -61,13 +71,22 @@ class App extends PureComponent {
 
 App.propTypes = {
   currentPage: PropTypes.string.isRequired,
-  isMoviePlayerActive: PropTypes.bool.isRequired
+  currentMovie: CustomPropTypes.MOVIE,
+  isMoviePlayerActive: PropTypes.bool.isRequired,
+  onExitButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentPage: state.currentPage,
+  currentMovie: state.currentMovie,
   isMoviePlayerActive: state.isMoviePlayerActive,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onExitButtonClick() {
+    dispatch(ActionCreator.stopWatchingMovie());
+  },
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

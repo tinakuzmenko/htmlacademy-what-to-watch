@@ -20,6 +20,7 @@ describe(`App`, () => {
       currentPage: `Main`,
       currentMovie: movie,
       isMainPage: true,
+      isMoviePlayerActive: false,
     });
 
     const tree = renderer

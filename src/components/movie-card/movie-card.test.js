@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {MovieCard} from './movie-card';
+import MovieCard from './movie-card';
 import {movie} from '../../helpers/test-data';
 
 const mockStore = configureStore([]);
@@ -17,7 +17,9 @@ describe(`MovieCard`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MovieCard movieCard={movie} />
+            <MovieCard
+              movieCard={movie}
+              onPlayButtonClick={() => {}} />
           </Provider>, {
             createNodeMock: () => {
               return {};

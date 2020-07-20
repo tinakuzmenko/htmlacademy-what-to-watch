@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {ActionCreator} from '../../reducer/reducer.js';
-import {connect} from "react-redux";
 
 const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
 
@@ -17,16 +15,18 @@ const withVideoControls = (Component) => {
       };
 
       this._renderVideoPlayer = this._renderVideoPlayer.bind(this);
-      this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
-      this._handlePauseButtonClick = this._handlePauseButtonClick.bind(this);
+      this._renderButtonPause = this._renderButtonPause.bind(this);
+      this._renderButtonPlay = this._renderButtonPlay.bind(this);
+      this._handleChangeClick = this._handleChangeClick.bind(this);
+      this._handleFullScreenButtonClick = this._handleFullScreenButtonClick.bind(this);
     }
 
     componentDidMount() {
       const {currentMovie} = this.props;
       const video = this._videoRef.current;
 
-      video.src = currentMovie.videoLink;
       video.poster = currentMovie.poster;
+      video.src = currentMovie.videoLink;
 
       video.play();
     }
@@ -49,16 +49,44 @@ const withVideoControls = (Component) => {
       }
     }
 
-    _handlePlayButtonClick() {
+    _handleChangeClick() {
+      const {isPlaying} = this.state;
+
       this.setState({
-        isPlaying: true
+        isPlaying: !isPlaying,
       });
     }
 
-    _handlePauseButtonClick() {
-      this.setState({
-        isPlaying: false
-      });
+    _handleFullScreenButtonClick() {
+      this._videoRef.current.requestFullscreen();
+    }
+
+    _renderButtonPlay() {
+      return (
+        <button
+          type="button"
+          className="player__play"
+          onClick={this._handleChangeClick}>
+          <svg viewBox="0 0 19 19" width="19" height="19">
+            <use xlinkHref="#play-s"></use>
+          </svg>
+          <span>Play</span>
+        </button>
+      );
+    }
+
+    _renderButtonPause() {
+      return (
+        <button
+          type="button"
+          className="player__play"
+          onClick={this._handleChangeClick}>
+          <svg viewBox="0 0 14 21" width="14" height="21">
+            <use xlinkHref="#pause"></use>
+          </svg>
+          <span>Pause</span>
+        </button>
+      );
     }
 
     _renderVideoPlayer() {
@@ -73,17 +101,19 @@ const withVideoControls = (Component) => {
     }
 
     render() {
-      const {onExitClick, currentMovie} = this.props;
+      const {onExitButtonClick, currentMovie} = this.props;
 
       return (
         <Component
           {...this.props}
+          currentMovie={currentMovie}
+          // videoDuration={this.state.videoDuration}
           isPlaying={this.state.isPlaying}
           renderVideoPlayer={this._renderVideoPlayer}
-          currentMovie={currentMovie}
-          onExitClick={onExitClick}
-          onPlayButtonClick={this._handlePlayButtonClick}
-          onPauseButtonClick={this._handlePauseButtonClick}
+          renderButtonPlay={this._renderButtonPlay}
+          renderButtonPause={this._renderButtonPause}
+          onExitButtonClick={onExitButtonClick}
+          onFullScreenButtonClick={this._handleFullScreenButtonClick}
         />
       );
     }
@@ -91,20 +121,10 @@ const withVideoControls = (Component) => {
 
   WithVideoControls.propTypes = {
     currentMovie: CustomPropTypes.MOVIE,
-    onExitClick: PropTypes.func.isRequired,
+    onExitButtonClick: PropTypes.func.isRequired,
   };
 
-  const mapDispatchToProps = (dispatch) => ({
-    onExitClick() {
-      dispatch(ActionCreator.stopWatchingMovie());
-    },
-  });
-
-  const mapStateToProps = (state) => ({
-    currentMovie: state.currentMovie,
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithVideoControls);
+  return WithVideoControls;
 };
 
 export default withVideoControls;
