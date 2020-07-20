@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import {getRatingFormat} from '../../helpers/utils';
 
 const MovieReview = ({movieReview}) => {
+  const rating = getRatingFormat(movieReview.rating);
+  const date = moment(movieReview.date).format(`MMMM D, YYYY`);
+
   return (
     <React.Fragment>
       <div className="review">
@@ -11,11 +15,11 @@ const MovieReview = ({movieReview}) => {
 
           <footer className="review__details">
             <cite className="review__author">{movieReview.author}</cite>
-            <time className="review__date" dateTime={movieReview.date}>{moment(movieReview.date).format(`MMMM D, YYYY`)}</time>
+            <time className="review__date" dateTime={movieReview.date}>{date}</time>
           </footer>
         </blockquote>
 
-        <div className="review__rating">{movieReview.rating}</div>
+        <div className="review__rating">{rating}</div>
       </div>
     </React.Fragment>
   );
@@ -24,7 +28,7 @@ const MovieReview = ({movieReview}) => {
 MovieReview.propTypes = {
   movieReview: PropTypes.shape({
     author: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

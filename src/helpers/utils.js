@@ -51,3 +51,15 @@ export const getRunTimeFormat = (runTime) => {
 
   return `${hours}h ${minutes}m`;
 };
+
+export const getRatingFormat = (rating) => {
+  let formattedRating;
+
+  if (rating % 1 !== 0) {
+    formattedRating = rating.toString().split(`.`).join(`,`);
+  } else {
+    formattedRating = `${rating.toString()},0`;
+  }
+
+  return formattedRating;
+};

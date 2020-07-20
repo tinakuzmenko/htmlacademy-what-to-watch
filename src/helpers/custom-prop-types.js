@@ -21,7 +21,7 @@ export const CustomPropTypes = {
     reviews: PropTypes.arrayOf(
         PropTypes.shape({
           author: PropTypes.string.isRequired,
-          rating: PropTypes.string.isRequired,
+          rating: PropTypes.number.isRequired,
           date: PropTypes.string.isRequired,
           content: PropTypes.string.isRequired,
           id: PropTypes.number.isRequired,
