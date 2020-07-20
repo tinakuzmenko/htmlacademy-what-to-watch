@@ -6,6 +6,9 @@ import {Pages} from '../../helpers/constants';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import MoviePlayer from '../movie-player/movie-player';
+import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
+
+const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,7 +20,7 @@ class App extends PureComponent {
 
     if (isMoviePlayerActive) {
       return (
-        <MoviePlayer />
+        <MoviePlayerWrapped />
       );
     }
 
@@ -48,7 +51,7 @@ class App extends PureComponent {
             <MoviePage />
           </Route>
           <Route exact path="/dev-watch">
-            <MoviePlayer />
+            <MoviePlayerWrapped />
           </Route>
         </Switch>
       </Router>

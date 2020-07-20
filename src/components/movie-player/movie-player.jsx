@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../reducer/reducer.js';
-import {connect} from "react-redux";
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import VideoPlayerFullScreen from '../video-player-full-screen/video-player-full-screen';
 
-const MoviePlayer = ({currentMovie, onExitClick}) => {
+const MoviePlayer = ({renderVideoPlayer, currentMovie, onExitClick}) => {
   return (
     <div className="player">
-      <VideoPlayerFullScreen
-        isPlaying={false}
-        source={currentMovie.videoLink}
-        poster={currentMovie.poster}
-      />
+      {renderVideoPlayer()}
       <button
         type="button"
         className="player__exit"
@@ -35,7 +28,7 @@ const MoviePlayer = ({currentMovie, onExitClick}) => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{currentMovie.title}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -50,18 +43,9 @@ const MoviePlayer = ({currentMovie, onExitClick}) => {
 };
 
 MoviePlayer.propTypes = {
+  renderVideoPlayer: PropTypes.func.isRequired,
   currentMovie: CustomPropTypes.MOVIE,
   onExitClick: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onExitClick() {
-    dispatch(ActionCreator.stopWatchingMovie());
-  },
-});
-
-const mapStateToProps = (state) => ({
-  currentMovie: state.currentMovie,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePlayer);
+export default MoviePlayer;
