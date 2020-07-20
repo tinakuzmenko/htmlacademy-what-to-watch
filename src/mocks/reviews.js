@@ -1,4 +1,4 @@
-import {movies} from './movies.js';
+import {movies} from './movies';
 
 export const allMoviesReviews = movies.map((movie) => {
   return (

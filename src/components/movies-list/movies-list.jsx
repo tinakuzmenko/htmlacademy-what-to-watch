@@ -1,46 +1,32 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import SmallMovieCard from '../small-movie-card/small-movie-card';
+import withActiveVideo from '../../hocs/with-active-video/with-active-video';
 
-export default class MoviesList extends PureComponent {
-  constructor(props) {
-    super(props);
+const SmallMovieCardWrapped = withActiveVideo(SmallMovieCard);
 
-    this.state = {
-      currentMovie: null
-    };
-
-    this._handleSmallMovieCardHover = this._handleSmallMovieCardHover.bind(this);
-  }
-
-  _handleSmallMovieCardHover(movie) {
-    this.setState({
-      currentMovie: movie,
-    });
-  }
-
-  render() {
-    const {movies, onSmallMovieCardClick} = this.props;
-
-    return (
+const MoviesList = ({movies, render}) => {
+  return (
+    <React.Fragment>
       <div className="catalog__movies-list">
         {movies.map((movie) => {
           return (
-            <SmallMovieCard
+            <SmallMovieCardWrapped
               key={movie.id}
               movie={movie}
-              onSmallMovieCardClick={onSmallMovieCardClick}
-              onSmallMovieCardHover={this._handleSmallMovieCardHover}
             />
           );
         })}
       </div>
-    );
-  }
-}
+      {render()}
+    </React.Fragment>
+  );
+};
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
+  render: PropTypes.func.isRequired,
 };
+
+export default MoviesList;

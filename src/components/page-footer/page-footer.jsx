@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {Pages} from '../../helpers/constants';
 
-const Footer = ({isMainPage}) => {
+const PageFooter = ({isMainPage}) => {
   return (
     <footer className="page-footer">
       <div className="logo">
-        <a href={!isMainPage ? `main.html` : null} className="logo__link logo__link--light">
+        <a
+          className="logo__link logo__link--light"
+          href={!isMainPage ? `main.html` : null}
+        >
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
@@ -19,8 +24,13 @@ const Footer = ({isMainPage}) => {
   );
 };
 
-Footer.propTypes = {
+PageFooter.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
 };
 
-export default Footer;
+const mapStateToProps = (state) => ({
+  isMainPage: state.currentPage === Pages.MAIN,
+});
+
+export {PageFooter};
+export default connect(mapStateToProps)(PageFooter);

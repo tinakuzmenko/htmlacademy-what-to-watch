@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import {App} from './components/app/app.jsx';
-import {reducer} from "./reducer/reducer.js";
-import {movieCard, movies} from './mocks/movies.js';
-import {allMoviesReviews} from './mocks/reviews.js';
+import {reducer} from "./reducer/reducer";
+import App from './components/app/app';
 
 const store = createStore(
     reducer,
@@ -16,10 +14,7 @@ const root = document.querySelector(`#root`);
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        movieCard={movieCard}
-        movies={movies}
-        moviesReviews={allMoviesReviews} />
+      <App />
     </Provider>,
     root
 );

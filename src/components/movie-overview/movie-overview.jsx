@@ -1,5 +1,5 @@
 import React from 'react';
-import {CustomPropTypes} from '../../helpers/custom-prop-types.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
 const MovieOverview = ({movie}) => {
   return (

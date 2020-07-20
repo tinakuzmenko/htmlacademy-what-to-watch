@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieReview from './movie-review.jsx';
+
+import MovieReview from './movie-review';
 
 const review = {
   author: `Amanda Greever`,

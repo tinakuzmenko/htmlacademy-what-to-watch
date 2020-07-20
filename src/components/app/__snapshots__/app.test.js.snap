@@ -26,6 +26,7 @@ Array [
       >
         <a
           className="logo__link"
+          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -154,7 +155,7 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item "
+          className="catalog__genres-item catalog__genres-item--active"
         >
           <a
             className="catalog__genres-link"
@@ -176,7 +177,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -256,7 +257,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href={null}
+          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"

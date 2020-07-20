@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieNav from './movie-nav.jsx';
-import {NavTabs} from '../../helpers/constants.js';
+import MovieNav from './movie-nav';
+import {NavTabs} from '../../helpers/constants';
 
 
 describe(`MovieNav`, () => {
@@ -9,8 +9,8 @@ describe(`MovieNav`, () => {
     const tree = renderer
       .create(<MovieNav
         navTabs={NavTabs}
-        currentActiveTab={NavTabs.DETAILS}
-        onTabClick={() => {}}
+        currentActiveItem={NavTabs.DETAILS}
+        onItemClick={() => {}}
       />)
       .toJSON();
 

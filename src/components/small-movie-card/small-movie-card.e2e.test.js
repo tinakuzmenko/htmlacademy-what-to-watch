@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import SmallMovieCard from './small-movie-card.jsx';
-import {movie} from '../../helpers/test-data.js';
+import {SmallMovieCard} from './small-movie-card';
+import {movie} from '../../helpers/test-data';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -10,30 +10,33 @@ Enzyme.configure({
 
 describe(`SmallMovieCard e2e tests`, () => {
   it(`SmallMovieCard be hovered`, () => {
-    const onSmallMovieCardHover = jest.fn((args) => args);
+    const onSmallMovieCardMouseEnter = jest.fn();
 
     const mainComponent = shallow(
         <SmallMovieCard
           movie={movie}
-          onSmallMovieCardHover={onSmallMovieCardHover}
-          onSmallMovieCardClick={() => {}} />
+          isPlaying={false}
+          onSmallMovieCardClick={() => {}}
+          onSmallMovieCardMouseEnter={onSmallMovieCardMouseEnter}
+          onSmallMovieCardMouseOut={() => {}} />
     );
 
     const movieCard = mainComponent.find(`.small-movie-card`);
 
     movieCard.simulate(`mouseenter`, movie);
-    expect(onSmallMovieCardHover).toHaveBeenCalledTimes(1);
-    expect(onSmallMovieCardHover).toHaveBeenCalledWith(movie);
+    expect(onSmallMovieCardMouseEnter).toHaveBeenCalledTimes(1);
   });
 
   it(`SmallMovieCard be clicked`, () => {
-    const onMovieClick = jest.fn();
+    const onSmallMovieCardClick = jest.fn();
 
     const mainComponent = shallow(
         <SmallMovieCard
           movie={movie}
-          onSmallMovieCardClick={onMovieClick}
-          onSmallMovieCardHover={() => {}} />
+          isPlaying={true}
+          onSmallMovieCardClick={onSmallMovieCardClick}
+          onSmallMovieCardMouseEnter={() => {}}
+          onSmallMovieCardMouseOut={() => {}} />
     );
 
     const movieCard = mainComponent.find(`.small-movie-card`);
@@ -41,13 +44,13 @@ describe(`SmallMovieCard e2e tests`, () => {
     const movieImage = movieCard.find(`.small-movie-card__image`);
 
     movieTitle.simulate(`click`, {
-      preventDefault: onMovieClick,
+      preventDefault: onSmallMovieCardClick,
     });
 
     movieImage.simulate(`click`, {
-      preventDefault: onMovieClick,
+      preventDefault: onSmallMovieCardClick,
     });
 
-    expect(onMovieClick).toHaveBeenCalledTimes(4);
+    expect(onSmallMovieCardClick).toHaveBeenCalledTimes(4);
   });
 });
