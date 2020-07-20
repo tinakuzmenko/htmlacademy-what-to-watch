@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {ActionCreator} from '../../reducer/reducer.js';
+import {connect} from "react-redux";
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';
 
-const MovieCardHero = ({currentMovie}) => {
+const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
   return (
     <div className="movie-card__hero">
       <div className="movie-card__bg">
@@ -18,7 +21,11 @@ const MovieCardHero = ({currentMovie}) => {
             <span className="movie-card__year">{currentMovie.date}</span>
           </p>
           <div className="movie-card__buttons">
-            <button className="btn btn--play movie-card__button" type="button">
+            <button
+              className="btn btn--play movie-card__button"
+              type="button"
+              onClick={onPlayButtonClick}
+            >
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
@@ -40,6 +47,14 @@ const MovieCardHero = ({currentMovie}) => {
 
 MovieCardHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
-export default MovieCardHero;
+const mapDispatchToProps = (dispatch) => ({
+  onPlayButtonClick() {
+    dispatch(ActionCreator.watchMovie());
+  }
+});
+
+export {MovieCardHero};
+export default connect(null, mapDispatchToProps)(MovieCardHero);

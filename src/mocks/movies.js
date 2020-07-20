@@ -13,6 +13,7 @@ export const movieCard = {
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`, `Owen Wilkinson`, `Adrien Brody`, `Ralph Fiennes`, `Jeff Goldblum`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
   runTime: `1h 39m`,
+  videoLink: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
 };
 
 export const movies = [
@@ -31,6 +32,7 @@ export const movies = [
     starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     runTime: `2h 13m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -47,6 +49,7 @@ export const movies = [
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
     runTime: `2h 14m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
   },
   {
     title: `Aviator`,
@@ -63,6 +66,7 @@ export const movies = [
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
     runTime: `2h 50m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
   },
   {
     title: `Shutter Island`,
@@ -79,6 +83,7 @@ export const movies = [
     starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
     runTime: `2h 19m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
   },
   {
     title: `Pulp Fiction`,
@@ -95,6 +100,7 @@ export const movies = [
     starring: [`John Travolta`, `Uma Thurman`, `Samuel L. Jackson`, `Bruce Willis`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/9/95/Aerial_View_of_The_Vessel_at_Hudson_Yards%2C_New_York_City.webm`,
     runTime: `2h 58m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/9/95/Aerial_View_of_The_Vessel_at_Hudson_Yards%2C_New_York_City.webm`,
   },
   {
     title: `No Country for Old Men`,
@@ -111,6 +117,7 @@ export const movies = [
     starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `2h 3m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
   {
     title: `Snatch`,
@@ -127,6 +134,7 @@ export const movies = [
     starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
     runTime: `1h 44m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
   },
   {
     title: `Johnny English`,
@@ -143,6 +151,7 @@ export const movies = [
     starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `1h 29m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
   {
     title: `Macbeth`,
@@ -159,6 +168,7 @@ export const movies = [
     starring: [`Michael Fassbender`, `Marion Cotillard`, `Jack Madigan`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     runTime: `1h 53m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     title: `War of the Worlds`,
@@ -175,6 +185,7 @@ export const movies = [
     starring: [`Tom Cruise`, `Dakota Fanning`, `Tim Robbins`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
     runTime: `1h 56m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -191,5 +202,6 @@ export const movies = [
     starring: [`Jemaine Clement`, `Taika Waititi`, `Cori Gonzalez-Macuer`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
     runTime: `1h 26m`,
+    videoLink: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
 ];

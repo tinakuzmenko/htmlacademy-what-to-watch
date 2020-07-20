@@ -10,11 +10,14 @@ const initialState = {
   activeGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
   currentMovie: movieCard,
+  isMoviePlayerActive: false,
 };
 
 const ActionType = {
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
+  WATCH_MOVIE: `WATCH_MOVIE`,
+  STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
 
 const ActionCreator = {
@@ -28,7 +31,24 @@ const ActionCreator = {
   goToMoviePage: (chosenMovie) => {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: chosenMovie
+      payload: {
+        movie: chosenMovie,
+        page: Pages.MOVIE,
+      }
+    };
+  },
+
+  watchMovie: () => {
+    return {
+      type: ActionType.WATCH_MOVIE,
+      payload: true,
+    };
+  },
+
+  stopWatchingMovie: () => {
+    return {
+      type: ActionType.STOP_WATCHING_MOVIE,
+      payload: false,
     };
   }
 };
@@ -42,8 +62,16 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
-        currentMovie: action.payload,
-        currentPage: Pages.MOVIE,
+        currentMovie: action.payload.movie,
+        currentPage: action.payload.page,
+      });
+    case ActionType.WATCH_MOVIE:
+      return extend(state, {
+        isMoviePlayerActive: action.payload,
+      });
+    case ActionType.STOP_WATCHING_MOVIE:
+      return extend(state, {
+        isMoviePlayerActive: action.payload,
       });
   }
 
