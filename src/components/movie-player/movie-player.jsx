@@ -36,7 +36,7 @@ const MoviePlayer = ({
         </div>
 
         <div className="player__controls-row">
-          {isPlaying ? renderPlayButton() : renderPauseButton()}
+          {isPlaying ? renderPauseButton() : renderPlayButton()}
 
           <div className="player__name">{currentMovie.title}</div>
 

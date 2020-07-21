@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {ActionCreator} from '../../reducer/reducer.js';
+import {ActionCreator} from '../../store/action-creator/action-creator';
 import {connect} from "react-redux";
 import {Pages} from '../../helpers/constants';
 import Main from '../main/main';

@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {ActionCreator} from '../../reducer/reducer.js';
+import {ActionCreator} from '../../store/action-creator/action-creator';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import VideoPlayer from '../../components/video-player/video-player';
 

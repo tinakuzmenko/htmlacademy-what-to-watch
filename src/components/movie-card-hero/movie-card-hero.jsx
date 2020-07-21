@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../reducer/reducer.js';
+import {ActionCreator} from '../../store/action-creator/action-creator';
 import {connect} from "react-redux";
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';

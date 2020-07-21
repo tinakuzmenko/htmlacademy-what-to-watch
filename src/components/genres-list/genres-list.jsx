@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer/reducer';
+import {ActionCreator} from '../../store/action-creator/action-creator';
 import {MAX_SHOWN_GENRES} from '../../helpers/constants';
 import {getMoviesGenres} from '../../helpers/utils';
 
