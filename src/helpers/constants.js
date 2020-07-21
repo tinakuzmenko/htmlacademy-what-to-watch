@@ -17,6 +17,10 @@ export const smallVideoPlayer = {
   HEIGHT: `175`,
 };
 
+export const TimeInSeconds = {
+  MINUTE: 60,
+};
+
 export const ALL_GENRES = `All genres`;
 
 export const SHOWN_MOVIES = 8;
