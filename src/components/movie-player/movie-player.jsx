@@ -7,7 +7,7 @@ const MoviePlayer = ({
   onExitButtonClick,
   videoDuration,
   currentTime,
-  leftTime,
+  timeLeft,
   renderPlayButton,
   renderPauseButton,
   isPlaying,
@@ -32,7 +32,7 @@ const MoviePlayer = ({
             <progress className="player__progress" value={currentTime} max={videoDuration}></progress>
             <div className="player__toggler" style={{left: togglePosition}}>Toggler</div>
           </div>
-          <div className="player__time-value">{leftTime}</div>
+          <div className="player__time-value">{timeLeft}</div>
         </div>
 
         <div className="player__controls-row">
@@ -66,7 +66,7 @@ MoviePlayer.propTypes = {
   onFullScreenButtonClick: PropTypes.func.isRequired,
   videoDuration: PropTypes.number.isRequired,
   currentTime: PropTypes.number.isRequired,
-  leftTime: PropTypes.string.isRequired,
+  timeLeft: PropTypes.string.isRequired,
 };
 
 export default MoviePlayer;

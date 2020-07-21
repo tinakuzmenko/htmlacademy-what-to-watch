@@ -26,12 +26,7 @@ const withVideoControls = (Component) => {
     }
 
     componentDidMount() {
-      const {currentMovie} = this.props;
       const video = this._videoRef.current;
-
-      video.poster = currentMovie.poster;
-      video.src = currentMovie.videoLink;
-
       video.play();
 
       video.onloadedmetadata = () => this.setState({
@@ -63,7 +58,7 @@ const withVideoControls = (Component) => {
       }
     }
 
-    _countLeftTime() {
+    _countTimeLeft() {
       const {currentTime, videoDuration} = this.state;
       const timeDifference = videoDuration - currentTime;
 
@@ -91,10 +86,14 @@ const withVideoControls = (Component) => {
     }
 
     _renderVideoPlayer() {
+      const {currentMovie} = this.props;
+
       return (
         <video
           ref={this._videoRef}
           className="player__video"
+          poster={currentMovie.poster}
+          src={currentMovie.videoLink}
         >
           {ERROR_MESSAGE}
         </video>
@@ -131,7 +130,7 @@ const withVideoControls = (Component) => {
       const {onExitButtonClick, currentMovie} = this.props;
       const {videoDuration, currentTime, isPlaying} = this.state;
 
-      const leftTime = this._countLeftTime();
+      const timeLeft = this._countTimeLeft();
 
       return (
         <Component
@@ -141,7 +140,7 @@ const withVideoControls = (Component) => {
           videoDuration={videoDuration}
           currentTime={currentTime}
           isPlaying={isPlaying}
-          leftTime={leftTime}
+          timeLeft={timeLeft}
           renderVideoPlayer={this._renderVideoPlayer}
           renderPlayButton={this._renderPlayButton}
           renderPauseButton={this._renderPauseButton}
