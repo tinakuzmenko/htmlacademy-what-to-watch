@@ -88,9 +88,9 @@ exports[`MovieCardInfo Should render correctly 1`] = `
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2016-12-24"
+                  dateTime={[Function]}
                 >
-                  December 24, 2019
+                  May 8, 2019
                 </time>
               </footer>
             </blockquote>
@@ -121,9 +121,9 @@ exports[`MovieCardInfo Should render correctly 1`] = `
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2016-12-24"
+                  dateTime={[Function]}
                 >
-                  November 18, 2015
+                  May 8, 2019
                 </time>
               </footer>
             </blockquote>
@@ -158,9 +158,9 @@ exports[`MovieCardInfo Should render correctly 1`] = `
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2016-12-24"
+                  dateTime={[Function]}
                 >
-                  November 18, 2015
+                  May 8, 2019
                 </time>
               </footer>
             </blockquote>
@@ -191,9 +191,9 @@ exports[`MovieCardInfo Should render correctly 1`] = `
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2016-12-24"
+                  dateTime={[Function]}
                 >
-                  December 20, 2016
+                  May 8, 2019
                 </time>
               </footer>
             </blockquote>
