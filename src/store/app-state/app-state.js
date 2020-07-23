@@ -1,16 +1,14 @@
-import {extend} from '../../../helpers/utils';
-import {Pages, ALL_GENRES} from '../../../helpers/constants';
+import {extend} from '../../helpers/utils';
+import {Pages, ALL_GENRES} from '../../helpers/constants';
 
 const initialState = {
   activeGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
   isMoviePlayerActive: false,
-  currentMovie: {},
 };
 
 const ActionType = {
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
-  SET_CURRENT_MOVIE: `SET_CURRENT_MOVIE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
@@ -21,15 +19,6 @@ const ActionCreator = {
     return {
       type: ActionType.SET_ACTIVE_GENRE,
       payload: activeGenre,
-    };
-  },
-
-  setCurrentMovie: (currentMovie) => {
-    return {
-      type: ActionType.SET_CURRENT_MOVIE,
-      payload: {
-        currentMovie,
-      }
     };
   },
 
@@ -58,15 +47,11 @@ const ActionCreator = {
   }
 };
 
-const appState = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
         activeGenre: action.payload,
-      });
-    case ActionType.SET_CURRENT_MOVIE:
-      return extend(state, {
-        currentMovie: action.payload,
       });
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
@@ -86,4 +71,4 @@ const appState = (state = initialState, action) => {
   return state;
 };
 
-export {initialState, appState, ActionType, ActionCreator};
+export {initialState, reducer, ActionType, ActionCreator};

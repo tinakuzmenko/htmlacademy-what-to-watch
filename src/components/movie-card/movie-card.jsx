@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/action-creator/action-creator';
-import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {connect} from "react-redux";
+import {ActionCreator} from '../../store/data/data';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';
+import NameSpace from '../../store/name-space';
 
 const MovieCard = ({movieCard, onPlayButtonClick}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={movieCard.title} />
+        <img src={movieCard.background} alt={movieCard.title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -19,7 +20,7 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt={movieCard.title} width="218" height="327" />
+            <img src={movieCard.poster} alt={movieCard.title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -60,7 +61,7 @@ MovieCard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movieCard: state.movieCard,
+  movieCard: state[NameSpace.DATA].movieCard,
 });
 
 const mapDispatchToProps = (dispatch) => ({

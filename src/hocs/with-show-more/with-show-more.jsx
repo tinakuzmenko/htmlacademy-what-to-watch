@@ -6,6 +6,7 @@ import {MAX_SHOWN_MOVIES_LIKE_THIS, SHOWN_MOVIES, Pages} from '../../helpers/con
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {filterMoviesByGenre} from '../../helpers/utils';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import NameSpace from '../../store/name-space';
 
 const withShowMore = (Component) => {
   class WithShowMore extends PureComponent {
@@ -66,16 +67,16 @@ const withShowMore = (Component) => {
   const mapStateToProps = (state) => {
     if (state.currentPage !== Pages.MAIN) {
       return {
-        movies: filterMoviesByGenre(state.movies, state.activeGenre)
-                .filter((movie) => movie.title !== state.currentMovie.title)
+        movies: filterMoviesByGenre(state[NameSpace.DATA].movies, state[NameSpace.APP_STATE].activeGenre)
+                .filter((movie) => movie.title !== state[NameSpace.DATA].currentMovie.title)
                 .slice(0, MAX_SHOWN_MOVIES_LIKE_THIS),
-        activeGenre: state.activeGenre,
+        activeGenre: state[NameSpace.APP_STATE].activeGenre,
       };
     }
 
     return {
-      movies: filterMoviesByGenre(state.movies, state.activeGenre),
-      activeGenre: state.activeGenre,
+      movies: filterMoviesByGenre(state[NameSpace.DATA].movies, state[NameSpace.APP_STATE].activeGenre),
+      activeGenre: state[NameSpace.APP_STATE].activeGenre,
     };
   };
 

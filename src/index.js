@@ -1,21 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from "redux";
-// import {composeWithDevTools} from "redux-devtools-extension";
+import {createStore, applyMiddleware} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
-// import thunk from "redux-thunk";
-import reducer from "./store/reducer/reducer";
+import thunk from "redux-thunk";
+
 import App from './components/app/app';
+import reducer from "./store/reducer";
+import {createAPI} from './api';
+import {Operations as DataOperations} from "./store/data/data";
+
+const root = document.querySelector(`#root`);
+const api = createAPI(() => {});
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-    // composeWithDevTools(
-    //     // applyMiddleware(thunk.withExtraArgument(api))
-    // )
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
-const root = document.querySelector(`#root`);
+store.dispatch(DataOperations.loadMovieCard());
+store.dispatch(DataOperations.loadMovies());
 
 ReactDOM.render(
     <Provider store={store}>
@@ -23,3 +29,4 @@ ReactDOM.render(
     </Provider>,
     root
 );
+

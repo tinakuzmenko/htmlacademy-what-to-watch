@@ -1,14 +1,15 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {ActionCreator} from '../../store/action-creator/action-creator';
 import {connect} from "react-redux";
+import {ActionCreator} from '../../store/app-state/app-state';
 import {Pages} from '../../helpers/constants';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import MoviePlayer from '../movie-player/movie-player';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import NameSpace from '../../store/name-space';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
@@ -77,9 +78,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentPage: state.currentPage,
-  currentMovie: state.currentMovie,
-  isMoviePlayerActive: state.isMoviePlayerActive,
+  currentPage: state[NameSpace.APP_STATE].currentPage,
+  currentMovie: state[NameSpace.APP_STATE].currentMovie,
+  isMoviePlayerActive: state[NameSpace.APP_STATE].isMoviePlayerActive,
 });
 
 const mapDispatchToProps = (dispatch) => ({

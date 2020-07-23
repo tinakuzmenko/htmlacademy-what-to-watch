@@ -25,3 +25,22 @@ export const ALL_GENRES = `All genres`;
 
 export const SHOWN_MOVIES = 8;
 export const MAX_SHOWN_MOVIES_LIKE_THIS = 4;
+
+export const emptyMovie = {
+  title: `Loading...`,
+  genre: ``,
+  date: ``,
+  background: ``,
+  poster: ``,
+  id: 0,
+  description: ``,
+  rating: ``,
+  votes: 0,
+  director: ``,
+  starring: [],
+  runTime: 0,
+  preview: ``,
+  videoLink: ``,
+  isFavorite: false,
+  backgroundColor: ``,
+};

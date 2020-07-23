@@ -5,8 +5,8 @@ export const CustomPropTypes = {
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     date: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
     background: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rating: PropTypes.number.isRequired,
@@ -14,6 +14,10 @@ export const CustomPropTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     runTime: PropTypes.number.isRequired,
+    preview: PropTypes.string.isRequired,
+    videoLink: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
   }).isRequired,
 
   REVIEW: PropTypes.shape({

@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {getMoviesReviews, sliceReviews} from '../../helpers/utils';
+import {sliceReviews} from '../../helpers/utils';
 import MovieReview from '../movie-review/movie-review';
 
 const MovieReviews = ({movieReviews}) => {
@@ -30,7 +30,7 @@ MovieReviews.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movieReviews: getMoviesReviews(state.moviesReviews, state.currentMovie),
+  movieReviews: state.movieReviews,
 });
 
 export {MovieReviews};

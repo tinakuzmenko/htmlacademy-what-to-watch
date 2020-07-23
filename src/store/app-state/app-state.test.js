@@ -1,5 +1,5 @@
-import {initialState, ActionType, appState as reducer} from './app-state';
-import {movie} from '../../../helpers/test-data';
+import {initialState, ActionType, reducer} from './app-state';
+import {movie} from '../../helpers/test-data';
 
 describe(`App State Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
