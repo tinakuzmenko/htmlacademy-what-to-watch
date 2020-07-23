@@ -9,7 +9,7 @@ import MoviePage from '../movie-page/movie-page';
 import MoviePlayer from '../movie-player/movie-player';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import NameSpace from '../../store/name-space';
+import {getCurrentPage, getCurrentMovie, getIsMoviePlayerActive} from '../../store/app-state/selectors.js';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
@@ -78,9 +78,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentPage: state[NameSpace.APP_STATE].currentPage,
-  currentMovie: state[NameSpace.APP_STATE].currentMovie,
-  isMoviePlayerActive: state[NameSpace.APP_STATE].isMoviePlayerActive,
+  currentPage: getCurrentPage(state),
+  currentMovie: getCurrentMovie(state),
+  isMoviePlayerActive: getIsMoviePlayerActive(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

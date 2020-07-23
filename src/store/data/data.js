@@ -6,7 +6,6 @@ const initialState = {
   movieCard: emptyMovie,
   movies: [emptyMovie],
   movieReviews: [],
-  currentMovie: emptyMovie,
 };
 
 const ActionType = {
@@ -67,7 +66,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_CARD:
       return extend(state, {
         movieCard: action.payload,
-        currentMovie: action.payload,
       });
     case ActionType.LOAD_MOVIES:
       return extend(state, {

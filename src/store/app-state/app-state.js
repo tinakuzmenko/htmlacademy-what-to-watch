@@ -5,10 +5,12 @@ const initialState = {
   activeGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
   isMoviePlayerActive: false,
+  currentMovie: {},
 };
 
 const ActionType = {
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
+  SET_CURRENT_MOVIE: `SET_CURRENT_MOVIE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
@@ -19,6 +21,13 @@ const ActionCreator = {
     return {
       type: ActionType.SET_ACTIVE_GENRE,
       payload: activeGenre,
+    };
+  },
+
+  setCurrentMovie: (movie) => {
+    return {
+      type: ActionType.SET_CURRENT_MOVIE,
+      payload: movie,
     };
   },
 
@@ -52,6 +61,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
         activeGenre: action.payload,
+      });
+    case ActionType.SET_CURRENT_MOVIE:
+      return extend(state, {
+        currentMovie: action.payload,
       });
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
