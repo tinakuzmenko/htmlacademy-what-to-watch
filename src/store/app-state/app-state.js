@@ -1,11 +1,11 @@
 import {extend} from '../../helpers/utils';
-import {Pages, ALL_GENRES} from '../../helpers/constants';
+import {Pages, ALL_GENRES, emptyMovie} from '../../helpers/constants';
 
 const initialState = {
   activeGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
   isMoviePlayerActive: false,
-  currentMovie: {},
+  currentMovie: emptyMovie,
 };
 
 const ActionType = {
@@ -31,13 +31,10 @@ const ActionCreator = {
     };
   },
 
-  goToMoviePage: (currentMovie) => {
+  goToMoviePage: () => {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: {
-        currentMovie,
-        currentPage: Pages.MOVIE,
-      }
+      payload: Pages.MOVIE,
     };
   },
 
@@ -68,8 +65,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
-        currentMovie: action.payload.currentMovie,
-        currentPage: action.payload.currentPage,
+        currentPage: action.payload,
       });
     case ActionType.WATCH_MOVIE:
       return extend(state, {

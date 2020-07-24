@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {ActionCreator} from '../../store/data/data';
+import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';
 import {getMovieCard} from '../../store/data/selectors';
 
-const MovieCard = ({movieCard, onPlayButtonClick, setCurrentMovie}) => {
+const MovieCard = ({movieCard, onPlayButtonClick}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -35,8 +35,7 @@ const MovieCard = ({movieCard, onPlayButtonClick, setCurrentMovie}) => {
                 className="btn btn--play movie-card__button"
                 type="button"
                 onClick={() => {
-                  setCurrentMovie(movieCard);
-                  onPlayButtonClick();
+                  onPlayButtonClick(movieCard);
                 }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
@@ -61,7 +60,6 @@ const MovieCard = ({movieCard, onPlayButtonClick, setCurrentMovie}) => {
 MovieCard.propTypes = {
   movieCard: CustomPropTypes.MOVIE,
   onPlayButtonClick: PropTypes.func.isRequired,
-  setCurrentMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -69,12 +67,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(ActionCreator.watchMovie());
-  },
-
-  setCurrentMovie(movie) {
+  onPlayButtonClick(movie) {
     dispatch(ActionCreator.setCurrentMovie(movie));
+    dispatch(ActionCreator.watchMovie());
   },
 });
 

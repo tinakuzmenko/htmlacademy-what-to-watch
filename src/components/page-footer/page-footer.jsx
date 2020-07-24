@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {Pages} from '../../helpers/constants';
+import {getCurrentPage} from '../../store/app-state/selectors';
 
 const PageFooter = ({isMainPage}) => {
   return (
@@ -29,7 +30,7 @@ PageFooter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isMainPage: state.currentPage === Pages.MAIN,
+  isMainPage: getCurrentPage(state) === Pages.MAIN,
 });
 
 export {PageFooter};

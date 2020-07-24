@@ -2,10 +2,6 @@ export const extend = (state, newStateValue) => {
   return Object.assign({}, state, newStateValue);
 };
 
-export const getMoviesReviews = (allReviews, movie) => {
-  return allReviews.filter((movieReviews) => movieReviews.movie === movie.title);
-};
-
 export const sliceReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);
   const firstColReviews = reviews.slice(0, sliceIndex);
@@ -46,13 +42,9 @@ export const getRunTimeFormat = (runTime) => {
 };
 
 export const getRatingFormat = (rating) => {
-  let formattedRating;
-
-  if (rating % 1 !== 0) {
-    formattedRating = rating.toString().split(`.`).join(`,`);
-  } else {
-    formattedRating = `${rating.toString()},0`;
+  if (Math.trunc(rating) === rating) {
+    return `${rating},0`;
   }
 
-  return formattedRating;
+  return rating.toString().replace(`.`, `,`);
 };

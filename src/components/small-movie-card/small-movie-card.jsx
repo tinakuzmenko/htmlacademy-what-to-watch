@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import {Operations as DataOperations} from "../../store/data/data";
 import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import VideoPlayer from '../../components/video-player/video-player';
@@ -62,8 +63,10 @@ SmallMovieCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSmallMovieCardClick(movie) {
+    dispatch(ActionCreator.goToMoviePage());
+    dispatch(ActionCreator.setCurrentMovie(movie));
     dispatch(ActionCreator.setActiveGenre(movie.genre));
-    dispatch(ActionCreator.goToMoviePage(movie));
+    dispatch(DataOperations.loadMovieReviews(movie.id));
   },
 });
 

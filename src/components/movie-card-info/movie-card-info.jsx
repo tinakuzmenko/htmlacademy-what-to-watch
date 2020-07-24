@@ -6,10 +6,13 @@ import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
 import {NavTabs} from '../../helpers/constants';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import {getCurrentMovie} from '../../store/app-state/selectors';
+import {getMovieReviews} from '../../store/data/selectors';
+import {connect} from 'react-redux';
 
 class MovieCardInfo extends PureComponent {
   _renderScreen() {
-    const {currentMovie, currentActiveItem} = this.props;
+    const {currentMovie, movieReviews, currentActiveItem} = this.props;
 
     switch (currentActiveItem) {
       case NavTabs.OVERVIEW:
@@ -21,7 +24,9 @@ class MovieCardInfo extends PureComponent {
           movie={currentMovie}
         />;
       case NavTabs.REVIEWS:
-        return <MovieReviews />;
+        return <MovieReviews
+          movieReviews={movieReviews}
+        />;
       default:
         return <MovieOverview
           movie={currentMovie}
@@ -56,9 +61,16 @@ class MovieCardInfo extends PureComponent {
 
 MovieCardInfo.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
+  movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
   defaultActiveItem: PropTypes.string.isRequired,
   onItemClick: PropTypes.func.isRequired,
   currentActiveItem: PropTypes.string.isRequired,
 };
 
-export default MovieCardInfo;
+const mapStateToProps = (state) => ({
+  currentMovie: getCurrentMovie(state),
+  movieReviews: getMovieReviews(state),
+});
+
+export {MovieCardInfo};
+export default connect(mapStateToProps)(MovieCardInfo);

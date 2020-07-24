@@ -22,7 +22,7 @@ const MoviePlayer = ({
       <button
         type="button"
         className="player__exit"
-        onClick={() => onExitButtonClick}
+        onClick={onExitButtonClick}
       >
         Exit
       </button>
@@ -43,7 +43,7 @@ const MoviePlayer = ({
           <button
             type="button"
             className="player__full-screen"
-            onClick={() => onFullScreenButtonClick()}
+            onClick={onFullScreenButtonClick}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>

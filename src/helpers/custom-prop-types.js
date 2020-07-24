@@ -8,7 +8,7 @@ export const CustomPropTypes = {
     background: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
@@ -21,15 +21,13 @@ export const CustomPropTypes = {
   }).isRequired,
 
   REVIEW: PropTypes.shape({
-    movie: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          author: PropTypes.string.isRequired,
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-        }).isRequired
-    ).isRequired,
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    rating: PropTypes.number.isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
   }).isRequired,
 };

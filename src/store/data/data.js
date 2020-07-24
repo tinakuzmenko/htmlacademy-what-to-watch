@@ -53,8 +53,8 @@ const Operations = {
       });
   },
 
-  loadMovieReviews: () => (dispatch, getState, api) => {
-    return api.get(`/comments/1`)
+  loadMovieReviews: (movieId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieReviews(response.data));
       });

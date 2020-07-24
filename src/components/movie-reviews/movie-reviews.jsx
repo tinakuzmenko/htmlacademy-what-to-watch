@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
 
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {sliceReviews} from '../../helpers/utils';
@@ -29,9 +28,4 @@ MovieReviews.propTypes = {
   movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movieReviews: state.movieReviews,
-});
-
-export {MovieReviews};
-export default connect(mapStateToProps)(MovieReviews);
+export default MovieReviews;
