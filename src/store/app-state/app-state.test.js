@@ -1,4 +1,6 @@
 import {initialState, ActionType, reducer} from './app-state';
+import {movie, currentMovie} from '../../helpers/test-data';
+import NameSpace from '../name-space';
 
 describe(`App State Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -16,7 +18,18 @@ describe(`App State Reducer`, () => {
     });
   });
 
-  it(`Should return new current page and new current movie`, () => {
+  it(`Should return new current movie`, () => {
+    expect(reducer({
+      currentMovie: movie,
+    }, {
+      type: ActionType.SET_CURRENT_MOVIE,
+      payload: currentMovie,
+    })).toEqual({
+      currentMovie,
+    });
+  });
+
+  it(`Should return new current page`, () => {
     expect(reducer({
       currentPage: `main`,
     }, {
