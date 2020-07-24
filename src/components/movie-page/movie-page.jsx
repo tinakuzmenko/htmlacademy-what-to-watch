@@ -6,16 +6,24 @@ import MoviesList from '../movies-list/movies-list';
 import {NavTabs} from '../../helpers/constants';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withShowMore from '../../hocs/with-show-more/with-show-more';
+import {connect} from 'react-redux';
+import {getCurrentMovie} from '../../store/app-state/selectors.js';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
 const MovieCardInfoWrapped = withActiveItem(MovieCardInfo);
 const MoviesListWrapped = withShowMore(MoviesList);
 
-const MoviePage = () => {
+const MoviePage = ({currentMovie}) => {
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
-        <MovieCardHero />
+      <section
+        className="movie-card movie-card--full"
+        style={{background: currentMovie.backgroundColor}}>
+        <MovieCardHero
+          currentMovie={currentMovie}
+        />
         <MovieCardInfoWrapped
+          currentMovie={currentMovie}
           defaultActiveItem={NavTabs.OVERVIEW}
         />
       </section>
@@ -30,5 +38,15 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+MoviePage.propTypes = {
+  currentMovie: CustomPropTypes.MOVIE,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    currentMovie: getCurrentMovie(state),
+  };
+};
+
+export default connect(mapStateToProps)(MoviePage);
 

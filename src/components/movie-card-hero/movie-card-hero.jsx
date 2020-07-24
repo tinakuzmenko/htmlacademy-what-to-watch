@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/app-state/app-state';
-import {connect} from "react-redux";
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {getCurrentMovie} from '../../store/app-state/selectors';
+import {ActionCreator} from '../../store/app-state/app-state';
 import PageHeader from '../page-header/page-header';
+import {connect} from 'react-redux';
 
 const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
   return (
@@ -51,17 +50,11 @@ MovieCardHero.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    currentMovie: getCurrentMovie(state),
-  };
-};
-
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(ActionCreator.watchMovie());
   }
 });
 
-export {MovieCardHero};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCardHero);
+
+export default connect(null, mapDispatchToProps)(MovieCardHero);

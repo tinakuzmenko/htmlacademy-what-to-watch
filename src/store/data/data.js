@@ -6,12 +6,14 @@ const initialState = {
   movieCard: emptyMovie,
   movies: [],
   movieReviews: [],
+  isError: false,
 };
 
 const ActionType = {
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
+  CATCH_ERROR: `CATCH_ERROR`,
 };
 
 const ActionCreator = {
@@ -35,6 +37,13 @@ const ActionCreator = {
       payload: movieReviews,
     };
   },
+
+  catchError: () => {
+    return {
+      type: ActionType.CATCH_ERROR,
+      payload: true,
+    };
+  }
 };
 
 const Operations = {
@@ -42,6 +51,9 @@ const Operations = {
     return api.get(`/films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieCard(createMovie(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
@@ -50,6 +62,9 @@ const Operations = {
       .then((response) => {
         const movies = response.data.map((movie) => createMovie(movie));
         dispatch(ActionCreator.loadMovies(movies));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
@@ -57,6 +72,9 @@ const Operations = {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieReviews(response.data));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.catchError(true));
       });
   },
 };
@@ -74,6 +92,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         movieReviews: action.payload,
+      });
+    case ActionType.CATCH_ERROR:
+      return extend(state, {
+        isError: action.payload,
       });
   }
 

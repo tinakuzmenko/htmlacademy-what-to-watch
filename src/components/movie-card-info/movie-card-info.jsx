@@ -6,7 +6,6 @@ import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
 import {NavTabs} from '../../helpers/constants';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {getCurrentMovie} from '../../store/app-state/selectors';
 import {getMovieReviews} from '../../store/data/selectors';
 import {connect} from 'react-redux';
 
@@ -67,7 +66,6 @@ MovieCardInfo.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentMovie: getCurrentMovie(state),
   movieReviews: getMovieReviews(state),
 });
 
