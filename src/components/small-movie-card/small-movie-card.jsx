@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {Operations as DataOperations} from "../../store/data/data";
 import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import {Operations as DataOperations} from "../../store/data/data";
 import VideoPlayer from '../../components/video-player/video-player';
 
 class SmallMovieCard extends PureComponent {

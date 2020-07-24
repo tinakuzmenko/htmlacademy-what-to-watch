@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 
 class MovieCardInfo extends PureComponent {
   _renderScreen() {
-    const {currentMovie, movieReviews, currentActiveItem} = this.props;
+    const {currentMovie, currentActiveItem} = this.props;
 
     switch (currentActiveItem) {
       case NavTabs.OVERVIEW:
@@ -25,7 +25,7 @@ class MovieCardInfo extends PureComponent {
         />;
       case NavTabs.REVIEWS:
         return <MovieReviews
-          movieReviews={movieReviews}
+          movie={currentMovie}
         />;
       default:
         return <MovieOverview
@@ -61,7 +61,6 @@ class MovieCardInfo extends PureComponent {
 
 MovieCardInfo.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
   defaultActiveItem: PropTypes.string.isRequired,
   onItemClick: PropTypes.func.isRequired,
   currentActiveItem: PropTypes.string.isRequired,

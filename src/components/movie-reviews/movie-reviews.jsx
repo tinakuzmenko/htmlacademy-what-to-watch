@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {sliceReviews} from '../../helpers/utils';
 import MovieReview from '../movie-review/movie-review';
+import {connect} from 'react-redux';
+import {getMovieReviews} from '../../store/data/selectors';
 
 const MovieReviews = ({movieReviews}) => {
-  const [usersReviews] = movieReviews;
-  const slicedReviews = sliceReviews(usersReviews.reviews);
+  const slicedReviews = sliceReviews(movieReviews);
 
   return (
     <React.Fragment>
@@ -25,7 +25,11 @@ const MovieReviews = ({movieReviews}) => {
 };
 
 MovieReviews.propTypes = {
-  movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
+  movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired
 };
 
-export default MovieReviews;
+const mapStateToProps = (state) => ({
+  movieReviews: getMovieReviews(state)
+});
+
+export default connect(mapStateToProps)(MovieReviews);

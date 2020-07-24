@@ -4,14 +4,14 @@ import {emptyMovie} from '../../helpers/constants';
 
 const initialState = {
   movieCard: emptyMovie,
-  movies: [emptyMovie],
+  movies: [],
   movieReviews: [],
 };
 
 const ActionType = {
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
   LOAD_MOVIES: `LOAD_MOVIES`,
-  LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`
+  LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
 };
 
 const ActionCreator = {
@@ -29,10 +29,10 @@ const ActionCreator = {
     };
   },
 
-  loadMovieReviews: (moviesReviews) => {
+  loadMovieReviews: (movieReviews) => {
     return {
-      type: ActionType.LOAD_MOVIES_REVIEWS,
-      payload: moviesReviews,
+      type: ActionType.LOAD_MOVIE_REVIEWS,
+      payload: movieReviews,
     };
   },
 };

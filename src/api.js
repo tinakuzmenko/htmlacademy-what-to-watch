@@ -1,14 +1,11 @@
 import axios from "axios";
-
-// const Error = {
-//   UNAUTHORIZED: 401
-// };
+import {ApiConfig, Error} from './helpers/constants';
 
 export const createAPI = () => {
   const api = axios.create({
-    baseURL: `https://4.react.pages.academy/wtw`,
-    timeout: 5000,
-    withCredentials: true,
+    baseURL: ApiConfig.URL,
+    timeout: ApiConfig.TIMEOUT,
+    withCredentials: ApiConfig.COOKIES,
   });
 
   const onSuccess = (response) => {
@@ -16,13 +13,13 @@ export const createAPI = () => {
   };
 
   const onFail = (err) => {
-    // const {response} = err;
+    const {response} = err;
 
-    // if (response.status === Error.UNAUTHORIZED) {
-    //   onUnauthorized();
+    if (response.status === Error.UNAUTHORIZED) {
+      // onUnauthorized();
 
-    //   throw err;
-    // }
+      throw err;
+    }
 
     throw err;
   };
