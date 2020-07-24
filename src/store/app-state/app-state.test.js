@@ -1,6 +1,5 @@
 import {initialState, ActionType, reducer} from './app-state';
 import {movie, currentMovie} from '../../helpers/test-data';
-import NameSpace from '../name-space';
 
 describe(`App State Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
