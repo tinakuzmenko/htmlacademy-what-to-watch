@@ -1,5 +1,6 @@
 import {extend} from '../../helpers/utils';
 import {AuthorizationStatus} from '../../helpers/constants';
+import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -18,6 +19,28 @@ const ActionCreator = {
   },
 };
 
+const Operations = {
+  checkAuth: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      });
+    // .catch(() => {
+    //   dispatch(AppStateActionCreator.goToSignInPage());
+    // });
+  },
+
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: authData.login,
+      password: authData.password,
+    })
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      });
+  },
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
@@ -29,4 +52,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {initialState, reducer, ActionType, ActionCreator};
+export {initialState, reducer, ActionType, ActionCreator, Operations};

@@ -20,7 +20,7 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick}) => {
         <div className="user-block__avatar">
           <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
         </div>}
-        {!isSignedIn && !isSignInPage &&
+        {!isSignedIn &&
         <a
           href="sign-in.html"
           className="user-block__link"
