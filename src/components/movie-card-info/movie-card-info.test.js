@@ -4,14 +4,19 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MovieCardInfo from './movie-card-info';
 import {movie, reviews} from '../../helpers/test-data';
+import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
 
 describe(`MovieCardInfo`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
-      currentMovie: movie,
-      moviesReviews: reviews,
+      [NameSpace.DATA]: {
+        moviesReviews: reviews,
+      },
+      [NameSpace.APP_STATE]: {
+        currentMovie: movie,
+      },
     });
 
     const tree = renderer
@@ -19,10 +24,9 @@ describe(`MovieCardInfo`, () => {
           <Provider store={store}>
             <MovieCardInfo
               currentMovie={movie}
-              defaultActiveItem={`Overview`}
+              currentActiveItem={`Overview`}
+              defaultActiveItem={`Reviews`}
               onItemClick={() => {}}
-              currentActiveItem={`Reviews`}
-              onPlayButtonClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {

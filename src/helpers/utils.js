@@ -1,24 +1,5 @@
-import {ALL_GENRES} from './constants';
-
 export const extend = (state, newStateValue) => {
   return Object.assign({}, state, newStateValue);
-};
-
-export const getMoviesReviews = (allReviews, movie) => {
-  return allReviews.filter((movieReviews) => movieReviews.movie === movie.title);
-};
-
-export const getMoviesGenres = (movies) => {
-  const genres = new Set(movies.map((movie) => movie.genre));
-  return [ALL_GENRES, ...genres];
-};
-
-export const filterMoviesByGenre = (allMovies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
-    return allMovies;
-  }
-
-  return allMovies.filter((movie) => movie.genre === activeGenre);
 };
 
 export const sliceReviews = (reviews) => {
@@ -32,13 +13,21 @@ export const sliceReviews = (reviews) => {
 export const getRatingLevel = (rating) => {
   if (rating >= 0 && rating < 3) {
     return `Bad`;
-  } else if (rating >= 3 && rating < 5) {
+  }
+
+  if (rating >= 3 && rating < 5) {
     return `Normal`;
-  } else if (rating >= 5 && rating < 8) {
+  }
+
+  if (rating >= 5 && rating < 8) {
     return `Good`;
-  } else if (rating >= 8 && rating < 10) {
+  }
+
+  if (rating >= 8 && rating < 10) {
     return `Very good`;
-  } else if (rating === 10) {
+  }
+
+  if (rating === 10) {
     return `Awesome`;
   }
 
@@ -53,13 +42,9 @@ export const getRunTimeFormat = (runTime) => {
 };
 
 export const getRatingFormat = (rating) => {
-  let formattedRating;
-
-  if (rating % 1 !== 0) {
-    formattedRating = rating.toString().split(`.`).join(`,`);
-  } else {
-    formattedRating = `${rating.toString()},0`;
+  if (Math.trunc(rating) === rating) {
+    return `${rating},0`;
   }
 
-  return formattedRating;
+  return rating.toString().replace(`.`, `,`);
 };

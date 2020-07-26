@@ -14,12 +14,7 @@ const MovieOverview = ({movie}) => {
       </div>
 
       <div className="movie-card__text">
-        {movie.description.map((description, index) => {
-          return (
-            <p key={movie.id + index}>{description}</p>
-          );
-        })}
-
+        <p>{movie.description}</p>
         <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
         <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)}</strong></p>
       </div>

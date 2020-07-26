@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/action-creator/action-creator';
-import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {connect} from "react-redux";
+import {ActionCreator} from '../../store/app-state/app-state';
+import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';
+import {getMovieCard} from '../../store/data/selectors';
 
 const MovieCard = ({movieCard, onPlayButtonClick}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={movieCard.title} />
+        <img src={movieCard.background} alt={movieCard.title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -19,7 +20,7 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt={movieCard.title} width="218" height="327" />
+            <img src={movieCard.poster} alt={movieCard.title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -33,7 +34,9 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
               <button
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={onPlayButtonClick}
+                onClick={() => {
+                  onPlayButtonClick(movieCard);
+                }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -60,13 +63,14 @@ MovieCard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movieCard: state.movieCard,
+  movieCard: getMovieCard(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
+  onPlayButtonClick(movie) {
+    dispatch(ActionCreator.setCurrentMovie(movie));
     dispatch(ActionCreator.watchMovie());
-  }
+  },
 });
 
 export {MovieCard};

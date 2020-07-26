@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import withShowMore from './with-show-more';
 import {movie, movies} from '../../helpers/test-data';
+import NameSpace from '../../store/name-space';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -35,8 +36,13 @@ describe(`HOC withShowMore e2e tests`, () => {
     const onShowMoreButtonClick = jest.fn();
 
     const store = mockStore({
-      movieCard: movie,
-      movies,
+      [NameSpace.DATA]: {
+        movieCard: movie,
+        movies,
+      },
+      [NameSpace.APP_STATE]: {
+        currentPage: `main`,
+      },
     });
 
     const wrapper = mount(

@@ -4,18 +4,23 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Catalog from './catalog';
 import {movieCard, movie, movies} from '../../helpers/test-data';
+import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
 
 describe(`Catalog`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
-      movieCard,
-      movies,
-      moviesByGenre: movies,
-      activeGenre: `All genres`,
-      currentPage: `main`,
-      currentMovie: movie,
+      [NameSpace.DATA]: {
+        movieCard,
+        movies,
+      },
+
+      [NameSpace.APP_STATE]: {
+        activeGenre: `All genres`,
+        currentPage: `main`,
+        currentMovie: movie,
+      },
     });
 
     const tree = renderer

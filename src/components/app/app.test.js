@@ -3,7 +3,8 @@ import renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from './app';
-import {movie, movies, reviews, genres} from '../../helpers/test-data';
+import {movie, movies, reviews} from '../../helpers/test-data';
+import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
 const movieCard = movie;
@@ -11,16 +12,19 @@ const movieCard = movie;
 describe(`App`, () => {
   it(`Should render correctly with movies titles array`, () => {
     const store = mockStore({
-      movieCard,
-      movies,
-      moviesReviews: reviews,
-      activeGenre: `All genres`,
-      moviesByGenre: movies,
-      allMoviesGenres: genres,
-      currentPage: `Main`,
-      currentMovie: movie,
-      isMainPage: true,
-      isMoviePlayerActive: false,
+      [NameSpace.DATA]: {
+        movieCard,
+        movies,
+        moviesReviews: reviews,
+        isError: false,
+      },
+      [NameSpace.APP_STATE]: {
+        activeGenre: `All genres`,
+        currentPage: `main`,
+        currentMovie: movie,
+        isMainPage: true,
+        isMoviePlayerActive: false,
+      },
     });
 
     const tree = renderer

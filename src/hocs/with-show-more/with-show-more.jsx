@@ -1,11 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
-import {MAX_SHOWN_MOVIES_LIKE_THIS, SHOWN_MOVIES, Pages} from '../../helpers/constants';
+import {SHOWN_MOVIES, Pages} from '../../helpers/constants';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {filterMoviesByGenre} from '../../helpers/utils';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import {getFilteredMoviesByGenre, getFilteredMoviesLikeThis} from '../../store/data/selectors';
+import {getCurrentPage, getActiveGenre} from '../../store/app-state/selectors';
+
 
 const withShowMore = (Component) => {
   class WithShowMore extends PureComponent {
@@ -64,18 +65,18 @@ const withShowMore = (Component) => {
   };
 
   const mapStateToProps = (state) => {
-    if (state.currentPage !== Pages.MAIN) {
+    const currentPage = getCurrentPage(state);
+
+    if (currentPage !== Pages.MAIN) {
       return {
-        movies: filterMoviesByGenre(state.movies, state.activeGenre)
-                .filter((movie) => movie.title !== state.currentMovie.title)
-                .slice(0, MAX_SHOWN_MOVIES_LIKE_THIS),
-        activeGenre: state.activeGenre,
+        movies: getFilteredMoviesLikeThis(state),
+        activeGenre: getActiveGenre(state),
       };
     }
 
     return {
-      movies: filterMoviesByGenre(state.movies, state.activeGenre),
-      activeGenre: state.activeGenre,
+      movies: getFilteredMoviesByGenre(state),
+      activeGenre: getActiveGenre(state),
     };
   };
 

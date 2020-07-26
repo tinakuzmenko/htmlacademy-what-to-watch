@@ -22,7 +22,7 @@ exports[`MovieReview Should render correctly 1`] = `
       </cite>
       <time
         className="review__date"
-        dateTime={[Function]}
+        dateTime="2019-05-08"
       >
         May 8, 2019
       </time>

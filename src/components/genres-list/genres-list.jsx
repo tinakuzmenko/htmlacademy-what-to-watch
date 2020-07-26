@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action-creator/action-creator';
-import {MAX_SHOWN_GENRES} from '../../helpers/constants';
-import {getMoviesGenres} from '../../helpers/utils';
+import {ActionCreator} from '../../store/app-state/app-state';
+import {getMoviesGenres} from '../../store/data/selectors';
+import {getActiveGenre} from '../../store/app-state/selectors';
 
 const GenresList = ({moviesGenres, currentActiveGenre, onGenreClick}) => {
   return (
@@ -32,8 +32,8 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  moviesGenres: getMoviesGenres(state.movies).slice(0, MAX_SHOWN_GENRES),
-  currentActiveGenre: state.activeGenre,
+  moviesGenres: getMoviesGenres(state),
+  currentActiveGenre: getActiveGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

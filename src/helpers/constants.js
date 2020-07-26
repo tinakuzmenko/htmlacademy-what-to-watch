@@ -25,3 +25,37 @@ export const ALL_GENRES = `All genres`;
 
 export const SHOWN_MOVIES = 8;
 export const MAX_SHOWN_MOVIES_LIKE_THIS = 4;
+
+export const emptyMovie = {
+  title: `Loading...`,
+  genre: ``,
+  date: 0,
+  background: ``,
+  poster: ``,
+  id: 0,
+  description: ``,
+  rating: 0,
+  votes: 0,
+  director: ``,
+  starring: [],
+  runTime: 0,
+  preview: ``,
+  videoLink: ``,
+  isFavorite: false,
+  backgroundColor: ``,
+};
+
+export const ApiConfig = {
+  URL: `https://4.react.pages.academy/wtw`,
+  TIMEOUT: 5000,
+  COOKIES: true
+};
+
+export const Error = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL: 500,
+  SERVICE_UNAVAILABLE: 503,
+};

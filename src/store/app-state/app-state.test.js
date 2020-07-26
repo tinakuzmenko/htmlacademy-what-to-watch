@@ -1,8 +1,7 @@
-import {initialState, reducer} from './reducer';
-import {ActionType} from '../action-creator/action-creator';
-import {movie} from '../../helpers/test-data';
+import {initialState, ActionType, reducer} from './app-state';
+import {movie, currentMovie} from '../../helpers/test-data';
 
-describe(`Reducer`, () => {
+describe(`App State Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
@@ -18,18 +17,24 @@ describe(`Reducer`, () => {
     });
   });
 
-  it(`Should return new current page and new current movie`, () => {
+  it(`Should return new current movie`, () => {
     expect(reducer({
       currentMovie: movie,
+    }, {
+      type: ActionType.SET_CURRENT_MOVIE,
+      payload: currentMovie,
+    })).toEqual({
+      currentMovie,
+    });
+  });
+
+  it(`Should return new current page`, () => {
+    expect(reducer({
       currentPage: `main`,
     }, {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: {
-        movie,
-        page: `movie`
-      },
+      payload: `movie`,
     })).toEqual({
-      currentMovie: movie,
       currentPage: `movie`,
     });
   });

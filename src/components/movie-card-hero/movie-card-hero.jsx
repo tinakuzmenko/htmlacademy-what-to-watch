@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/action-creator/action-creator';
-import {connect} from "react-redux";
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
+import {ActionCreator} from '../../store/app-state/app-state';
 import PageHeader from '../page-header/page-header';
+import {connect} from 'react-redux';
 
 const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
   return (
@@ -56,5 +56,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {MovieCardHero};
 export default connect(null, mapDispatchToProps)(MovieCardHero);
