@@ -2,6 +2,9 @@ import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/user/user.js';
+import {getAuthorizationError} from '../../store/user/selectors.js';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -10,10 +13,10 @@ class SignIn extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleSubmitClick = this._handleSubmitClick.bind(this);
   }
 
-  _handleSubmit(evt) {
+  _handleSubmitClick(evt) {
     const {onFormSubmit} = this.props;
 
     const userSignInData = {
@@ -26,6 +29,15 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {authorizationError, clearAuthError} = this.props;
+
+    const isInvalidForm = authorizationError &&
+      <React.Fragment>
+        <div className="sign-in__message">
+          <p>Please enter a valid email address</p>
+        </div>
+      </React.Fragment>;
+
     return (
       <React.Fragment>
         <div className="user-page">
@@ -34,10 +46,12 @@ class SignIn extends PureComponent {
             <form
               action="#"
               className="sign-in__form"
-              onSubmit={this._handleSubmit}
+              onSubmit={this._handleSubmitClick}
+              onChange={clearAuthError}
             >
+              {isInvalidForm}
               <div className="sign-in__fields">
-                <div className="sign-in__field">
+                <div className={`sign-in__field ${authorizationError && `sign-in__field--error`}`}>
                   <input
                     className="sign-in__input"
                     type="email"
@@ -76,6 +90,18 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
+  authorizationError: PropTypes.bool.isRequired,
+  clearAuthError: PropTypes.func.isRequired,
 };
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  authorizationError: getAuthorizationError(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  clearAuthError() {
+    dispatch(ActionCreator.clearAuthorizationError());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -4,10 +4,13 @@ import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationError: false,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`,
+  CLEAR_AUTHORIZATION_ERROR: `CLEAR_AUTHORIZATION_ERROR`,
 };
 
 const ActionCreator = {
@@ -17,6 +20,20 @@ const ActionCreator = {
       payload: status,
     };
   },
+
+  showAuthorizationError: () => {
+    return {
+      type: ActionType.SHOW_AUTHORIZATION_ERROR,
+      payload: true
+    };
+  },
+
+  clearAuthorizationError: () => {
+    return {
+      type: ActionType.CLEAR_AUTHORIZATION_ERROR,
+      payload: false
+    };
+  }
 };
 
 const Operations = {
@@ -24,10 +41,10 @@ const Operations = {
     return api.get(`/login`)
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });
-    // .catch(() => {
-    //   dispatch(AppStateActionCreator.goToSignInPage());
-    // });
   },
 
   login: (authData) => (dispatch, getState, api) => {
@@ -37,6 +54,10 @@ const Operations = {
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(AppStateActionCreator.goToMainPage());
+      })
+      .catch(() => {
+        dispatch(ActionCreator.showAuthorizationError());
       });
   },
 };
@@ -46,6 +67,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.SHOW_AUTHORIZATION_ERROR:
+      return extend(state, {
+        authorizationError: action.payload,
+      });
+    case ActionType.CLEAR_AUTHORIZATION_ERROR:
+      return extend(state, {
+        authorizationError: action.payload,
       });
   }
 
