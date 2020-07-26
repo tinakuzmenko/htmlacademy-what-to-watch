@@ -16,7 +16,10 @@ describe(`MoviePage`, () => {
       },
       [NameSpace.APP_STATE]: {
         currentMovie: movie,
-      }
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`,
+      },
     });
 
     const tree = renderer

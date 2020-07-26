@@ -17,6 +17,9 @@ describe(`MovieCard`, () => {
       [NameSpace.APP_STATE]: {
         currentPage: `main`,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`,
+      },
     });
 
     const tree = renderer

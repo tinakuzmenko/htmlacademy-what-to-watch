@@ -22,25 +22,13 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {currentPage, isMoviePlayerActive, isError, authorizationStatus, login} = this.props;
+    const {currentPage, isMoviePlayerActive, isError, login} = this.props;
 
     if (isError) {
       return (
         <ErrorScreen />
       );
     }
-
-    // if (authorizationStatus === AuthorizationStatus.AUTH) {
-    //   return (
-    //     <Main />
-    //   );
-    // } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-    //   return (
-    //     <SignIn
-    //       onFormSubmit={login}
-    //     />
-    //   );
-    // }
 
     if (isMoviePlayerActive) {
       return (
