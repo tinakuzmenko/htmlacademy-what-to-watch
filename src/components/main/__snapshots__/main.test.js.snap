@@ -52,9 +52,9 @@ Array [
           className="user-block__avatar"
         >
           <img
-            alt="User avatar"
+            alt="asdasd"
             height="63"
-            src="img/avatar.jpg"
+            src="https://4.react.pages.academy/wtw/asda.jpg"
             width="63"
           />
         </div>
