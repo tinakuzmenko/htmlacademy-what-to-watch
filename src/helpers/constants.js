@@ -33,6 +33,7 @@ export const emptyMovie = {
   date: 0,
   background: ``,
   poster: ``,
+  posterImage: ``,
   id: 0,
   description: ``,
   rating: 0,

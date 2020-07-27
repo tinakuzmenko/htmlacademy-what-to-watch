@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {Pages, AuthorizationStatus} from '../../helpers/constants';
 import {getCurrentPage} from '../../store/app-state/selectors';
-import {getAuthorizationStatus} from '../../store/user/selectors';
+import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
 import {ActionCreator} from '../../store/app-state/app-state.js';
 
-const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick}) => {
+const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick, userInfo}) => {
   const signInPageTitle = (
     <React.Fragment>
       <h1 className="page-title user-page__title">Sign in</h1>
@@ -18,7 +18,7 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick}) => {
       <div className="user-block">
         {isSignedIn &&
         <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
         </div>}
         {!isSignedIn &&
         <a
@@ -56,12 +56,19 @@ PageHeader.propTypes = {
   isSignInPage: PropTypes.bool.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
   onSignInClick: PropTypes.func.isRequired,
+  userInfo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+  }).isRequired
 };
 
 const mapStateToProps = (state) => ({
   isMainPage: getCurrentPage(state) === Pages.MAIN,
   isSignInPage: getCurrentPage(state) === Pages.SIGN_IN,
   isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+  userInfo: getUserInfo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
