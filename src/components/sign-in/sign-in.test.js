@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import NameSpace from '../../store/name-space';
 import SignIn from './sign-in';
+import {movie} from '../../helpers/test-data';
 
 describe(`SignIn`, () => {
   const mockStore = configureStore([]);
@@ -12,10 +13,17 @@ describe(`SignIn`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
         currentPage: `movie`,
+        currentMovie: movie,
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
         authorizationError: true,
+        userInfo: {
+          id: 0,
+          email: ``,
+          name: ``,
+          avatarUrl: ``,
+        }
       },
     });
 
@@ -40,10 +48,17 @@ describe(`SignIn`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
         currentPage: `movie`,
+        currentMovie: movie,
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
         authorizationError: false,
+        userInfo: {
+          id: 1,
+          email: `sadas@dsasd.ru`,
+          name: `asdasd`,
+          avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
+        }
       },
     });
 

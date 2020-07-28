@@ -16,7 +16,7 @@ describe(`App`, () => {
         movieCard,
         movies,
         moviesReviews: reviews,
-        isError: false,
+        isLoadError: false,
       },
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,

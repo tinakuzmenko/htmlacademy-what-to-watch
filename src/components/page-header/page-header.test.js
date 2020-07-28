@@ -17,8 +17,10 @@ describe(`PageHeader`, () => {
         isMainPage={true}
         isSignInPage={false}
         isSignedIn={true}
+        isWithBreadcrubs={false}
         onSignInClick={() => {}}
         userInfo={userInfo}
+        movieTitle={`Snatch`}
       />)
       .toJSON();
 
@@ -31,7 +33,10 @@ describe(`PageHeader`, () => {
         isMainPage={true}
         isSignInPage={false}
         isSignedIn={false}
+        isWithBreadcrubs={false}
         onSignInClick={() => {}}
+        userInfo={userInfo}
+        movieTitle={`Snatch`}
       />)
       .toJSON();
 
@@ -44,7 +49,10 @@ describe(`PageHeader`, () => {
         isMainPage={false}
         isSignInPage={false}
         isSignedIn={false}
+        isWithBreadcrubs={false}
+        userInfo={userInfo}
         onSignInClick={() => {}}
+        movieTitle={`Snatch`}
       />)
       .toJSON();
 
@@ -57,7 +65,10 @@ describe(`PageHeader`, () => {
         isMainPage={false}
         isSignInPage={true}
         isSignedIn={false}
+        isWithBreadcrubs={false}
+        userInfo={userInfo}
         onSignInClick={() => {}}
+        movieTitle={`Snatch`}
       />)
       .toJSON();
 

@@ -16,6 +16,7 @@ describe(`MovieCard`, () => {
       },
       [NameSpace.APP_STATE]: {
         currentPage: `main`,
+        currentMovie: movie,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,

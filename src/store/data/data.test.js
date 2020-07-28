@@ -46,12 +46,12 @@ describe(`Data Reducer`, () => {
 
   it(`Reducer should catch error on load fail`, () => {
     expect(reducer({
-      isError: false,
+      isLoadError: false,
     }, {
-      type: ActionType.CATCH_ERROR,
+      type: ActionType.CATCH_LOAD_ERROR,
       payload: true,
     })).toEqual({
-      isError: true,
+      isLoadError: true,
     });
   });
 });
