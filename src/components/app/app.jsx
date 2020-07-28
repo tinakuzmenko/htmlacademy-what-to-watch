@@ -9,12 +9,15 @@ import MoviePlayer from '../movie-player/movie-player';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
 import {getCurrentPage, getIsMoviePlayerActive} from '../../store/app-state/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
-import {getIsError} from '../../store/data/selectors';
+import {getIsLoadError} from '../../store/data/selectors';
 import ErrorScreen from '../error-screen/error-screen';
 import SignIn from '../sign-in/sign-in';
 import {Operations as UserOperation} from '../../store/user/user';
+import AddReview from '../add-review/add-review';
+import withReview from '../../hocs/with-review/with-review';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
+const AddReviewWrapped = withReview(AddReview);
 
 class App extends PureComponent {
   constructor(props) {
@@ -22,9 +25,9 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {currentPage, isMoviePlayerActive, isError, login} = this.props;
+    const {currentPage, isMoviePlayerActive, isLoadError, login} = this.props;
 
-    if (isError) {
+    if (isLoadError) {
       return (
         <ErrorScreen />
       );
@@ -51,6 +54,10 @@ class App extends PureComponent {
             onFormSubmit={login}
           />
         );
+      case Pages.ADD_REVIEW:
+        return (
+          <AddReviewWrapped />
+        );
       default:
         return (
           <Main />
@@ -71,6 +78,9 @@ class App extends PureComponent {
           <Route exact path="/dev-watch">
             <MoviePlayerWrapped />
           </Route>
+          <Route exact path="/dev-review">
+            <AddReviewWrapped />
+          </Route>
         </Switch>
       </Router>
     );
@@ -80,7 +90,7 @@ class App extends PureComponent {
 App.propTypes = {
   currentPage: PropTypes.string.isRequired,
   isMoviePlayerActive: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
+  isLoadError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
 };
@@ -88,8 +98,8 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   isMoviePlayerActive: getIsMoviePlayerActive(state),
-  isError: getIsError(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  isLoadError: getIsLoadError(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

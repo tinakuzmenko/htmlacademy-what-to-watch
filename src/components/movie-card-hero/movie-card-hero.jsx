@@ -4,8 +4,20 @@ import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {ActionCreator} from '../../store/app-state/app-state';
 import PageHeader from '../page-header/page-header';
 import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user/selectors';
+import {AuthorizationStatus} from '../../helpers/constants';
 
-const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
+const MovieCardHero = ({currentMovie, onPlayButtonClick, onAddReviewClick, isSignedIn}) => {
+  const addReviewButton = (
+    <a
+      href="add-review.html"
+      className="btn movie-card__button"
+      onClick={(evt) => {
+        evt.preventDefault();
+        onAddReviewClick();
+      }}>Add review</a>
+  );
+
   return (
     <div className="movie-card__hero">
       <div className="movie-card__bg">
@@ -37,7 +49,7 @@ const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
               </svg>
               <span>My list</span>
             </button>
-            <a href="add-review.html" className="btn movie-card__button">Add review</a>
+            {isSignedIn && addReviewButton}
           </div>
         </div>
       </div>
@@ -48,12 +60,22 @@ const MovieCardHero = ({currentMovie, onPlayButtonClick}) => {
 MovieCardHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
   onPlayButtonClick: PropTypes.func.isRequired,
+  onAddReviewClick: PropTypes.func.isRequired,
+  isSignedIn: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(ActionCreator.watchMovie());
+  },
+
+  onAddReviewClick() {
+    dispatch(ActionCreator.addReview());
   }
 });
 
-export default connect(null, mapDispatchToProps)(MovieCardHero);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardHero);

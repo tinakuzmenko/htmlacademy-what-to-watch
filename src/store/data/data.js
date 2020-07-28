@@ -1,19 +1,27 @@
 import {extend} from '../../helpers/utils';
 import {createMovie} from '../../adapters/adapters';
 import {emptyMovie} from '../../helpers/constants';
+import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 
 const initialState = {
   movieCard: emptyMovie,
   movies: [],
   movieReviews: [],
-  isError: false,
+  isLoadError: false,
+  isReviewSending: false,
+  isSendingSuccessfull: false,
+  isSendingError: false,
 };
 
 const ActionType = {
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
-  CATCH_ERROR: `CATCH_ERROR`,
+  CATCH_LOAD_ERROR: `CATCH_LOAD_ERROR`,
+  CHECK_IS_REVIEW_SENDING: `CHECK_IS_REVIEW_SENDING`,
+  CHECK_IS_SENDING_SUCCESSFULL: `CHECK_IS_REVIEW_SENDING_SUCCESSFULL`,
+  CHECK_IS_SENDING_ERROR: `CHECK_IS_REVIEW_SENDING_ERROR`,
+  CLEAR_SENDING_ERROR: `CLEAR_SENDING_ERROR`,
 };
 
 const ActionCreator = {
@@ -38,12 +46,32 @@ const ActionCreator = {
     };
   },
 
-  catchError: () => {
+  catchLoadError: () => {
     return {
-      type: ActionType.CATCH_ERROR,
+      type: ActionType.CATCH_LOAD_ERROR,
       payload: true,
     };
-  }
+  },
+
+  checkIsReviewSending: (isReviewSending) => ({
+    type: ActionType.CHECK_IS_REVIEW_SENDING,
+    payload: isReviewSending,
+  }),
+
+  checkIsSendingSuccessfull: (isSendingSuccessfull) => ({
+    type: ActionType.CHECK_IS_SENDING_SUCCESSFULL,
+    payload: isSendingSuccessfull,
+  }),
+
+  checkIsSendingError: (isSendingError) => ({
+    type: ActionType.CHECK_IS_SENDING_ERROR,
+    payload: isSendingError,
+  }),
+
+  clearSendingError: () => ({
+    type: ActionType.CLEAR_SENDING_ERROR,
+    payload: false,
+  }),
 };
 
 const Operations = {
@@ -53,7 +81,7 @@ const Operations = {
         dispatch(ActionCreator.loadMovieCard(createMovie(response.data)));
       })
       .catch(() => {
-        dispatch(ActionCreator.catchError());
+        dispatch(ActionCreator.catchLoadError());
       });
   },
 
@@ -64,7 +92,7 @@ const Operations = {
         dispatch(ActionCreator.loadMovies(movies));
       })
       .catch(() => {
-        dispatch(ActionCreator.catchError());
+        dispatch(ActionCreator.catchLoadError());
       });
   },
 
@@ -74,8 +102,30 @@ const Operations = {
         dispatch(ActionCreator.loadMovieReviews(response.data));
       })
       .catch(() => {
-        dispatch(ActionCreator.catchError());
+        dispatch(ActionCreator.catchLoadError());
       });
+  },
+
+  sendReview: (movieId, review) => (dispatch, getState, api) => {
+    dispatch(ActionCreator.checkIsReviewSending(true));
+    return api.post(`/comments/${movieId}`, {
+      rating: review.rating,
+      comment: review.comment,
+    })
+    .then(() => {
+      dispatch(ActionCreator.checkIsReviewSending(false));
+      dispatch(ActionCreator.checkIsSendingSuccessfull(true));
+      dispatch(ActionCreator.checkIsSendingError(false));
+    })
+    .then(() => {
+      dispatch(Operations.loadMovieReviews(movieId));
+      dispatch(AppStateActionCreator.goToMoviePage());
+    })
+    .catch(() => {
+      dispatch(ActionCreator.checkIsReviewSending(false));
+      dispatch(ActionCreator.checkIsSendingSuccessfull(false));
+      dispatch(ActionCreator.checkIsSendingError(true));
+    });
   },
 };
 
@@ -93,9 +143,25 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         movieReviews: action.payload,
       });
-    case ActionType.CATCH_ERROR:
+    case ActionType.CATCH_LOAD_ERROR:
       return extend(state, {
-        isError: action.payload,
+        isLoadError: action.payload,
+      });
+    case ActionType.CHECK_IS_REVIEW_SENDING:
+      return extend(state, {
+        isReviewSending: action.payload,
+      });
+    case ActionType.CHECK_IS_SENDING_SUCCESSFULL:
+      return extend(state, {
+        isSendingSuccessfull: action.payload,
+      });
+    case ActionType.CHECK_IS_SENDING_ERROR:
+      return extend(state, {
+        isSendingError: action.payload,
+      });
+    case ActionType.CLEAR_SENDING_ERROR:
+      return extend(state, {
+        isSendingError: action.payload,
       });
   }
 

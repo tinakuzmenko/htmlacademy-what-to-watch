@@ -2,25 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {Pages, AuthorizationStatus} from '../../helpers/constants';
-import {getCurrentPage} from '../../store/app-state/selectors';
+import {getCurrentPage, getCurrentMovie} from '../../store/app-state/selectors';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
 import {ActionCreator} from '../../store/app-state/app-state.js';
 
-const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick, userInfo}) => {
+const PageHeader = ({isMainPage, isSignInPage, isSignedIn, isWithBreadcrubs, onSignInClick, userInfo, movieTitle}) => {
   const signInPageTitle = (
-    <React.Fragment>
-      <h1 className="page-title user-page__title">Sign in</h1>
-    </React.Fragment>
+    <h1 className="page-title user-page__title">Sign in</h1>
   );
 
   const userBlockElement = (
-    <React.Fragment>
-      <div className="user-block">
-        {isSignedIn &&
+    <div className="user-block">
+      {isSignedIn &&
         <div className="user-block__avatar">
           <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
         </div>}
-        {!isSignedIn &&
+      {!isSignedIn &&
         <a
           href="sign-in.html"
           className="user-block__link"
@@ -29,8 +26,20 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick, userIn
             onSignInClick();
           }}
         >Sign in</a>}
-      </div>
-    </React.Fragment>
+    </div>
+  );
+
+  const breadcrumbsElement = (
+    <nav className="breadcrumbs">
+      <ul className="breadcrumbs__list">
+        <li className="breadcrumbs__item">
+          <a href="movie-page.html" className="breadcrumbs__link">{movieTitle}</a>
+        </li>
+        <li className="breadcrumbs__item">
+          <a className="breadcrumbs__link">Add review</a>
+        </li>
+      </ul>
+    </nav>
   );
 
   return (
@@ -45,7 +54,7 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, onSignInClick, userIn
           <span className="logo__letter logo__letter--3">W</span>
         </a>
       </div>
-
+      {isWithBreadcrubs && breadcrumbsElement}
       {isSignInPage ? signInPageTitle : userBlockElement}
     </header>
   );
@@ -55,20 +64,24 @@ PageHeader.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
   isSignInPage: PropTypes.bool.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
+  isWithBreadcrubs: PropTypes.bool.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     avatarUrl: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
+  movieTitle: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isMainPage: getCurrentPage(state) === Pages.MAIN,
   isSignInPage: getCurrentPage(state) === Pages.SIGN_IN,
+  isWithBreadcrubs: getCurrentPage(state) === Pages.ADD_REVIEW,
   isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   userInfo: getUserInfo(state),
+  movieTitle: getCurrentMovie(state).title,
 });
 
 const mapDispatchToProps = (dispatch) => ({
