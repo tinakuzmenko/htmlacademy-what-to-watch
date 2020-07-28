@@ -4,6 +4,7 @@ export const Pages = {
   MAIN: `main`,
   MOVIE: `movie`,
   VIDEO: `video`,
+  SIGN_IN: `sign in`,
 };
 
 export const NavTabs = {
@@ -51,11 +52,11 @@ export const ApiConfig = {
   COOKIES: true
 };
 
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 export const Error = {
-  BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  INTERNAL: 500,
-  SERVICE_UNAVAILABLE: 503,
 };

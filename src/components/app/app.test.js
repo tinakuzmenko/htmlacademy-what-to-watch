@@ -25,6 +25,9 @@ describe(`App`, () => {
         isMainPage: true,
         isMoviePlayerActive: false,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`,
+      },
     });
 
     const tree = renderer

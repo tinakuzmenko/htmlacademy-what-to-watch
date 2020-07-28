@@ -12,6 +12,8 @@ const ActionType = {
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   SET_CURRENT_MOVIE: `SET_CURRENT_MOVIE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
+  GO_TO_SIGN_IN_PAGE: `GO_TO_SIGN_IN_PAGE`,
+  GO_TO_MAIN_PAGE: `GO_TO_MAIN_PAGE`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
@@ -35,6 +37,20 @@ const ActionCreator = {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
       payload: Pages.MOVIE,
+    };
+  },
+
+  goToMainPage: () => {
+    return {
+      type: ActionType.GO_TO_MAIN_PAGE,
+      payload: Pages.MAIN,
+    };
+  },
+
+  goToSignInPage: () => {
+    return {
+      type: ActionType.GO_TO_SIGN_IN_PAGE,
+      payload: Pages.SIGN_IN,
     };
   },
 
@@ -64,6 +80,14 @@ const reducer = (state = initialState, action) => {
         currentMovie: action.payload,
       });
     case ActionType.GO_TO_MOVIE_PAGE:
+      return extend(state, {
+        currentPage: action.payload,
+      });
+    case ActionType.GO_TO_SIGN_IN_PAGE:
+      return extend(state, {
+        currentPage: action.payload,
+      });
+    case ActionType.GO_TO_MAIN_PAGE:
       return extend(state, {
         currentPage: action.payload,
       });

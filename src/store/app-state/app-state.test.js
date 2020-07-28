@@ -1,4 +1,4 @@
-import {initialState, ActionType, reducer} from './app-state';
+import {initialState, ActionType, ActionCreator, reducer} from './app-state';
 import {movie, currentMovie} from '../../helpers/test-data';
 
 describe(`App State Reducer`, () => {
@@ -28,7 +28,7 @@ describe(`App State Reducer`, () => {
     });
   });
 
-  it(`Should return new current page`, () => {
+  it(`Should return new current page when Movie page`, () => {
     expect(reducer({
       currentPage: `main`,
     }, {
@@ -36,6 +36,28 @@ describe(`App State Reducer`, () => {
       payload: `movie`,
     })).toEqual({
       currentPage: `movie`,
+    });
+  });
+
+  it(`Should return new current page when Sign In Page`, () => {
+    expect(reducer({
+      currentPage: `main`,
+    }, {
+      type: ActionType.GO_TO_SIGN_IN_PAGE,
+      payload: `sign in`,
+    })).toEqual({
+      currentPage: `sign in`,
+    });
+  });
+
+  it(`Should return new current page when Main Page`, () => {
+    expect(reducer({
+      currentPage: `sign in`,
+    }, {
+      type: ActionType.GO_TO_MAIN_PAGE,
+      payload: `main`,
+    })).toEqual({
+      currentPage: `main`,
     });
   });
 
@@ -58,6 +80,50 @@ describe(`App State Reducer`, () => {
       payload: false,
     })).toEqual({
       isMoviePlayerActive: false
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator setCurrentGenre returns correct action`, () => {
+    expect(ActionCreator.setActiveGenre(`Drama`)).toEqual({
+      type: ActionType.SET_ACTIVE_GENRE,
+      payload: `Drama`,
+    });
+  });
+
+  it(`Action creator setCurrentMovie returns correct action`, () => {
+    expect(ActionCreator.setCurrentMovie(movie)).toEqual({
+      type: ActionType.SET_CURRENT_MOVIE,
+      payload: movie,
+    });
+  });
+
+  it(`Action creator goToMoviePage returns correct action`, () => {
+    expect(ActionCreator.goToMoviePage()).toEqual({
+      type: ActionType.GO_TO_MOVIE_PAGE,
+      payload: `movie`,
+    });
+  });
+
+  it(`Action creator goToSignInPage returns correct action`, () => {
+    expect(ActionCreator.goToSignInPage()).toEqual({
+      type: ActionType.GO_TO_SIGN_IN_PAGE,
+      payload: `sign in`,
+    });
+  });
+
+  it(`Action creator watchMovie returns correct action`, () => {
+    expect(ActionCreator.watchMovie()).toEqual({
+      type: ActionType.WATCH_MOVIE,
+      payload: true,
+    });
+  });
+
+  it(`Action creator stopWatchingMovie returns correct action`, () => {
+    expect(ActionCreator.stopWatchingMovie()).toEqual({
+      type: ActionType.STOP_WATCHING_MOVIE,
+      payload: false,
     });
   });
 });

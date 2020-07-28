@@ -43,6 +43,17 @@ describe(`Data Reducer`, () => {
       movieReviews: reviews,
     });
   });
+
+  it(`Reducer should catch error on load fail`, () => {
+    expect(reducer({
+      isError: false,
+    }, {
+      type: ActionType.CATCH_ERROR,
+      payload: true,
+    })).toEqual({
+      isError: true,
+    });
+  });
 });
 
 describe(`Operations work correctly`, () => {

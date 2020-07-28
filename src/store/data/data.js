@@ -74,7 +74,7 @@ const Operations = {
         dispatch(ActionCreator.loadMovieReviews(response.data));
       })
       .catch(() => {
-        dispatch(ActionCreator.catchError(true));
+        dispatch(ActionCreator.catchError());
       });
   },
 };

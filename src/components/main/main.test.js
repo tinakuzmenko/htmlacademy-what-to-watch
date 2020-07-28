@@ -22,6 +22,9 @@ describe(`Main`, () => {
         currentPage: `main`,
         currentMovie: movie,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`,
+      },
     });
 
     const tree = renderer
