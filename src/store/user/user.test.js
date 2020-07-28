@@ -55,6 +55,32 @@ describe(`User Reducer`, () => {
     });
   });
 
+  it(`Reducer should get user data`, () => {
+    expect(reducer({
+      userInfo: {
+        id: 0,
+        email: ``,
+        name: ``,
+        avatarUrl: ``,
+      },
+    }, {
+      type: ActionType.GET_USER_DATA,
+      payload: {
+        id: 1,
+        email: `asdasda@sfdsf.ru`,
+        name: `asdasda`,
+        avatarUrl: `wtw/sfdsf.ru`,
+      },
+    })).toEqual({
+      userInfo: {
+        id: 1,
+        email: `asdasda@sfdsf.ru`,
+        name: `asdasda`,
+        avatarUrl: `wtw/sfdsf.ru`,
+      },
+    });
+  });
+
   it(`Reducer should clear Auth Error`, () => {
     expect(reducer({
       authorizationError: true,
