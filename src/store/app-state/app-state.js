@@ -14,6 +14,7 @@ const ActionType = {
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   GO_TO_SIGN_IN_PAGE: `GO_TO_SIGN_IN_PAGE`,
   GO_TO_MAIN_PAGE: `GO_TO_MAIN_PAGE`,
+  ADD_REVIEW: `ADD_REVIEW`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
@@ -54,6 +55,13 @@ const ActionCreator = {
     };
   },
 
+  addReview: () => {
+    return {
+      type: ActionType.ADD_REVIEW,
+      payload: Pages.ADD_REVIEW,
+    };
+  },
+
   watchMovie: () => {
     return {
       type: ActionType.WATCH_MOVIE,
@@ -66,7 +74,7 @@ const ActionCreator = {
       type: ActionType.STOP_WATCHING_MOVIE,
       payload: false,
     };
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -88,6 +96,10 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       });
     case ActionType.GO_TO_MAIN_PAGE:
+      return extend(state, {
+        currentPage: action.payload,
+      });
+    case ActionType.ADD_REVIEW:
       return extend(state, {
         currentPage: action.payload,
       });

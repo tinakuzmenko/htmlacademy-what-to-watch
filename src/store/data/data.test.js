@@ -46,12 +46,56 @@ describe(`Data Reducer`, () => {
 
   it(`Reducer should catch error on load fail`, () => {
     expect(reducer({
-      isError: false,
+      isLoadError: false,
     }, {
-      type: ActionType.CATCH_ERROR,
+      type: ActionType.CATCH_LOAD_ERROR,
       payload: true,
     })).toEqual({
-      isError: true,
+      isLoadError: true,
+    });
+  });
+
+  it(`Reducer should check if review is sending`, () => {
+    expect(reducer({
+      isReviewSending: false,
+    }, {
+      type: ActionType.CHECK_IS_REVIEW_SENDING,
+      payload: true,
+    })).toEqual({
+      isReviewSending: true,
+    });
+  });
+
+  it(`Reducer should check if review sending was successfull`, () => {
+    expect(reducer({
+      isSendingSuccessfull: false,
+    }, {
+      type: ActionType.CHECK_IS_SENDING_SUCCESSFULL,
+      payload: true,
+    })).toEqual({
+      isSendingSuccessfull: true,
+    });
+  });
+
+  it(`Reducer should check if is sending error`, () => {
+    expect(reducer({
+      isSendingError: false,
+    }, {
+      type: ActionType.CHECK_IS_SENDING_ERROR,
+      payload: true,
+    })).toEqual({
+      isSendingError: true,
+    });
+  });
+
+  it(`Reducer should clear sending error`, () => {
+    expect(reducer({
+      isSendingError: true,
+    }, {
+      type: ActionType.CLEAR_SENDING_ERROR,
+      payload: false,
+    })).toEqual({
+      isSendingError: false,
     });
   });
 });
@@ -110,6 +154,29 @@ describe(`Operations work correctly`, () => {
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_MOVIE_REVIEWS,
               payload: [{fake: true}],
+            });
+          });
+  });
+
+  it(`Should send review to /comments/1`, () => {
+    const review = {
+      rating: 5,
+      comment: ``,
+    };
+
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const sendReview = Operations.sendReview(1, review);
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200, [{fake: true}]);
+
+    return sendReview(dispatch, () => {}, api)
+          .then(() => {
+            expect(dispatch).toHaveBeenCalledWith({
+              type: ActionType.CHECK_IS_REVIEW_SENDING,
+              payload: true,
             });
           });
   });

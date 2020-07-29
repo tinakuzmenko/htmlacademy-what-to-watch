@@ -40,7 +40,7 @@ class MovieCardInfo extends PureComponent {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={currentMovie.poster} alt={currentMovie.title} width="218" height="327" />
+            <img src={currentMovie.posterImage} alt={currentMovie.title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">

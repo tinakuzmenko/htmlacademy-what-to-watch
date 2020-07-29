@@ -6,7 +6,10 @@ import {getActiveGenre, getCurrentMovie} from '../app-state/selectors';
 export const getMovies = (state) => state[NameSpace.DATA].movies;
 export const getMovieCard = (state) => state[NameSpace.DATA].movieCard;
 export const getMovieReviews = (state) => state[NameSpace.DATA].movieReviews;
-export const getIsError = (state) => state[NameSpace.DATA].isError;
+export const getIsLoadError = (state) => state[NameSpace.DATA].isLoadError;
+export const getIsReviewSending = (state) => state[NameSpace.DATA].isReviewSending;
+export const getIsSendingSuccessfull = (state) => state[NameSpace.DATA].isSendingSuccessfull;
+export const getIsSendingError = (state) => state[NameSpace.DATA].isSendingError;
 
 export const getMoviesGenres = createSelector(
     getMovies,

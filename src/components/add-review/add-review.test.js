@@ -1,22 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import MovieCardHero from './movie-card-hero';
 import {movie} from '../../helpers/test-data';
+import AddReview from './add-review';
 import NameSpace from '../../store/name-space';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 
-describe(`MovieCardHero`, () => {
-  const mockStore = configureStore([]);
+const mockStore = configureStore([]);
 
+describe(`Catalog`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
+        currentPage: `main`,
         currentMovie: movie,
-        currentPage: `movie`,
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`,
         userInfo: {
           id: 1,
           email: `sadas@dsasd.ru`,
@@ -29,8 +28,15 @@ describe(`MovieCardHero`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MovieCardHero
+            <AddReview
               currentMovie={movie}
+              isReviewSending={false}
+              isSendingError={false}
+              onSubmitClick={() => {}}
+              onFormChange={() => {}}
+              onRatingChange={() => {}}
+              onReviewChange={() => {}}
+              isSubmitDisabled={false}
             />
           </Provider>, {
             createNodeMock: () => {

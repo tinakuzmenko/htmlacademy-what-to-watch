@@ -7,6 +7,7 @@ export const CustomPropTypes = {
     date: PropTypes.number.isRequired,
     background: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,

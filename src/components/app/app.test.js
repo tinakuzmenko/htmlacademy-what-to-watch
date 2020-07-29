@@ -16,7 +16,7 @@ describe(`App`, () => {
         movieCard,
         movies,
         moviesReviews: reviews,
-        isError: false,
+        isLoadError: false,
       },
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
@@ -27,6 +27,12 @@ describe(`App`, () => {
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,
+        userInfo: {
+          id: 1,
+          email: `sadas@dsasd.ru`,
+          name: `asdasd`,
+          avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
+        }
       },
     });
 

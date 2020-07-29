@@ -5,6 +5,7 @@ export const Pages = {
   MOVIE: `movie`,
   VIDEO: `video`,
   SIGN_IN: `sign in`,
+  ADD_REVIEW: `add review`,
 };
 
 export const NavTabs = {
@@ -33,6 +34,7 @@ export const emptyMovie = {
   date: 0,
   background: ``,
   poster: ``,
+  posterImage: ``,
   id: 0,
   description: ``,
   rating: 0,
@@ -59,4 +61,16 @@ export const AuthorizationStatus = {
 
 export const Error = {
   UNAUTHORIZED: 401,
+};
+
+export const Review = {
+  MIN_LENGTH: 50,
+  MAX_LENGTH: 400,
+};
+
+export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
+
+export const reviewSubmitButton = {
+  post: `Post`,
+  sending: `Sending...`,
 };
