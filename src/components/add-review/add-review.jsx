@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PageHeader from '../page-header/page-header';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {TEXTAREA_COLOR, Review, reviewSubmitButton} from '../../helpers/constants.js';
+import {TEXTAREA_COLOR, RATINGS_QUANTITY, Review, reviewSubmitButton} from '../../helpers/constants.js';
 
 const AddReview = ({currentMovie, isReviewSending, isSendingError, onSubmitClick, onFormChange, onRatingChange, onReviewChange, isSubmitDisabled}) => {
-  const RATINGS_QUANTITY = 5;
-  const isRadioDisabled = isReviewSending ? true : false;
+  const isRadioDisabled = Boolean(isReviewSending);
 
   return (
     <React.Fragment>
