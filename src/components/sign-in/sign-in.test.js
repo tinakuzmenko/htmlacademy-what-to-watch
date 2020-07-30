@@ -17,7 +17,7 @@ describe(`SignIn`, () => {
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
-        authorizationError: true,
+        isAuthorizationError: true,
         userInfo: {
           id: 0,
           email: ``,
@@ -52,7 +52,7 @@ describe(`SignIn`, () => {
       },
       [NameSpace.USER]: {
         authorizationStatus: `NO_AUTH`,
-        authorizationError: false,
+        isAuthorizationError: false,
         userInfo: {
           id: 1,
           email: `sadas@gmail.com`,

@@ -12,7 +12,7 @@ import {Operations as UserOperation, ActionCreator} from './store/user/user';
 import {AuthorizationStatus} from './helpers/constants';
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
 };
 
 const root = document.querySelector(`#root`);

@@ -5,9 +5,10 @@ import {ActionCreator} from '../../store/app-state/app-state';
 import PageHeader from '../page-header/page-header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
-import {AuthorizationStatus} from '../../helpers/constants';
+import {AuthorizationStatus, AppRoute} from '../../helpers/constants';
+import {Link} from 'react-router-dom';
 
-const MovieCardHero = ({currentMovie, onPlayButtonClick, onAddReviewClick, isSignedIn}) => {
+const MovieCardHero = ({currentMovie, onAddReviewClick, isSignedIn}) => {
   const addReviewButton = (
     <a
       href="add-review.html"
@@ -33,16 +34,15 @@ const MovieCardHero = ({currentMovie, onPlayButtonClick, onAddReviewClick, isSig
             <span className="movie-card__year">{currentMovie.date}</span>
           </p>
           <div className="movie-card__buttons">
-            <button
+            <Link
               className="btn btn--play movie-card__button"
-              type="button"
-              onClick={onPlayButtonClick}
+              to={`${AppRoute.PLAYER}/${currentMovie.id}`}
             >
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>
               <span>Play</span>
-            </button>
+            </Link>
             <button className="btn btn--list movie-card__button" type="button">
               <svg viewBox="0 0 19 20" width="19" height="20">
                 <use xlinkHref="#add"></use>
@@ -59,7 +59,6 @@ const MovieCardHero = ({currentMovie, onPlayButtonClick, onAddReviewClick, isSig
 
 MovieCardHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  onPlayButtonClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
 };
@@ -69,10 +68,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(ActionCreator.watchMovie());
-  },
-
   onAddReviewClick() {
     dispatch(ActionCreator.addReview());
   }

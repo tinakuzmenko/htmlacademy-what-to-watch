@@ -1,7 +1,6 @@
 import {extend} from '../../helpers/utils';
 import {createUser} from '../../adapters/adapters';
 import {AuthorizationStatus} from '../../helpers/constants';
-import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 
 const initialState = {
   userInfo: {
@@ -10,22 +9,31 @@ const initialState = {
     name: ``,
     avatarUrl: ``,
   },
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authorizationError: false,
+  isAuthorizationError: false,
+  isAuthorizationProgress: true,
+  authorizationStatus: ``,
 };
 
 const ActionType = {
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_AUTHORIZATION_STATUS: `SET_AUTHORIZATION_STATUS`,
+  FINISH_AUTHORIZATION_PROGRESS: `FINISH_AUTHORIZATION_PROGRESS`,
   GET_USER_DATA: `GET_USER_DATA`,
   SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`,
   CLEAR_AUTHORIZATION_ERROR: `CLEAR_AUTHORIZATION_ERROR`,
 };
 
 const ActionCreator = {
-  requireAuthorization: (status) => {
+  setAuthorizationStatus: (status) => {
     return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: status,
+    };
+  },
+
+  finishAuthorizationProgress: () => {
+    return {
+      type: ActionType.FINISH_AUTHORIZATION_PROGRESS,
+      payload: false,
     };
   },
 
@@ -55,11 +63,13 @@ const Operations = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserData(createUser(response.data)));
+        dispatch(ActionCreator.finishAuthorizationProgress());
       })
       .catch(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.finishAuthorizationProgress());
       });
   },
 
@@ -69,8 +79,7 @@ const Operations = {
       password: authData.password,
     })
       .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(AppStateActionCreator.goToMainPage());
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
       })
       .catch(() => {
         dispatch(ActionCreator.showAuthorizationError());
@@ -80,9 +89,13 @@ const Operations = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.SET_AUTHORIZATION_STATUS:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.FINISH_AUTHORIZATION_PROGRESS:
+      return extend(state, {
+        isAuthorizationProgress: action.payload,
       });
     case ActionType.GET_USER_DATA:
       return extend(state, {
@@ -90,11 +103,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SHOW_AUTHORIZATION_ERROR:
       return extend(state, {
-        authorizationError: action.payload,
+        isAuthorizationError: action.payload,
       });
     case ActionType.CLEAR_AUTHORIZATION_ERROR:
       return extend(state, {
-        authorizationError: action.payload,
+        isAuthorizationError: action.payload,
       });
   }
 

@@ -8,7 +8,9 @@ import {Pages, AuthorizationStatus, AppRoute} from '../../helpers/constants';
 import {getCurrentPage, getCurrentMovie} from '../../store/app-state/selectors';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
 
-const PageHeader = ({isSignInPage, isSignedIn, isWithBreadcrubs, userInfo, movieTitle}) => {
+const PageHeader = (props) => {
+  const {isSignInPage, isSignedIn, isWithBreadcrubs, userInfo, movieTitle} = props;
+
   const signInPageTitle = (
     <h1 className="page-title user-page__title">Sign in</h1>
   );
@@ -16,9 +18,11 @@ const PageHeader = ({isSignInPage, isSignedIn, isWithBreadcrubs, userInfo, movie
   const userBlockElement = (
     <div className="user-block">
       {isSignedIn &&
-        <div className="user-block__avatar">
-          <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
-        </div>}
+        <Link to={AppRoute.MY_LIST}>
+          <div className="user-block__avatar">
+            <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
+          </div>
+        </Link>}
       {!isSignedIn &&
         <Link
           to={AppRoute.SIGN_IN}

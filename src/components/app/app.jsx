@@ -4,8 +4,8 @@ import history from '../../history.js';
 import {connect} from "react-redux";
 import {Redirect, Route, Router, Switch} from 'react-router-dom';
 
-import {getIsLoadError} from '../../store/data/selectors';
-import {getAuthorizationStatus} from '../../store/user/selectors';
+import {getIsLoadError, getIsLoading} from '../../store/data/selectors';
+import {getAuthorizationStatus, getAuthorizationProgress} from '../../store/user/selectors';
 import {Operations as UserOperation} from '../../store/user/user';
 
 import {AppRoute, AuthorizationStatus} from '../../helpers/constants';
@@ -19,76 +19,91 @@ import SignIn from '../sign-in/sign-in';
 import withReview from '../../hocs/with-review/with-review';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
 import {getCurrentMovie} from '../../store/app-state/selectors.js';
+import MyList from '../my-list/my-list';
+import PrivateRoute from '../private-route';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
 
-const App = ({authorizationStatus, login, isLoadError}) => {
+const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, isLoading}) => {
+
+  const renderMainPage = () => {
+    return !isLoadError ? <Main /> : <ErrorScreen />;
+  };
 
   return (
-    <Router history={history}>
-      <Switch>
-        <Route
-          exact path={AppRoute.MAIN}
-          render={() => {
-            return !isLoadError ? <Main /> : <ErrorScreen />;
-          }}
-        />
-        <Route
-          exact path={AppRoute.SIGN_IN}
-          render={(routeProps) => {
-            return authorizationStatus !== AuthorizationStatus.AUTH ?
-              <SignIn
-                onFormSubmit={login}
-                routeProps={routeProps}
-              /> :
-              <Redirect
-                to={AppRoute.MAIN}
-              />;
-          }}
-        />
-        <Route
-          path={`${AppRoute.MOVIE}/:id`}
-          render={(routeProps) => {
-            console.log(routeProps);
-            return <MoviePage
-              routeProps={routeProps}
-            />;
-          }}
-        />
-        {/* <Route
-          exact path={`${AppRoute.PLAYER}/:id`}
-          render={() => <MoviePlayerWrapped />}
-        />
-        <Route
-          exact path={`${AppRoute.MOVIE}/:id/review`}
-          render={() => {
-            return authorizationStatus !== AuthorizationStatus.AUTH ?
-              <AddReviewWrapped /> :
-              <Redirect to={AppRoute.SIGN_IN}>
-                <SignIn
-                  onFormSubmit={login}
-                />
-              </Redirect>;
-          }}
-        />
-        <Route
-          render={() => <ErrorScreen />}
-        /> */}
-      </Switch>
-    </Router>
+    <React.Fragment>
+      {!isLoading && !isAutorizationProgress ?
+        <Router history={history}>
+          <Switch>
+            <Route
+              exact path={AppRoute.MAIN}
+              render={renderMainPage}
+            />
+            <Route
+              exact path={AppRoute.SIGN_IN}
+              render={(routeProps) => {
+                return authorizationStatus !== AuthorizationStatus.AUTH ?
+                  <SignIn
+                    onFormSubmit={login}
+                    routeProps={routeProps}
+                  /> :
+                  <Redirect
+                    to={AppRoute.MAIN}
+                  />;
+              }}
+            />
+            <Route
+              exact path={`${AppRoute.MOVIE}/:id`}
+              render={(routeProps) => {
+                return <MoviePage
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <Route
+              exact path={`${AppRoute.PLAYER}/:id`}
+              component={MoviePlayerWrapped}
+            />
+
+            <PrivateRoute
+              exact path={`${AppRoute.MOVIE}/:id/review`}
+              render={(routeProps) => {
+                return <AddReviewWrapped
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <PrivateRoute
+              exact path={AppRoute.MY_LIST}
+              render={(routeProps) => {
+                return <MyList
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <Route component={ErrorScreen}
+            />
+          </Switch>
+        </Router>
+        : `Loading...`}
+    </React.Fragment>
   );
 };
 
 App.propTypes = {
   isLoadError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  isAutorizationProgress: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isLoadError: getIsLoadError(state),
+  isLoading: getIsLoading(state),
   authorizationStatus: getAuthorizationStatus(state),
+  isAutorizationProgress: getAuthorizationProgress(state),
   currentMovie: getCurrentMovie(state),
 });
 

@@ -29,9 +29,9 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {authorizationError, clearAuthError} = this.props;
+    const {isAuthorizationError, clearAuthError} = this.props;
 
-    const isInvalidForm = authorizationError &&
+    const isInvalidForm = isAuthorizationError &&
       <React.Fragment>
         <div className="sign-in__message">
           <p>Please enter a valid email address</p>
@@ -51,7 +51,7 @@ class SignIn extends PureComponent {
             >
               {isInvalidForm}
               <div className="sign-in__fields">
-                <div className={`sign-in__field ${authorizationError && `sign-in__field--error`}`}>
+                <div className={`sign-in__field ${isAuthorizationError && `sign-in__field--error`}`}>
                   <input
                     className="sign-in__input"
                     type="email"
@@ -90,12 +90,12 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
-  authorizationError: PropTypes.bool.isRequired,
+  isAuthorizationError: PropTypes.bool.isRequired,
   clearAuthError: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authorizationError: getAuthorizationError(state),
+  isAuthorizationError: getAuthorizationError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
