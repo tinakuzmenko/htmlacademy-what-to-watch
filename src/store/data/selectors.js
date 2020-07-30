@@ -10,6 +10,7 @@ export const getIsLoadError = (state) => state[NameSpace.DATA].isLoadError;
 export const getIsReviewSending = (state) => state[NameSpace.DATA].isReviewSending;
 export const getIsSendingSuccessfull = (state) => state[NameSpace.DATA].isSendingSuccessfull;
 export const getIsSendingError = (state) => state[NameSpace.DATA].isSendingError;
+export const getIsLoading = (state) => state[NameSpace.DATA].isLoading;
 
 export const getMoviesGenres = createSelector(
     getMovies,

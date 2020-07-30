@@ -7,6 +7,7 @@ const initialState = {
   movieCard: emptyMovie,
   movies: [],
   movieReviews: [],
+  isLoading: true,
   isLoadError: false,
   isReviewSending: false,
   isSendingSuccessfull: false,
@@ -17,6 +18,7 @@ const ActionType = {
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
+  FINISH_LOADING: `FINISH_LOADING`,
   CATCH_LOAD_ERROR: `CATCH_LOAD_ERROR`,
   CHECK_IS_REVIEW_SENDING: `CHECK_IS_REVIEW_SENDING`,
   CHECK_IS_SENDING_SUCCESSFULL: `CHECK_IS_REVIEW_SENDING_SUCCESSFULL`,
@@ -43,6 +45,13 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_MOVIE_REVIEWS,
       payload: movieReviews,
+    };
+  },
+
+  finishLoading: () => {
+    return {
+      type: ActionType.FINISH_LOADING,
+      payload: false,
     };
   },
 
@@ -90,6 +99,7 @@ const Operations = {
       .then((response) => {
         const movies = response.data.map((movie) => createMovie(movie));
         dispatch(ActionCreator.loadMovies(movies));
+        dispatch(ActionCreator.finishLoading());
       })
       .catch(() => {
         dispatch(ActionCreator.catchLoadError());
@@ -142,6 +152,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         movieReviews: action.payload,
+      });
+    case ActionType.FINISH_LOADING:
+      return extend(state, {
+        isLoading: action.payload,
       });
     case ActionType.CATCH_LOAD_ERROR:
       return extend(state, {

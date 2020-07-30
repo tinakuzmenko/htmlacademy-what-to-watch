@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
-import {Pages, AuthorizationStatus} from '../../helpers/constants';
+
+import {Pages, AuthorizationStatus, AppRoute} from '../../helpers/constants';
+
 import {getCurrentPage, getCurrentMovie} from '../../store/app-state/selectors';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
-import {ActionCreator} from '../../store/app-state/app-state.js';
 
-const PageHeader = ({isMainPage, isSignInPage, isSignedIn, isWithBreadcrubs, onSignInClick, userInfo, movieTitle}) => {
+const PageHeader = ({isSignInPage, isSignedIn, isWithBreadcrubs, userInfo, movieTitle}) => {
   const signInPageTitle = (
     <h1 className="page-title user-page__title">Sign in</h1>
   );
@@ -18,14 +20,12 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, isWithBreadcrubs, onS
           <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
         </div>}
       {!isSignedIn &&
-        <a
-          href="sign-in.html"
+        <Link
+          to={AppRoute.SIGN_IN}
           className="user-block__link"
-          onClick={(evt) => {
-            evt.preventDefault();
-            onSignInClick();
-          }}
-        >Sign in</a>}
+        >
+        Sign in
+        </Link>}
     </div>
   );
 
@@ -45,14 +45,14 @@ const PageHeader = ({isMainPage, isSignInPage, isSignedIn, isWithBreadcrubs, onS
   return (
     <header className={`page-header ${isSignInPage ? `user-page__head` : `movie-card__head`}`}>
       <div className="logo">
-        <a
+        <Link
           className="logo__link"
-          href={!isMainPage ? `main.html` : null}
+          to={AppRoute.MAIN}
         >
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
       {isWithBreadcrubs && breadcrumbsElement}
       {isSignInPage ? signInPageTitle : userBlockElement}
@@ -65,7 +65,6 @@ PageHeader.propTypes = {
   isSignInPage: PropTypes.bool.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
   isWithBreadcrubs: PropTypes.bool.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
@@ -84,11 +83,5 @@ const mapStateToProps = (state) => ({
   movieTitle: getCurrentMovie(state).title,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSignInClick() {
-    dispatch(ActionCreator.goToSignInPage());
-  },
-});
-
 export {PageHeader};
-export default connect(mapStateToProps, mapDispatchToProps)(PageHeader);
+export default connect(mapStateToProps)(PageHeader);

@@ -48,13 +48,6 @@ const ActionCreator = {
     };
   },
 
-  goToSignInPage: () => {
-    return {
-      type: ActionType.GO_TO_SIGN_IN_PAGE,
-      payload: Pages.SIGN_IN,
-    };
-  },
-
   addReview: () => {
     return {
       type: ActionType.ADD_REVIEW,

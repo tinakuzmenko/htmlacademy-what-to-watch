@@ -106,13 +106,6 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator goToSignInPage returns correct action`, () => {
-    expect(ActionCreator.goToSignInPage()).toEqual({
-      type: ActionType.GO_TO_SIGN_IN_PAGE,
-      payload: `sign in`,
-    });
-  });
-
   it(`Action creator watchMovie returns correct action`, () => {
     expect(ActionCreator.watchMovie()).toEqual({
       type: ActionType.WATCH_MOVIE,

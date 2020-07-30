@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {Operations as DataOperations} from "../../store/data/data";
 import VideoPlayer from '../../components/video-player/video-player';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../helpers/constants';
+import history from '../../history';
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -14,10 +14,10 @@ class SmallMovieCard extends PureComponent {
   }
 
   _handleMovieClick(evt) {
-    const {movie, onSmallMovieCardClick} = this.props;
+    const {movie} = this.props;
 
     evt.preventDefault();
-    onSmallMovieCardClick(movie);
+    history.push(`${AppRoute.MOVIE}/${movie.id}`);
   }
 
   render() {
@@ -47,7 +47,7 @@ class SmallMovieCard extends PureComponent {
           onClick={this._handleMovieClick}
           className="small-movie-card__title"
         >
-          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
+          <Link className="small-movie-card__link" to={`${AppRoute.MOVIE}/${movie.id}`}>{movie.title}</Link>
         </h3>
       </article>);
   }
@@ -56,19 +56,8 @@ class SmallMovieCard extends PureComponent {
 SmallMovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
   isPlaying: PropTypes.bool.isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
   onSmallMovieCardMouseEnter: PropTypes.func.isRequired,
   onSmallMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSmallMovieCardClick(movie) {
-    dispatch(ActionCreator.goToMoviePage());
-    dispatch(ActionCreator.setCurrentMovie(movie));
-    dispatch(ActionCreator.setActiveGenre(movie.genre));
-    dispatch(DataOperations.loadMovieReviews(movie.id));
-  },
-});
-
-export {SmallMovieCard};
-export default connect(null, mapDispatchToProps)(SmallMovieCard);
+export default SmallMovieCard;
