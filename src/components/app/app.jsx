@@ -21,6 +21,7 @@ import withVideoControls from '../../hocs/with-video-controls/with-video-control
 import {getCurrentMovie} from '../../store/app-state/selectors.js';
 import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route';
+import Loader from '../loader/loader';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
@@ -86,7 +87,7 @@ const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, i
             />
           </Switch>
         </Router>
-        : `Loading...`}
+        : <Loader />}
     </React.Fragment>
   );
 };
