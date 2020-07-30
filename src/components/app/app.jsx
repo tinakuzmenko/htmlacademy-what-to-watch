@@ -18,7 +18,6 @@ import MoviePlayer from '../movie-player/movie-player';
 import SignIn from '../sign-in/sign-in';
 import withReview from '../../hocs/with-review/with-review';
 import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
-import {getCurrentMovie} from '../../store/app-state/selectors.js';
 import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route';
 import Loader from '../loader/loader';
@@ -105,7 +104,6 @@ const mapStateToProps = (state) => ({
   isLoading: getIsLoading(state),
   authorizationStatus: getAuthorizationStatus(state),
   isAutorizationProgress: getAuthorizationProgress(state),
-  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
