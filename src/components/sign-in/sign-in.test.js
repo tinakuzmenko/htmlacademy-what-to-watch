@@ -14,7 +14,6 @@ describe(`SignIn`, () => {
   it(`Should render correctly when AuthError`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
-        currentPage: `movie`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {
@@ -51,7 +50,6 @@ describe(`SignIn`, () => {
   it(`Should render correctly when no AuthError`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
-        currentPage: `movie`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {

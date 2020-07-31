@@ -14,7 +14,6 @@ describe(`Catalog`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
-        currentPage: `main`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {

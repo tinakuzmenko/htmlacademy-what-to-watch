@@ -20,7 +20,6 @@ describe(`App`, () => {
       },
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
-        currentPage: `main`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {

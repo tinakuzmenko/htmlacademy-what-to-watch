@@ -20,7 +20,6 @@ describe(`Catalog`, () => {
 
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
-        currentPage: `main`,
         currentMovie: movie,
       },
     });

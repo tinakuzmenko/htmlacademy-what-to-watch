@@ -1,9 +1,8 @@
 import {extend} from '../../helpers/utils';
-import {Pages, ALL_GENRES} from '../../helpers/constants';
+import {ALL_GENRES} from '../../helpers/constants';
 
 const initialState = {
   activeGenre: ALL_GENRES,
-  currentPage: Pages.MAIN,
   currentMovie: {},
 };
 

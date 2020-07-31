@@ -15,7 +15,6 @@ describe(`MovieCardHero`, () => {
     const store = mockStore({
       [NameSpace.APP_STATE]: {
         currentMovie: movie,
-        currentPage: `movie`,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,

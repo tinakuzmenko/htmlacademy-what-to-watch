@@ -7,6 +7,7 @@ import configureStore from 'redux-mock-store';
 import withShowMore from './with-show-more';
 import {movie, movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Pages} from '../../helpers/constants.js';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -41,13 +42,14 @@ describe(`HOC withShowMore e2e tests`, () => {
         movies,
       },
       [NameSpace.APP_STATE]: {
-        currentPage: `main`,
+        activeGenre: `Drama`,
       },
     });
 
     const wrapper = mount(
         <Provider store={store}>
           <MockComponentWrapped
+            currentPage={Pages.MAIN}
             onShowMoreButtonClick={onShowMoreButtonClick} />
         </Provider>, {
           createNodeMock: () => {
