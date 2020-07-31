@@ -98,6 +98,28 @@ describe(`Data Reducer`, () => {
       isSendingError: false,
     });
   });
+
+  it(`Reducer should add favorite movies to store`, () => {
+    expect(reducer({
+      favoriteMovies: [],
+    }, {
+      type: ActionType.LOAD_FAVORITE_MOVIES,
+      payload: movies,
+    })).toEqual({
+      favoriteMovies: movies,
+    });
+  });
+
+  it(`Reducer should finish loading`, () => {
+    expect(reducer({
+      isLoading: true,
+    }, {
+      type: ActionType.FINISH_LOADING,
+      payload: false,
+    })).toEqual({
+      isLoading: false,
+    });
+  });
 });
 
 describe(`Operations work correctly`, () => {
@@ -158,6 +180,25 @@ describe(`Operations work correctly`, () => {
           });
   });
 
+  it(`Should make a correct API call to /favorite`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteMoviesLoader = Operations.loadFavoriteMovies();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [{fake: true}]);
+
+    return favoriteMoviesLoader(dispatch, () => {}, api)
+          .then(() => {
+            expect(dispatch).toHaveBeenCalledTimes(1);
+            expect(dispatch).toHaveBeenCalledWith({
+              type: ActionType.LOAD_FAVORITE_MOVIES,
+              payload: [createMovie({fake: true})],
+            });
+          });
+  });
+
   it(`Should send review to /comments/1`, () => {
     const review = {
       rating: 5,
@@ -177,6 +218,24 @@ describe(`Operations work correctly`, () => {
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.CHECK_IS_DATA_SENDING,
               payload: true,
+            });
+          });
+  });
+
+  it(`Should send favorite movie status`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const sendMovieStatus = Operations.changeIsMovieFavorite(1, true);
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, [{fake: true}]);
+
+    return sendMovieStatus(dispatch, () => {}, api)
+          .then(() => {
+            expect(dispatch).toHaveBeenCalledWith({
+              type: ActionType.CHECK_IS_DATA_SENDING,
+              payload: false,
             });
           });
   });
