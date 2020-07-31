@@ -29,12 +29,10 @@ class MoviePage extends PureComponent {
   componentDidUpdate() {
     const {currentMovie, loadMovieInformation} = this.props;
     loadMovieInformation(currentMovie);
-
   }
 
   render() {
     const {currentMovie} = this.props;
-
     return (
       <React.Fragment>
         <section

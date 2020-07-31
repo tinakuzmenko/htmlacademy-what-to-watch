@@ -9,7 +9,8 @@ exports[`PageHeader Should render correctly when is main page and user is not si
   >
     <a
       className="logo__link"
-      href={null}
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -33,7 +34,7 @@ exports[`PageHeader Should render correctly when is main page and user is not si
   >
     <a
       className="user-block__link"
-      href="sign-in.html"
+      href="/login"
       onClick={[Function]}
     >
       Sign in
@@ -51,7 +52,8 @@ exports[`PageHeader Should render correctly when is main page and user signed in
   >
     <a
       className="logo__link"
-      href={null}
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -73,16 +75,21 @@ exports[`PageHeader Should render correctly when is main page and user signed in
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="asdasd"
-        height="63"
-        src="https://4.react.pages.academy/wtw/asda.jpg"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="asdasd"
+          height="63"
+          src="https://4.react.pages.academy/wtw/asda.jpg"
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;
@@ -96,7 +103,8 @@ exports[`PageHeader Should render correctly when is not main page and not sign i
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -119,11 +127,19 @@ exports[`PageHeader Should render correctly when is not main page and not sign i
     className="user-block"
   >
     <a
-      className="user-block__link"
-      href="sign-in.html"
+      href="/mylist"
       onClick={[Function]}
     >
-      Sign in
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="asdasd"
+          height="63"
+          src="https://4.react.pages.academy/wtw/asda.jpg"
+          width="63"
+        />
+      </div>
     </a>
   </div>
 </header>
@@ -138,7 +154,8 @@ exports[`PageHeader Should render correctly when is sign in page 1`] = `
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"

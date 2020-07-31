@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import Main from './main';
 import {movie, movies, reviews} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 const mockStore = configureStore([]);
 
@@ -35,9 +37,11 @@ describe(`Main`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <Main />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <Main />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

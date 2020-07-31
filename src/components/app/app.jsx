@@ -25,8 +25,7 @@ import {ActionCreator} from '../../store/app-state/app-state.js';
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
 
-const App = ({isLoadError, isAutorizationProgress, isLoading, authorizationStatus, setActiveGenre, loadMovies}) => {
-
+const App = ({isLoadError, isAuthorizationProgress, isLoading, authorizationStatus, setActiveGenre, loadMovies}) => {
   const renderMainPage = () => {
     setActiveGenre(ALL_GENRES);
     return !isLoadError ? <Main /> : <ErrorScreen />;
@@ -34,7 +33,7 @@ const App = ({isLoadError, isAutorizationProgress, isLoading, authorizationStatu
 
   return (
     <React.Fragment>
-      {!isLoading && !isAutorizationProgress ?
+      {!isLoading && !isAuthorizationProgress ?
         <Router history={history}>
           <Switch>
             <Route
@@ -97,7 +96,7 @@ const App = ({isLoadError, isAutorizationProgress, isLoading, authorizationStatu
 App.propTypes = {
   isLoadError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isAutorizationProgress: PropTypes.bool.isRequired,
+  isAuthorizationProgress: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   setActiveGenre: PropTypes.func.isRequired,
   loadMovies: PropTypes.func.isRequired,
@@ -106,7 +105,7 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   isLoadError: getIsLoadError(state),
   isLoading: getIsLoading(state),
-  isAutorizationProgress: getAuthorizationProgress(state),
+  isAuthorizationProgress: getAuthorizationProgress(state),
   authorizationStatus: getAuthorizationStatus(state),
 });
 

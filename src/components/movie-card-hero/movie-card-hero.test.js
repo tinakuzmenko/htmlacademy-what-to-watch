@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import MovieCardHero from './movie-card-hero';
 import {movie} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 describe(`MovieCardHero`, () => {
   const mockStore = configureStore([]);
@@ -28,11 +30,13 @@ describe(`MovieCardHero`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <MovieCardHero
-              currentMovie={movie}
-            />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <MovieCardHero
+                currentMovie={movie}
+              />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

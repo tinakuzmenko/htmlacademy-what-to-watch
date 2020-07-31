@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import NameSpace from '../../store/name-space';
 import SignIn from './sign-in';
 import {movie} from '../../helpers/test-data';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 describe(`SignIn`, () => {
   const mockStore = configureStore([]);
@@ -29,12 +31,14 @@ describe(`SignIn`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <SignIn
-              onFormSubmit={() => {}}
-              clearAuthError={() => {}}
-            />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <SignIn
+                onFormSubmit={() => {}}
+                clearAuthError={() => {}}
+              />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }
@@ -64,12 +68,14 @@ describe(`SignIn`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <SignIn
-              onFormSubmit={() => {}}
-              clearAuthError={() => {}}
-            />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <SignIn
+                onFormSubmit={() => {}}
+                clearAuthError={() => {}}
+              />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

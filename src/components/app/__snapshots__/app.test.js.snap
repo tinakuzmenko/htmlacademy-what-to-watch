@@ -1,290 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App Should render correctly with movies titles array 1`] = `
-Array [
-  <section
-    className="movie-card"
-  >
-    <div
-      className="movie-card__bg"
-    >
-      <img
-        alt="Snatch"
-        src="https://placeimg.com/1300/512/nature"
-      />
-    </div>
-    <h1
-      className="visually-hidden"
-    >
-      WTW
-    </h1>
-    <header
-      className="page-header movie-card__head"
-    >
-      <div
-        className="logo"
-      >
-        <a
-          className="logo__link"
-          href={null}
-        >
-          <span
-            className="logo__letter logo__letter--1"
-          >
-            W
-          </span>
-          <span
-            className="logo__letter logo__letter--2"
-          >
-            T
-          </span>
-          <span
-            className="logo__letter logo__letter--3"
-          >
-            W
-          </span>
-        </a>
-      </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="asdasd"
-            height="63"
-            src="https://4.react.pages.academy/wtw/asda.jpg"
-            width="63"
-          />
-        </div>
-      </div>
-    </header>
-    <div
-      className="movie-card__wrap"
-    >
-      <div
-        className="movie-card__info"
-      >
-        <div
-          className="movie-card__poster"
-        >
-          <img
-            alt="Snatch"
-            height="327"
-            src="img/snatch.jpg"
-            width="218"
-          />
-        </div>
-        <div
-          className="movie-card__desc"
-        >
-          <h2
-            className="movie-card__title"
-          >
-            Snatch
-          </h2>
-          <p
-            className="movie-card__meta"
-          >
-            <span
-              className="movie-card__genre"
-            >
-              Crime
-            </span>
-            <span
-              className="movie-card__year"
-            >
-              2000
-            </span>
-          </p>
-          <div
-            className="movie-card__buttons"
-          >
-            <button
-              className="btn btn--play movie-card__button"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                height="19"
-                viewBox="0 0 19 19"
-                width="19"
-              >
-                <use
-                  xlinkHref="#play-s"
-                />
-              </svg>
-              <span>
-                Play
-              </span>
-            </button>
-            <button
-              className="btn btn--list movie-card__button"
-              type="button"
-            >
-              <svg
-                height="20"
-                viewBox="0 0 19 20"
-                width="19"
-              >
-                <use
-                  xlinkHref="#add"
-                />
-              </svg>
-              <span>
-                My list
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>,
+<div
+  className="user-page"
+>
   <div
-    className="page-content"
+    className="sign-in user-page__content"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "justifyContent": "center",
+        "minHeight": "100vh",
+        "width": "100%",
+      }
+    }
   >
-    <section
-      className="catalog"
-    >
-      <h2
-        className="catalog__title visually-hidden"
-      >
-        Catalog
-      </h2>
-      <ul
-        className="catalog__genres-list"
-      >
-        <li
-          className="catalog__genres-item catalog__genres-item--active"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            All genres
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Drama
-          </a>
-        </li>
-      </ul>
-      <div
-        className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseOut={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <video
-              height="175"
-              width="280"
-            >
-              Sorry, your browser doesn't support embedded videos.
-            </video>
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseOut={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <video
-              height="175"
-              width="280"
-            >
-              Sorry, your browser doesn't support embedded videos.
-            </video>
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-      </div>
-    </section>
-    <footer
-      className="page-footer"
-    >
-      <div
-        className="logo"
-      >
-        <a
-          className="logo__link logo__link--light"
-          href={null}
-        >
-          <span
-            className="logo__letter logo__letter--1"
-          >
-            W
-          </span>
-          <span
-            className="logo__letter logo__letter--2"
-          >
-            T
-          </span>
-          <span
-            className="logo__letter logo__letter--3"
-          >
-            W
-          </span>
-        </a>
-      </div>
-      <div
-        className="copyright"
-      >
-        <p>
-          © 2019 What to watch Ltd.
-        </p>
-      </div>
-    </footer>
-  </div>,
-]
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 32 32\\">
+  <circle cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(45 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.125s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(90 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.25s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(135 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.375s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(180 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.5s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(225 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.625s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(270 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.75s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(315 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.875s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+  <circle transform=\\"rotate(180 16 16)\\" cx=\\"16\\" cy=\\"3\\" r=\\"0\\">
+    <animate attributeName=\\"r\\" values=\\"0;3;0;0\\" dur=\\"1s\\" repeatCount=\\"indefinite\\" begin=\\"0.5s\\" keySplines=\\"0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8\\" calcMode=\\"spline\\" />
+  </circle>
+</svg>
+",
+        }
+      }
+      style={
+        Object {
+          "fill": "#d9cd8d",
+          "height": 64,
+          "width": 64,
+        }
+      }
+    />
+  </div>
+</div>
 `;
