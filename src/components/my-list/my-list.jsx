@@ -10,7 +10,7 @@ import {CustomPropTypes} from '../../helpers/custom-prop-types';
 
 const MyList = (props) => {
   const {favoriteMovies} = props;
-  console.log(favoriteMovies);
+
   return (
     <React.Fragment>
       <div className="user-page">
