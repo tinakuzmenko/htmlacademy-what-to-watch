@@ -4,13 +4,12 @@ import PageFooter from '../page-footer/page-footer';
 import MovieCardHero from '../movie-card-hero/movie-card-hero';
 import MovieCardInfo from '../movie-card-info/movie-card-info';
 import MoviesList from '../movies-list/movies-list';
-import {NavTabs, emptyMovie} from '../../helpers/constants';
+import {NavTabs, Pages} from '../../helpers/constants';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withShowMore from '../../hocs/with-show-more/with-show-more';
 import {connect} from 'react-redux';
 import {getCurrentMovieById} from '../../store/app-state/selectors.js';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {getIsLoading} from '../../store/data/selectors.js';
 import {ActionCreator} from '../../store/app-state/app-state';
 import {Operations as DataOperations} from "../../store/data/data";
 
@@ -22,9 +21,15 @@ class MoviePage extends PureComponent {
     super(props);
   }
 
+  componentDidMount() {
+    const {currentMovie, loadMovieInformation} = this.props;
+    loadMovieInformation(currentMovie);
+  }
+
   componentDidUpdate() {
     const {currentMovie, loadMovieInformation} = this.props;
     loadMovieInformation(currentMovie);
+
   }
 
   render() {
@@ -46,7 +51,9 @@ class MoviePage extends PureComponent {
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <MoviesListWrapped />
+            <MoviesListWrapped
+              currentPage={Pages.MOVIE}
+            />
           </section>
           <PageFooter />
         </div>
@@ -61,7 +68,7 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  currentMovie: !getIsLoading(state) ? getCurrentMovieById(state, ownProps) : emptyMovie,
+  currentMovie: getCurrentMovieById(state, ownProps),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -69,7 +76,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setCurrentMovie(movie));
     dispatch(ActionCreator.setActiveGenre(movie.genre));
     dispatch(DataOperations.loadMovieReviews(movie.id));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

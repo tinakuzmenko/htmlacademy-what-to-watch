@@ -5,7 +5,6 @@ import {SHOWN_MOVIES, Pages} from '../../helpers/constants';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import {getFilteredMoviesByGenre, getFilteredMoviesLikeThis} from '../../store/data/selectors';
-import {getCurrentPage, getActiveGenre} from '../../store/app-state/selectors';
 
 
 const withShowMore = (Component) => {
@@ -64,19 +63,15 @@ const withShowMore = (Component) => {
     movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   };
 
-  const mapStateToProps = (state) => {
-    const currentPage = getCurrentPage(state);
-
-    if (currentPage !== Pages.MAIN) {
+  const mapStateToProps = (state, ownProps) => {
+    if (ownProps.currentPage !== Pages.MAIN) {
       return {
         movies: getFilteredMoviesLikeThis(state),
-        activeGenre: getActiveGenre(state),
       };
     }
 
     return {
       movies: getFilteredMoviesByGenre(state),
-      activeGenre: getActiveGenre(state),
     };
   };
 

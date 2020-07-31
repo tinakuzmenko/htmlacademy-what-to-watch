@@ -57,12 +57,12 @@ describe(`Data Reducer`, () => {
 
   it(`Reducer should check if review is sending`, () => {
     expect(reducer({
-      isReviewSending: false,
+      isDataSending: false,
     }, {
-      type: ActionType.CHECK_IS_REVIEW_SENDING,
+      type: ActionType.CHECK_IS_DATA_SENDING,
       payload: true,
     })).toEqual({
-      isReviewSending: true,
+      isDataSending: true,
     });
   });
 
@@ -175,7 +175,7 @@ describe(`Operations work correctly`, () => {
     return sendReview(dispatch, () => {}, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledWith({
-              type: ActionType.CHECK_IS_REVIEW_SENDING,
+              type: ActionType.CHECK_IS_DATA_SENDING,
               payload: true,
             });
           });

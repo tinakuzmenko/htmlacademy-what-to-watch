@@ -13,6 +13,4 @@ export const getCurrentMovieById = (state, ownProps) => {
   return currentMovie;
 };
 
-export const getIsMoviePlayerActive = (state) => state[NameSpace.APP_STATE].isMoviePlayerActive;
-
 export const getActiveGenre = (state) => state[NameSpace.APP_STATE].activeGenre;

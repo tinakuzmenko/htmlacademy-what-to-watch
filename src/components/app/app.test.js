@@ -23,7 +23,6 @@ describe(`App`, () => {
         currentPage: `main`,
         currentMovie: movie,
         isMainPage: true,
-        isMoviePlayerActive: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,

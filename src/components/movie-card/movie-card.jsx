@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import PageHeader from '../page-header/page-header';
 import {getMovieCard} from '../../store/data/selectors';
+import {Link} from 'react-router-dom';
+import {AppRoute, Pages} from '../../helpers/constants.js';
+import MyListButton from '../my-list-button/my-list-button.jsx';
 
-const MovieCard = ({movieCard, onPlayButtonClick}) => {
+const MovieCard = ({movieCard}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -15,7 +16,9 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <PageHeader />
+      <PageHeader
+        currentPage={Pages.MAIN}
+      />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -31,24 +34,18 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button
+              <Link
                 className="btn btn--play movie-card__button"
-                type="button"
-                onClick={() => {
-                  onPlayButtonClick(movieCard);
-                }}
+                to={`${AppRoute.PLAYER}/${movieCard.id}`}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+              </Link>
+              <MyListButton
+                movie={movieCard}
+              />
             </div>
           </div>
         </div>
@@ -59,19 +56,11 @@ const MovieCard = ({movieCard, onPlayButtonClick}) => {
 
 MovieCard.propTypes = {
   movieCard: CustomPropTypes.MOVIE,
-  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  movieCard: getMovieCard(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick(movie) {
-    dispatch(ActionCreator.setCurrentMovie(movie));
-    dispatch(ActionCreator.watchMovie());
-  },
+  movieCard: getMovieCard(state),
 });
 
 export {MovieCard};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps)(MovieCard);

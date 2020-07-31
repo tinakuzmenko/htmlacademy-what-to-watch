@@ -4,11 +4,10 @@ import history from '../../history.js';
 import {connect} from "react-redux";
 import {Redirect, Route, Router, Switch} from 'react-router-dom';
 
+import {Operations as DataOperations} from '../../store/data/data';
 import {getIsLoadError, getIsLoading} from '../../store/data/selectors';
 import {getAuthorizationStatus, getAuthorizationProgress} from '../../store/user/selectors';
-import {Operations as UserOperation} from '../../store/user/user';
-
-import {AppRoute, AuthorizationStatus} from '../../helpers/constants';
+import {AppRoute, AuthorizationStatus, ALL_GENRES} from '../../helpers/constants';
 
 import AddReview from '../add-review/add-review';
 import ErrorScreen from '../error-screen/error-screen';
@@ -21,13 +20,15 @@ import withVideoControls from '../../hocs/with-video-controls/with-video-control
 import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route';
 import Loader from '../loader/loader';
+import {ActionCreator} from '../../store/app-state/app-state.js';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
 
-const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, isLoading}) => {
+const App = ({isLoadError, isAutorizationProgress, isLoading, authorizationStatus, setActiveGenre, loadMovies}) => {
 
   const renderMainPage = () => {
+    setActiveGenre(ALL_GENRES);
     return !isLoadError ? <Main /> : <ErrorScreen />;
   };
 
@@ -42,12 +43,9 @@ const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, i
             />
             <Route
               exact path={AppRoute.SIGN_IN}
-              render={(routeProps) => {
+              render={() => {
                 return authorizationStatus !== AuthorizationStatus.AUTH ?
-                  <SignIn
-                    onFormSubmit={login}
-                    routeProps={routeProps}
-                  /> :
+                  <SignIn /> :
                   <Redirect
                     to={AppRoute.MAIN}
                   />;
@@ -63,7 +61,11 @@ const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, i
             />
             <Route
               exact path={`${AppRoute.PLAYER}/:id`}
-              component={MoviePlayerWrapped}
+              render={(routeProps) => {
+                return <MoviePlayerWrapped
+                  routeProps={routeProps}
+                />;
+              }}
             />
 
             <PrivateRoute
@@ -77,6 +79,7 @@ const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, i
             <PrivateRoute
               exact path={AppRoute.MY_LIST}
               render={(routeProps) => {
+                loadMovies();
                 return <MyList
                   routeProps={routeProps}
                 />;
@@ -94,21 +97,26 @@ const App = ({authorizationStatus, login, isLoadError, isAutorizationProgress, i
 App.propTypes = {
   isLoadError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
   isAutorizationProgress: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  setActiveGenre: PropTypes.func.isRequired,
+  loadMovies: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isLoadError: getIsLoadError(state),
   isLoading: getIsLoading(state),
-  authorizationStatus: getAuthorizationStatus(state),
   isAutorizationProgress: getAuthorizationProgress(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(UserOperation.login(authData));
+  setActiveGenre(genre) {
+    dispatch(ActionCreator.setActiveGenre(genre));
+  },
+
+  loadMovies() {
+    dispatch(DataOperations.loadFavoriteMovies());
   },
 });
 

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/user/user.js';
+import {ActionCreator, Operations as UserOperations} from '../../store/user/user.js';
 import {getAuthorizationError} from '../../store/user/selectors.js';
+import {Pages} from '../../helpers/constants.js';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -41,7 +42,9 @@ class SignIn extends PureComponent {
     return (
       <React.Fragment>
         <div className="user-page">
-          <PageHeader />
+          <PageHeader
+            currentPage={Pages.SIGN_IN}
+          />
           <div className="sign-in user-page__content">
             <form
               action="#"
@@ -101,7 +104,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   clearAuthError() {
     dispatch(ActionCreator.clearAuthorizationError());
-  }
+  },
+
+  onFormSubmit(authData) {
+    dispatch(UserOperations.login(authData));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PageHeader from '../page-header/page-header';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {TEXTAREA_COLOR, RATINGS_QUANTITY, Review, reviewSubmitButton} from '../../helpers/constants.js';
+import {TEXTAREA_COLOR, RATINGS_QUANTITY, Review, reviewSubmitButton, Pages, AppRoute} from '../../helpers/constants.js';
+import {Link} from 'react-router-dom';
 
-const AddReview = ({currentMovie, isReviewSending, isSendingError, onSubmitClick, onFormChange, onRatingChange, onReviewChange, isSubmitDisabled}) => {
-  const isRadioDisabled = Boolean(isReviewSending);
+const AddReview = ({currentMovie, isDataSending, isSendingError, onSubmitClick, onFormChange, onRatingChange, onReviewChange, isSubmitDisabled}) => {
+  const isRadioDisabled = Boolean(isDataSending);
 
   return (
     <React.Fragment>
@@ -20,7 +21,23 @@ const AddReview = ({currentMovie, isReviewSending, isSendingError, onSubmitClick
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <PageHeader />
+          <PageHeader
+            currentPage={Pages.ADD_REVIEW}
+          >
+            <nav className="breadcrumbs">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <Link
+                    to={`${AppRoute.MOVIE}/${currentMovie.id}`}
+                    className="breadcrumbs__link">{currentMovie.title}
+                  </Link>
+                </li>
+                <li className="breadcrumbs__item">
+                  <a className="breadcrumbs__link">Add review</a>
+                </li>
+              </ul>
+            </nav>
+          </PageHeader>
 
           <div className="movie-card__poster movie-card__poster--small">
             <img src={currentMovie.posterImage} alt={currentMovie.title} width="218" height="327" />
@@ -77,7 +94,7 @@ const AddReview = ({currentMovie, isReviewSending, isSendingError, onSubmitClick
                   type="submit"
                   disabled={isSubmitDisabled}
                 >
-                  {isReviewSending ? reviewSubmitButton.sending : reviewSubmitButton.post}
+                  {isDataSending ? reviewSubmitButton.sending : reviewSubmitButton.post}
                 </button>
               </div>
 
@@ -94,7 +111,7 @@ const AddReview = ({currentMovie, isReviewSending, isSendingError, onSubmitClick
 
 AddReview.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  isReviewSending: PropTypes.bool.isRequired,
+  isDataSending: PropTypes.bool.isRequired,
   isSendingError: PropTypes.bool.isRequired,
   onSubmitClick: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,

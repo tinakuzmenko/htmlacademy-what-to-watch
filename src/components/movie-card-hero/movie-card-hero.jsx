@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {ActionCreator} from '../../store/app-state/app-state';
 import PageHeader from '../page-header/page-header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
-import {AuthorizationStatus, AppRoute} from '../../helpers/constants';
+import {AuthorizationStatus, AppRoute, Pages} from '../../helpers/constants';
 import {Link} from 'react-router-dom';
+import MyListButton from '../my-list-button/my-list-button';
 
-const MovieCardHero = ({currentMovie, onAddReviewClick, isSignedIn}) => {
+const MovieCardHero = ({currentMovie, isSignedIn}) => {
   const addReviewButton = (
-    <a
-      href="add-review.html"
+    <Link
+      to={`${AppRoute.MOVIE}/${currentMovie.id}/review`}
       className="btn movie-card__button"
-      onClick={(evt) => {
-        evt.preventDefault();
-        onAddReviewClick();
-      }}>Add review</a>
+    >Add review
+    </Link>
   );
 
   return (
@@ -25,7 +23,9 @@ const MovieCardHero = ({currentMovie, onAddReviewClick, isSignedIn}) => {
         <img src={currentMovie.background} alt={currentMovie.title} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <PageHeader />
+      <PageHeader
+        currentPage={Pages.MOVIE}
+      />
       <div className="movie-card__wrap">
         <div className="movie-card__desc">
           <h2 className="movie-card__title">{currentMovie.title}</h2>
@@ -43,12 +43,9 @@ const MovieCardHero = ({currentMovie, onAddReviewClick, isSignedIn}) => {
               </svg>
               <span>Play</span>
             </Link>
-            <button className="btn btn--list movie-card__button" type="button">
-              <svg viewBox="0 0 19 20" width="19" height="20">
-                <use xlinkHref="#add"></use>
-              </svg>
-              <span>My list</span>
-            </button>
+            <MyListButton
+              movie={currentMovie}
+            />
             {isSignedIn && addReviewButton}
           </div>
         </div>
@@ -59,7 +56,6 @@ const MovieCardHero = ({currentMovie, onAddReviewClick, isSignedIn}) => {
 
 MovieCardHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  onAddReviewClick: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
 };
 
@@ -67,10 +63,4 @@ const mapStateToProps = (state) => ({
   isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onAddReviewClick() {
-    dispatch(ActionCreator.addReview());
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCardHero);
+export default connect(mapStateToProps)(MovieCardHero);

@@ -30,7 +30,7 @@ describe(`Catalog`, () => {
           <Provider store={store}>
             <AddReview
               currentMovie={movie}
-              isReviewSending={false}
+              isDataSending={false}
               isSendingError={false}
               onSubmitClick={() => {}}
               onFormChange={() => {}}

@@ -4,15 +4,22 @@ import {Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import {Pages, AuthorizationStatus, AppRoute} from '../../helpers/constants';
-
-import {getCurrentPage, getCurrentMovie} from '../../store/app-state/selectors';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
 
 const PageHeader = (props) => {
-  const {isSignInPage, isSignedIn, isWithBreadcrubs, userInfo, movieTitle} = props;
+  const {currentPage, isSignedIn, userInfo, children} = props;
 
-  const signInPageTitle = (
-    <h1 className="page-title user-page__title">Sign in</h1>
+  const isSignInPage = currentPage === Pages.SIGN_IN;
+  const isMyListPage = currentPage === Pages.MY_LIST;
+  const isWithBreadcrumbs = currentPage === Pages.ADD_REVIEW;
+
+  const isWithTitle = isSignInPage || isMyListPage;
+
+  const pageTitleElement = (
+    <h1 className="page-title user-page__title">
+      {isSignInPage && `Sign in`}
+      {isMyListPage && `My list`}
+    </h1>
   );
 
   const userBlockElement = (
@@ -33,21 +40,8 @@ const PageHeader = (props) => {
     </div>
   );
 
-  const breadcrumbsElement = (
-    <nav className="breadcrumbs">
-      <ul className="breadcrumbs__list">
-        <li className="breadcrumbs__item">
-          <a href="movie-page.html" className="breadcrumbs__link">{movieTitle}</a>
-        </li>
-        <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link">Add review</a>
-        </li>
-      </ul>
-    </nav>
-  );
-
   return (
-    <header className={`page-header ${isSignInPage ? `user-page__head` : `movie-card__head`}`}>
+    <header className={`page-header ${isWithTitle ? `user-page__head` : `movie-card__head`}`}>
       <div className="logo">
         <Link
           className="logo__link"
@@ -58,33 +52,28 @@ const PageHeader = (props) => {
           <span className="logo__letter logo__letter--3">W</span>
         </Link>
       </div>
-      {isWithBreadcrubs && breadcrumbsElement}
-      {isSignInPage ? signInPageTitle : userBlockElement}
+      {isWithBreadcrumbs && children}
+      {isSignInPage || isMyListPage ? pageTitleElement : null}
+      {!isSignInPage && userBlockElement}
     </header>
   );
 };
 
 PageHeader.propTypes = {
-  isMainPage: PropTypes.bool.isRequired,
-  isSignInPage: PropTypes.bool.isRequired,
+  currentPage: PropTypes.string.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
-  isWithBreadcrubs: PropTypes.bool.isRequired,
   userInfo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     avatarUrl: PropTypes.string.isRequired,
   }).isRequired,
-  movieTitle: PropTypes.string.isRequired,
+  children: PropTypes.element,
 };
 
 const mapStateToProps = (state) => ({
-  isMainPage: getCurrentPage(state) === Pages.MAIN,
-  isSignInPage: getCurrentPage(state) === Pages.SIGN_IN,
-  isWithBreadcrubs: getCurrentPage(state) === Pages.ADD_REVIEW,
   isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   userInfo: getUserInfo(state),
-  movieTitle: getCurrentMovie(state).title,
 });
 
 export {PageHeader};

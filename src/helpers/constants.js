@@ -6,6 +6,7 @@ export const Pages = {
   VIDEO: `video`,
   SIGN_IN: `sign in`,
   ADD_REVIEW: `add review`,
+  MY_LIST: `my list`,
 };
 
 export const NavTabs = {
