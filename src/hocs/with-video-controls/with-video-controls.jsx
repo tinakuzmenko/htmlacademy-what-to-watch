@@ -1,10 +1,9 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {TimeInSeconds} from '../../helpers/constants';
-import {getCurrentMovie} from '../../store/app-state/selectors.js';
+import {getCurrentMovieById} from '../../store/app-state/selectors.js';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/app-state/app-state';
+import history from '../../history';
 
 const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
 
@@ -130,7 +129,7 @@ const withVideoControls = (Component) => {
     }
 
     render() {
-      const {onExitButtonClick, currentMovie} = this.props;
+      const {currentMovie} = this.props;
       const {videoDuration, currentTime, isPlaying} = this.state;
 
       const timeLeft = this._countTimeLeft();
@@ -139,7 +138,7 @@ const withVideoControls = (Component) => {
         <Component
           {...this.props}
           currentMovie={currentMovie}
-          onExitButtonClick={onExitButtonClick}
+          onExitButtonClick={() => history.goBack()}
           videoDuration={videoDuration}
           currentTime={currentTime}
           isPlaying={isPlaying}
@@ -155,20 +154,13 @@ const withVideoControls = (Component) => {
 
   WithVideoControls.propTypes = {
     currentMovie: CustomPropTypes.MOVIE,
-    onExitButtonClick: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = (state) => ({
-    currentMovie: getCurrentMovie(state)
+  const mapStateToProps = (state, ownProps) => ({
+    currentMovie: getCurrentMovieById(state, ownProps),
   });
 
-  const mapDispatchToProps = (dispatch) => ({
-    onExitButtonClick() {
-      dispatch(ActionCreator.stopWatchingMovie());
-    },
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithVideoControls);
+  return connect(mapStateToProps)(WithVideoControls);
 };
 
 export default withVideoControls;

@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import Catalog from './catalog';
 import {movieCard, movie, movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 const mockStore = configureStore([]);
 
@@ -18,18 +20,19 @@ describe(`Catalog`, () => {
 
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
-        currentPage: `main`,
         currentMovie: movie,
       },
     });
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <Catalog
-              onSmallMovieCardClick={() => {}}
-            />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <Catalog
+                onSmallMovieCardClick={() => {}}
+              />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

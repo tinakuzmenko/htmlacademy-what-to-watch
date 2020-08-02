@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import MovieCard from './movie-card';
 import {movie} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 const mockStore = configureStore([]);
 
@@ -15,14 +17,13 @@ describe(`MovieCard`, () => {
         movieCard: movie,
       },
       [NameSpace.APP_STATE]: {
-        currentPage: `main`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,
         userInfo: {
           id: 1,
-          email: `sadas@dsasd.ru`,
+          email: `sadas@gmail.com`,
           name: `asdasd`,
           avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
         }
@@ -31,11 +32,13 @@ describe(`MovieCard`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <MovieCard
-              movieCard={movie}
-              onPlayButtonClick={() => {}} />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <MovieCard
+                movieCard={movie}
+                onPlayButtonClick={() => {}} />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

@@ -17,7 +17,7 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Snatch"
+          alt="Aviator"
           src="https://placeimg.com/1300/512/nature"
         />
       </div>
@@ -34,7 +34,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -56,16 +57,21 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            href="/mylist"
+            onClick={[Function]}
           >
-            <img
-              alt="asdasd"
-              height="63"
-              src="https://4.react.pages.academy/wtw/asda.jpg"
-              width="63"
-            />
-          </div>
+            <div
+              className="user-block__avatar"
+            >
+              <img
+                alt="asdasd"
+                height="63"
+                src="https://4.react.pages.academy/wtw/asda.jpg"
+                width="63"
+              />
+            </div>
+          </a>
         </div>
       </header>
       <div
@@ -77,7 +83,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Snatch
+            Aviator
           </h2>
           <p
             className="movie-card__meta"
@@ -85,21 +91,21 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Crime
+              Drama
             </span>
             <span
               className="movie-card__year"
             >
-              2000
+              2004
             </span>
           </p>
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player/167456"
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -113,9 +119,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -133,7 +140,7 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="add-review.html"
+              href="/films/167456/review"
               onClick={[Function]}
             >
               Add review
@@ -152,9 +159,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Snatch"
+            alt="Aviator"
             height="327"
-            src="img/snatch.jpg"
+            src="img/aviator.jpg"
             width="218"
           />
         </div>
@@ -208,7 +215,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8,3
+              7,5
             </div>
             <p
               className="movie-rating__meta"
@@ -216,12 +223,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Good
               </span>
               <span
                 className="movie-rating__count"
               >
-                1500
+                1650
                  ratings
               </span>
             </p>
@@ -230,14 +237,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.
+              A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Guy Ritchie
+                Martin Scorsese
               </strong>
             </p>
             <p
@@ -245,7 +252,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Jason Statham, Brad Pitt, Benicio Del Toro
+                Leonardo DiCaprio, Cate Blanchett, Kate Beckinsale
               </strong>
             </p>
           </div>
@@ -276,7 +283,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

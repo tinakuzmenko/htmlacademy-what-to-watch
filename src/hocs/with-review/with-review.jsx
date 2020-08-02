@@ -4,7 +4,7 @@ import {CustomPropTypes} from '../../helpers/custom-prop-types';
 import {Review} from '../../helpers/constants';
 import {connect} from 'react-redux';
 import {Operations as DataOperations, ActionCreator} from '../../store/data/data.js';
-import {getCurrentMovie} from '../../store/app-state/selectors.js';
+import {getCurrentMovieById} from '../../store/app-state/selectors.js';
 import {getIsReviewSending, getIsSendingError} from '../../store/data/selectors';
 
 const withReview = (Component) => {
@@ -36,11 +36,11 @@ const withReview = (Component) => {
     }
 
     _handleReviewChange(evt) {
-      const {isReviewSending} = this.props;
+      const {isDataSending} = this.props;
 
       this.setState({
         comment: evt.target.value,
-        isSubmitDisabled: evt.target.value.length < Review.MIN_LENGTH || isReviewSending,
+        isSubmitDisabled: evt.target.value.length < Review.MIN_LENGTH || isDataSending,
       });
     }
 
@@ -74,15 +74,15 @@ const withReview = (Component) => {
 
   WithReview.propTypes = {
     currentMovie: CustomPropTypes.MOVIE,
-    isReviewSending: PropTypes.bool.isRequired,
+    isDataSending: PropTypes.bool.isRequired,
     isSendingError: PropTypes.bool.isRequired,
     onReviewSubmit: PropTypes.func.isRequired,
     clearSendingError: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = (state) => ({
-    currentMovie: getCurrentMovie(state),
-    isReviewSending: getIsReviewSending(state),
+  const mapStateToProps = (state, ownProps) => ({
+    currentMovie: getCurrentMovieById(state, ownProps),
+    isDataSending: getIsReviewSending(state),
     isSendingError: getIsSendingError(state),
   });
 

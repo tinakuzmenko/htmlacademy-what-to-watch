@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App Should render correctly with movies titles array 1`] = `
+exports[`Loader Should render correctly 1`] = `
 <div
   className="user-page"
 >

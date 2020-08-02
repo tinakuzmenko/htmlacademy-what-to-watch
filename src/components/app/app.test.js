@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from './app';
-import {movie, movies, reviews} from '../../helpers/test-data';
+import {movie, movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
@@ -15,21 +15,20 @@ describe(`App`, () => {
       [NameSpace.DATA]: {
         movieCard,
         movies,
-        moviesReviews: reviews,
+        isLoading: false,
         isLoadError: false,
       },
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
-        currentPage: `main`,
         currentMovie: movie,
-        isMainPage: true,
-        isMoviePlayerActive: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,
+        isAuthorizationError: false,
+        isAuthorizationProgress: true,
         userInfo: {
           id: 1,
-          email: `sadas@dsasd.ru`,
+          email: `sadas@gmail.com`,
           name: `asdasd`,
           avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
         }
@@ -37,15 +36,17 @@ describe(`App`, () => {
     });
 
     const tree = renderer
-      .create(<Provider store={store}>
-        <App
-          onSmallMovieCardClick={() => {}}
-        />
-      </Provider>, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      .create(
+          <Provider store={store}>
+            <App
+              setActiveGenre={() => {}}
+              loadMovies={() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

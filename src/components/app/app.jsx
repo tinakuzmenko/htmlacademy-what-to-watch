@@ -1,110 +1,121 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import history from '../../history.js';
 import {connect} from "react-redux";
-import {Pages} from '../../helpers/constants';
+import {Redirect, Route, Router, Switch} from 'react-router-dom';
+
+import {Operations as DataOperations} from '../../store/data/data';
+import {getIsLoadError, getIsLoading} from '../../store/data/selectors';
+import {getAuthorizationStatus, getAuthorizationProgress} from '../../store/user/selectors';
+import {AppRoute, AuthorizationStatus, ALL_GENRES} from '../../helpers/constants';
+
+import AddReview from '../add-review/add-review';
+import ErrorScreen from '../error-screen/error-screen';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import MoviePlayer from '../movie-player/movie-player';
-import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
-import {getCurrentPage, getIsMoviePlayerActive} from '../../store/app-state/selectors';
-import {getAuthorizationStatus} from '../../store/user/selectors';
-import {getIsLoadError} from '../../store/data/selectors';
-import ErrorScreen from '../error-screen/error-screen';
 import SignIn from '../sign-in/sign-in';
-import {Operations as UserOperation} from '../../store/user/user';
-import AddReview from '../add-review/add-review';
 import withReview from '../../hocs/with-review/with-review';
+import withVideoControls from '../../hocs/with-video-controls/with-video-controls';
+import MyList from '../my-list/my-list';
+import PrivateRoute from '../private-route';
+import Loader from '../loader/loader';
+import {ActionCreator} from '../../store/app-state/app-state.js';
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const App = ({isLoadError, isAuthorizationProgress, isLoading, authorizationStatus, setActiveGenre, loadMovies}) => {
+  const renderMainPage = () => {
+    setActiveGenre(ALL_GENRES);
+    return !isLoadError ? <Main /> : <ErrorScreen />;
+  };
 
-  _renderApp() {
-    const {currentPage, isMoviePlayerActive, isLoadError, login} = this.props;
+  return (
+    <React.Fragment>
+      {!isLoading && !isAuthorizationProgress ?
+        <Router history={history}>
+          <Switch>
+            <Route
+              exact path={AppRoute.MAIN}
+              render={renderMainPage}
+            />
+            <Route
+              exact path={AppRoute.SIGN_IN}
+              render={() => {
+                return authorizationStatus !== AuthorizationStatus.AUTH ?
+                  <SignIn /> :
+                  <Redirect
+                    to={AppRoute.MAIN}
+                  />;
+              }}
+            />
+            <Route
+              exact path={`${AppRoute.MOVIE}/:id`}
+              render={(routeProps) => {
+                return <MoviePage
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <Route
+              exact path={`${AppRoute.PLAYER}/:id`}
+              render={(routeProps) => {
+                return <MoviePlayerWrapped
+                  routeProps={routeProps}
+                />;
+              }}
+            />
 
-    if (isLoadError) {
-      return (
-        <ErrorScreen />
-      );
-    }
-
-    if (isMoviePlayerActive) {
-      return (
-        <MoviePlayerWrapped />
-      );
-    }
-
-    switch (currentPage) {
-      case Pages.MAIN:
-        return (
-          <Main />
-        );
-      case Pages.MOVIE:
-        return (
-          <MoviePage />
-        );
-      case Pages.SIGN_IN:
-        return (
-          <SignIn
-            onFormSubmit={login}
-          />
-        );
-      case Pages.ADD_REVIEW:
-        return (
-          <AddReviewWrapped />
-        );
-      default:
-        return (
-          <Main />
-        );
-    }
-  }
-
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-film">
-            <MoviePage />
-          </Route>
-          <Route exact path="/dev-watch">
-            <MoviePlayerWrapped />
-          </Route>
-          <Route exact path="/dev-review">
-            <AddReviewWrapped />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
-}
+            <PrivateRoute
+              exact path={`${AppRoute.MOVIE}/:id/review`}
+              render={(routeProps) => {
+                return <AddReviewWrapped
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <PrivateRoute
+              exact path={AppRoute.MY_LIST}
+              render={(routeProps) => {
+                loadMovies();
+                return <MyList
+                  routeProps={routeProps}
+                />;
+              }}
+            />
+            <Route component={ErrorScreen}
+            />
+          </Switch>
+        </Router>
+        : <Loader />}
+    </React.Fragment>
+  );
+};
 
 App.propTypes = {
-  currentPage: PropTypes.string.isRequired,
-  isMoviePlayerActive: PropTypes.bool.isRequired,
   isLoadError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isAuthorizationProgress: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
+  setActiveGenre: PropTypes.func.isRequired,
+  loadMovies: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  currentPage: getCurrentPage(state),
-  isMoviePlayerActive: getIsMoviePlayerActive(state),
   isLoadError: getIsLoadError(state),
+  isLoading: getIsLoading(state),
+  isAuthorizationProgress: getAuthorizationProgress(state),
   authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(UserOperation.login(authData));
+  setActiveGenre(genre) {
+    dispatch(ActionCreator.setActiveGenre(genre));
+  },
+
+  loadMovies() {
+    dispatch(DataOperations.loadFavoriteMovies());
   },
 });
 

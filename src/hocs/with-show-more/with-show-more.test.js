@@ -5,6 +5,7 @@ import configureStore from 'redux-mock-store';
 import withShowMore from './with-show-more';
 import {movie, movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Pages} from '../../helpers/constants.js';
 
 const MockComponent = () => {
   return (
@@ -23,13 +24,15 @@ it(`withShowMore is rendered correctly`, () => {
       movies,
     },
     [NameSpace.APP_STATE]: {
-      currentPage: `main`,
+      activeGenre: `Drama`,
     },
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <MockComponentWrapped />
+        <MockComponentWrapped
+          currentPage={Pages.MAIN}
+        />
       </Provider>, {
         createNodeMock: () => {
           return {};

@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import Main from './main';
 import {movie, movies, reviews} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 const mockStore = configureStore([]);
 
@@ -19,14 +21,13 @@ describe(`Main`, () => {
       },
       [NameSpace.APP_STATE]: {
         activeGenre: `All genres`,
-        currentPage: `main`,
         currentMovie: movie,
       },
       [NameSpace.USER]: {
         authorizationStatus: `AUTH`,
         userInfo: {
           id: 1,
-          email: `sadas@dsasd.ru`,
+          email: `sadas@gmail.com`,
           name: `asdasd`,
           avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
         }
@@ -35,9 +36,11 @@ describe(`Main`, () => {
 
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <Main />
-          </Provider>, {
+          <Router history={history}>
+            <Provider store={store}>
+              <Main />
+            </Provider>
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

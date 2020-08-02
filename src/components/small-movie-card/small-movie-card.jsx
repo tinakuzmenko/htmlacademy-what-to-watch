@@ -1,39 +1,25 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from '../../store/app-state/app-state';
 import {CustomPropTypes} from '../../helpers/custom-prop-types';
-import {Operations as DataOperations} from "../../store/data/data";
 import VideoPlayer from '../../components/video-player/video-player';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../helpers/constants';
 
-class SmallMovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this._handleMovieClick = this._handleMovieClick.bind(this);
-  }
-
-  _handleMovieClick(evt) {
-    const {movie, onSmallMovieCardClick} = this.props;
-
-    evt.preventDefault();
-    onSmallMovieCardClick(movie);
-  }
-
-  render() {
-    const {movie, isPlaying, onSmallMovieCardMouseEnter, onSmallMovieCardMouseOut} = this.props;
-    return (
-      <article
-        className="small-movie-card catalog__movies-card"
-        onMouseEnter={() => {
-          onSmallMovieCardMouseEnter();
-        }}
-        onMouseOut={() => {
-          onSmallMovieCardMouseOut();
-        }}
-      >
+const SmallMovieCard = ({movie, isPlaying, onSmallMovieCardMouseEnter, onSmallMovieCardMouseOut}) => {
+  return (
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={() => {
+        onSmallMovieCardMouseEnter();
+      }}
+      onMouseOut={() => {
+        onSmallMovieCardMouseOut();
+      }}
+    >
+      <Link
+        className="small-movie-card__link"
+        to={`${AppRoute.MOVIE}/${movie.id}`}>
         <div
-          onClick={this._handleMovieClick}
           className="small-movie-card__image"
         >
           <VideoPlayer
@@ -44,31 +30,19 @@ class SmallMovieCard extends PureComponent {
           />
         </div>
         <h3
-          onClick={this._handleMovieClick}
           className="small-movie-card__title"
         >
-          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
+          {movie.title}
         </h3>
-      </article>);
-  }
-}
+      </Link>
+    </article>);
+};
 
 SmallMovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
   isPlaying: PropTypes.bool.isRequired,
-  onSmallMovieCardClick: PropTypes.func.isRequired,
   onSmallMovieCardMouseEnter: PropTypes.func.isRequired,
   onSmallMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSmallMovieCardClick(movie) {
-    dispatch(ActionCreator.goToMoviePage());
-    dispatch(ActionCreator.setCurrentMovie(movie));
-    dispatch(ActionCreator.setActiveGenre(movie.genre));
-    dispatch(DataOperations.loadMovieReviews(movie.id));
-  },
-});
-
-export {SmallMovieCard};
-export default connect(null, mapDispatchToProps)(SmallMovieCard);
+export default SmallMovieCard;

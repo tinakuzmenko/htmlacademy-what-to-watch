@@ -2,10 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import {PageHeader} from './page-header';
+import {Router} from 'react-router-dom';
+import history from '../../history';
+import {Pages} from '../../helpers/constants.js';
 
 const userInfo = {
   id: 1,
-  email: `sadas@dsasd.ru`,
+  email: `sadas@gmail.com`,
   name: `asdasd`,
   avatarUrl: `https://4.react.pages.academy/wtw/asda.jpg`,
 };
@@ -13,15 +16,16 @@ const userInfo = {
 describe(`PageHeader`, () => {
   it(`Should render correctly when is main page and user signed in`, () => {
     const tree = renderer
-      .create(<PageHeader
-        isMainPage={true}
-        isSignInPage={false}
-        isSignedIn={true}
-        isWithBreadcrubs={false}
-        onSignInClick={() => {}}
-        userInfo={userInfo}
-        movieTitle={`Snatch`}
-      />)
+      .create(
+          <Router history={history}>
+            <PageHeader
+              currentPage={Pages.MAIN}
+              isWithBreadcrubs={false}
+              isSignedIn={true}
+              onSignInClick={() => {}}
+              userInfo={userInfo}
+            />
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -29,15 +33,16 @@ describe(`PageHeader`, () => {
 
   it(`Should render correctly when is main page and user is not signed in`, () => {
     const tree = renderer
-      .create(<PageHeader
-        isMainPage={true}
-        isSignInPage={false}
-        isSignedIn={false}
-        isWithBreadcrubs={false}
-        onSignInClick={() => {}}
-        userInfo={userInfo}
-        movieTitle={`Snatch`}
-      />)
+      .create(
+          <Router history={history}>
+            <PageHeader
+              currentPage={Pages.ADD_REVIEW}
+              isWithBreadcrubs={false}
+              isSignedIn={false}
+              onSignInClick={() => {}}
+              userInfo={userInfo}
+            />
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -45,15 +50,16 @@ describe(`PageHeader`, () => {
 
   it(`Should render correctly when is not main page and not sign in page`, () => {
     const tree = renderer
-      .create(<PageHeader
-        isMainPage={false}
-        isSignInPage={false}
-        isSignedIn={false}
-        isWithBreadcrubs={false}
-        userInfo={userInfo}
-        onSignInClick={() => {}}
-        movieTitle={`Snatch`}
-      />)
+      .create(
+          <Router history={history}>
+            <PageHeader
+              currentPage={Pages.ADD_REVIEW}
+              isWithBreadcrubs={false}
+              isSignedIn={true}
+              userInfo={userInfo}
+              onSignInClick={() => {}}
+            />
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -61,15 +67,16 @@ describe(`PageHeader`, () => {
 
   it(`Should render correctly when is sign in page`, () => {
     const tree = renderer
-      .create(<PageHeader
-        isMainPage={false}
-        isSignInPage={true}
-        isSignedIn={false}
-        isWithBreadcrubs={false}
-        userInfo={userInfo}
-        onSignInClick={() => {}}
-        movieTitle={`Snatch`}
-      />)
+      .create(
+          <Router history={history}>
+            <PageHeader
+              currentPage={Pages.SIGN_IN}
+              isWithBreadcrubs={false}
+              isSignedIn={false}
+              userInfo={userInfo}
+              onSignInClick={() => {}}
+            />
+          </Router>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
