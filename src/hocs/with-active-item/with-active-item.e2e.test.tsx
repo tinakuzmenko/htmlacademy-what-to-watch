@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Enzyme, {shallow, mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 
 import withActiveItem from './with-active-item';
 import {movie} from '../../helpers/test-data';

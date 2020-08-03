@@ -7,9 +7,9 @@ interface MoviePlayerProps {
   currentTime: number;
   timeLeft: string;
   isPlaying: boolean;
-  renderPlayButton(): JSX.Element;
-  renderPauseButton(): JSX.Element;
-  renderVideoPlayer(): JSX.Element;
+  renderPlayButton(): React.ReactNode;
+  renderPauseButton(): React.ReactNode;
+  renderVideoPlayer(): React.ReactNode;
   onExitButtonClick(): void;
   onFullScreenButtonClick(): void;
 }

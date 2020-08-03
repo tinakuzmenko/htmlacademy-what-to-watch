@@ -13,9 +13,9 @@ describe(`MoviePlayer`, () => {
             videoDuration={10}
             currentTime={2}
             timeLeft={`00:00:08`}
-            renderPlayButton={noop}
-            renderPauseButton={noop}
-            renderVideoPlayer={noop}
+            renderPlayButton={() => null}
+            renderPauseButton={() => null}
+            renderVideoPlayer={() => null}
             isPlaying={true}
             onFullScreenButtonClick={noop}
           />

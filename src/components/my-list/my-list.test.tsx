@@ -1,7 +1,7 @@
 import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import * as renderer from 'react-test-renderer';
 import {movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 import MyList from './my-list';

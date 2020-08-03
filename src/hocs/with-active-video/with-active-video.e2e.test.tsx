@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {configure, mount} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 
 import withActiveVideo from './with-active-video';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 
