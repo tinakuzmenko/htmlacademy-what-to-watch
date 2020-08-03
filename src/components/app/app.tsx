@@ -24,7 +24,23 @@ import {ActionCreator} from '../../store/app-state/app-state';
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 const AddReviewWrapped = withReview(AddReview);
 
-const App = ({isLoadError, isAuthorizationProgress, isLoading, authorizationStatus, setActiveGenre, loadMovies}) => {
+interface AppProps {
+  isLoadError: boolean;
+  isAuthorizationProgress: boolean;
+  isLoading: boolean;
+  authorizationStatus: string;
+  setActiveGenre(genre: string): void;
+  loadMovies(): void;
+}
+
+const App: React.FC<AppProps> = ({
+  isLoadError,
+  isAuthorizationProgress,
+  isLoading,
+  authorizationStatus,
+  setActiveGenre,
+  loadMovies
+}: AppProps) => {
   const renderMainPage = () => {
     setActiveGenre(ALL_GENRES);
     return !isLoadError ? <Main /> : <ErrorScreen />;

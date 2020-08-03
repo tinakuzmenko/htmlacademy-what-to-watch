@@ -4,7 +4,17 @@ import {ActionCreator} from '../../store/app-state/app-state';
 import {getMoviesGenres} from '../../store/data/selectors';
 import {getActiveGenre} from '../../store/app-state/selectors';
 
-const GenresList = ({moviesGenres, currentActiveGenre, onGenreClick}) => {
+interface GenresListProps {
+  moviesGenres: Array<string>;
+  currentActiveGenre: string;
+  onGenreClick(genre: string): void;
+}
+
+const GenresList: React.FC<GenresListProps> = ({
+  moviesGenres,
+  currentActiveGenre,
+  onGenreClick
+}: GenresListProps) => {
   return (
     <ul className="catalog__genres-list">
       {moviesGenres.map((genre, index) => {

@@ -1,17 +1,24 @@
 import * as React from 'react';
 import {getRunTimeFormat} from '../../helpers/utils';
+import {MovieInterface} from '../../types';
 
-const getMovieActorsList = (actors) => {
-  return actors.map((actor) => {
-    return (
-      <React.Fragment key={`${actor}-${Math.random()}`}>
-        {actor} <br />
-      </React.Fragment>
-    );
-  });
-};
+interface MovieDetailsProps {
+  movie: MovieInterface;
+}
 
-const MovieDetails = ({movie}) => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({
+  movie
+}: MovieDetailsProps) => {
+  const getMovieActorsList = (actors) => {
+    return actors.map((actor) => {
+      return (
+        <React.Fragment key={`${actor}-${Math.random()}`}>
+          {actor} <br />
+        </React.Fragment>
+      );
+    });
+  };
+
   const actors = getMovieActorsList(movie.starring);
 
   return (

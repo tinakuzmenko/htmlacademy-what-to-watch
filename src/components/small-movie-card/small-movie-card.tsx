@@ -2,8 +2,21 @@ import * as React from 'react';
 import VideoPlayer from '../video-player/video-player';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../helpers/constants';
+import {MovieInterface} from '../../types';
 
-const SmallMovieCard = ({movie, isPlaying, onSmallMovieCardMouseEnter, onSmallMovieCardMouseOut}) => {
+interface SmallMovieCardProps {
+  movie: MovieInterface;
+  isPlaying: boolean;
+  onSmallMovieCardMouseEnter(): void;
+  onSmallMovieCardMouseOut(): void;
+}
+
+const SmallMovieCard: React.FC<SmallMovieCardProps> = ({
+  movie,
+  isPlaying,
+  onSmallMovieCardMouseEnter,
+  onSmallMovieCardMouseOut
+}: SmallMovieCardProps) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"

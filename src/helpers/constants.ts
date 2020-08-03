@@ -1,3 +1,4 @@
+export const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
 export const ALL_GENRES = `All genres`;
 export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
 export const MAX_SHOWN_GENRES = 10;

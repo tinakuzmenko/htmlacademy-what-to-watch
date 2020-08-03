@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-const ShowMoreButton = ({onShowMoreButtonClick}) => {
+interface ShowMoreButtonProps {
+  onShowMoreButtonClick(): void;
+}
+
+const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
+  onShowMoreButtonClick
+}: ShowMoreButtonProps) => {
   return (
     <div className="catalog__more">
       <button

@@ -5,10 +5,15 @@ import {connect} from 'react-redux';
 import PageHeader from '../page-header/page-header';
 import {Pages} from '../../helpers/constants';
 import {getFavoriteMovies} from '../../store/data/selectors';
+import {MovieInterface} from '../../types';
 
-const MyList = (props) => {
-  const {favoriteMovies} = props;
+interface MyListProps {
+  favoriteMovies: Array<MovieInterface>;
+}
 
+const MyList: React.FC<MyListProps> = ({
+  favoriteMovies
+}: MyListProps) => {
   return (
     <React.Fragment>
       <div className="user-page">
@@ -21,7 +26,7 @@ const MyList = (props) => {
 
           <MoviesList
             movies={favoriteMovies}
-            render={() => {}} />
+          />
         </section>
 
         <PageFooter />

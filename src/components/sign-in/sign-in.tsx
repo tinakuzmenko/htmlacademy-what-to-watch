@@ -1,4 +1,4 @@
-import React, {PureComponent, createRef} from 'react';
+import * as React from 'react';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
 import {connect} from 'react-redux';
@@ -6,7 +6,19 @@ import {ActionCreator, Operations as UserOperations} from '../../store/user/user
 import {getAuthorizationError} from '../../store/user/selectors';
 import {Pages} from '../../helpers/constants';
 
-class SignIn extends React.PureComponent {
+interface SignInProps {
+  isAuthorizationError: boolean;
+  clearAuthError(): void;
+  onFormSubmit(userData: {
+    login: string;
+    password: string;
+  }): void;
+}
+
+class SignIn extends React.PureComponent<SignInProps, {}> {
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 

@@ -2,8 +2,29 @@ import * as React from 'react';
 import PageHeader from '../page-header/page-header';
 import {TEXTAREA_COLOR, RATINGS_QUANTITY, Review, reviewSubmitButton, Pages, AppRoute} from '../../helpers/constants';
 import {Link} from 'react-router-dom';
+import {MovieInterface} from '../../types';
 
-const AddReview = ({currentMovie, isDataSending, isSendingError, onSubmitClick, onFormChange, onRatingChange, onReviewChange, isSubmitDisabled}) => {
+interface AddReviewProps {
+  currentMovie: MovieInterface;
+  isDataSending: boolean;
+  isSendingError: boolean;
+  isSubmitDisabled: boolean;
+  onSubmitClick(): void;
+  onFormChange(): void;
+  onRatingChange(): void;
+  onReviewChange(): void;
+}
+
+const AddReview: React.FC<AddReviewProps> = ({
+  currentMovie,
+  isDataSending,
+  isSendingError,
+  isSubmitDisabled,
+  onSubmitClick,
+  onFormChange,
+  onRatingChange,
+  onReviewChange,
+}: AddReviewProps) => {
   const isRadioDisabled = Boolean(isDataSending);
 
   return (

@@ -1,19 +1,27 @@
 import * as React from 'react';
-import {smallVideoPlayer} from '../../helpers/constants';
+import {smallVideoPlayer, ERROR_MESSAGE} from '../../helpers/constants';
 
-const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
+interface VideoPlayerProps {
+  muted: boolean;
+  source: string;
+  poster: string;
+  isPlaying: boolean;
+}
 
-export default class VideoPlayer extends React.PureComponent {
+export default class VideoPlayer extends React.PureComponent<VideoPlayerProps, {}> {
+  private videoRef: React.RefObject<HTMLVideoElement>;
+  private playTimeout: NodeJS.Timeout;
+
   constructor(props) {
     super(props);
 
-    this._videoRef = React.React.createRef();
-    this._playTimeout = null;
+    this.videoRef = React.createRef();
+    this.playTimeout = null;
   }
 
   componentDidMount() {
     const {muted, source, poster} = this.props;
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
 
     video.src = source;
     video.poster = poster;
@@ -21,19 +29,19 @@ export default class VideoPlayer extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
 
     video.src = ``;
     video.poster = ``;
     video.muted = null;
 
-    clearTimeout(this._playTimeout);
+    clearTimeout(this.playTimeout);
   }
 
   render() {
     return (
       <video
-        ref={this._videoRef}
+        ref={this.videoRef}
         width={smallVideoPlayer.WIDTH}
         height={smallVideoPlayer.HEIGHT}
       >
@@ -44,15 +52,15 @@ export default class VideoPlayer extends React.PureComponent {
 
   componentDidUpdate() {
     const {isPlaying} = this.props;
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
 
     if (isPlaying) {
-      this._playTimeout = setTimeout(() => {
+      this.playTimeout = setTimeout(() => {
         video.play();
       }, 1000);
     } else {
       video.load();
-      clearTimeout(this._playTimeout);
+      clearTimeout(this.playTimeout);
     }
   }
 }

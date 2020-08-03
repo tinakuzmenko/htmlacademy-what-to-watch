@@ -4,8 +4,19 @@ import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import history from '../../history';
 import {Operations as DataOperations} from '../../store/data/data';
+import {MovieInterface} from '../../types';
 
-const MyListButton = ({authorizationStatus, movie, changeIsMovieFavorite}) => {
+interface MyListButton {
+  authorizationStatus: string;
+  movie: MovieInterface;
+  changeIsMovieFavorite(movieId: number, isFavorite: boolean): void;
+}
+
+const MyListButton: React.FC<MyListButton> = ({
+  authorizationStatus,
+  movie,
+  changeIsMovieFavorite
+}: MyListButton) => {
   const handleMovieListButtonClick = (isFavorite) => {
     return authorizationStatus === AuthorizationStatus.AUTH
       ? changeIsMovieFavorite(movie.id, isFavorite)

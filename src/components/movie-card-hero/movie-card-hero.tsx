@@ -1,12 +1,21 @@
 import * as React from 'react';
 import PageHeader from '../page-header/page-header';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import {AuthorizationStatus, AppRoute, Pages} from '../../helpers/constants';
-import {Link} from 'react-router-dom';
+import {MovieInterface} from '../../types';
 import MyListButton from '../my-list-button/my-list-button';
 
-const MovieCardHero = ({currentMovie, isSignedIn}) => {
+interface MovieCardHeroProps {
+  currentMovie: MovieInterface;
+  isSignedIn: boolean;
+}
+
+const MovieCardHero: React.FC<MovieCardHeroProps> = ({
+  currentMovie,
+  isSignedIn
+}: MovieCardHeroProps) => {
   const addReviewButton = (
     <Link
       to={`${AppRoute.MOVIE}/${currentMovie.id}/review`}

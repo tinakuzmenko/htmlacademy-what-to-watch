@@ -1,7 +1,16 @@
 import * as React from 'react';
+import {NavTabs} from '../../helpers/constants';
 
-const MovieNav = ({navTabs, currentActiveItem, onItemClick}) => {
-  const tabs = Object.values(navTabs);
+interface MovieNavInterface {
+  currentActiveItem: string;
+  onItemClick(item: string): void;
+}
+
+const MovieNav: React.FC<MovieNavInterface> = ({
+  currentActiveItem,
+  onItemClick
+}: MovieNavInterface) => {
+  const tabs = Object.values(NavTabs);
 
   return (
     <nav className="movie-nav movie-card__nav">

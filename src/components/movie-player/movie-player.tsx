@@ -1,6 +1,20 @@
 import * as React from 'react';
+import {MovieInterface} from '../../types';
 
-const MoviePlayer = ({
+interface MoviePlayerProps {
+  currentMovie: MovieInterface;
+  videoDuration: number;
+  currentTime: number;
+  timeLeft: string;
+  isPlaying: boolean;
+  renderPlayButton(): JSX.Element;
+  renderPauseButton(): JSX.Element;
+  renderVideoPlayer(): JSX.Element;
+  onExitButtonClick(): void;
+  onFullScreenButtonClick(): void;
+}
+
+const MoviePlayer: React.FC<MoviePlayerProps> = ({
   currentMovie,
   onExitButtonClick,
   videoDuration,
@@ -11,7 +25,7 @@ const MoviePlayer = ({
   isPlaying,
   renderVideoPlayer,
   onFullScreenButtonClick
-}) => {
+}: MoviePlayerProps) => {
   const togglePosition = `${((currentTime / videoDuration) * 100)}%`;
 
   return (

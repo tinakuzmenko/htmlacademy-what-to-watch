@@ -1,7 +1,14 @@
 import * as React from 'react';
 import {getRatingLevel, getRatingFormat} from '../../helpers/utils';
+import {MovieInterface} from '../../types';
 
-const MovieOverview = ({movie}) => {
+interface MovieOverviewProps {
+  movie: MovieInterface;
+}
+
+const MovieOverview: React.FC<MovieOverviewProps> = ({
+  movie
+}: MovieOverviewProps) => {
   return (
     <React.Fragment>
       <div className="movie-rating">

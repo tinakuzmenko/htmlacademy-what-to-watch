@@ -10,11 +10,17 @@ import {connect} from 'react-redux';
 import {getCurrentMovieById} from '../../store/app-state/selectors';
 import {ActionCreator} from '../../store/app-state/app-state';
 import {Operations as DataOperations} from "../../store/data/data";
+import {MovieInterface} from '../../types';
 
 const MovieCardInfoWrapped = withActiveItem(MovieCardInfo);
 const MoviesListWrapped = withShowMore(MoviesList);
 
-class MoviePage extends React.PureComponent {
+interface MoviePageProps {
+  currentMovie: MovieInterface;
+  loadMovieInformation(movie: MovieInterface): void;
+}
+
+class MoviePage extends React.PureComponent<MoviePageProps, {}> {
   constructor(props) {
     super(props);
   }

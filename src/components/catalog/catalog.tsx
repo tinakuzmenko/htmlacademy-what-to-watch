@@ -6,7 +6,7 @@ import {Pages} from '../../helpers/constants';
 
 const MoviesListWrapped = withShowMore(MoviesList);
 
-const Catalog = () => {
+const Catalog: React.FC = () => {
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>

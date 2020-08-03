@@ -4,10 +4,15 @@ import MovieOverview from '../movie-overview/movie-overview';
 import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
 import {NavTabs} from '../../helpers/constants';
-import {getMovieReviews} from '../../store/data/selectors';
-import {connect} from 'react-redux';
+import {MovieInterface} from '../../types';
 
-class MovieCardInfo extends React.PureComponent {
+interface MovieCardInfoProps {
+  currentMovie: MovieInterface;
+  currentActiveItem: string;
+  onItemClick(): void;
+}
+
+class MovieCardInfo extends React.PureComponent<MovieCardInfoProps, {}> {
   _renderScreen() {
     const {currentMovie, currentActiveItem} = this.props;
 
@@ -43,7 +48,6 @@ class MovieCardInfo extends React.PureComponent {
 
           <div className="movie-card__desc">
             <MovieNav
-              navTabs={NavTabs}
               currentActiveItem={currentActiveItem}
               onItemClick={onItemClick}
             />
@@ -56,9 +60,4 @@ class MovieCardInfo extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  movieReviews: getMovieReviews(state),
-});
-
-export {MovieCardInfo};
-export default connect(mapStateToProps)(MovieCardInfo);
+export default MovieCardInfo;

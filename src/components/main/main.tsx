@@ -3,7 +3,7 @@ import Catalog from '../catalog/catalog';
 import MovieCard from '../movie-card/movie-card';
 import PageFooter from '../page-footer/page-footer';
 
-const Main = () => {
+const Main: React.FC = () => {
   return (
     <React.Fragment>
       <MovieCard />

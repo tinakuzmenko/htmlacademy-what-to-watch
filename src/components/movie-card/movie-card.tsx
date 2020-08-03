@@ -5,8 +5,15 @@ import {getMovieCard} from '../../store/data/selectors';
 import {Link} from 'react-router-dom';
 import {AppRoute, Pages} from '../../helpers/constants';
 import MyListButton from '../my-list-button/my-list-button';
+import {MovieInterface} from '../../types';
 
-const MovieCard = ({movieCard}) => {
+interface MovieCardProps {
+  movieCard: MovieInterface;
+}
+
+const MovieCard: React.FC<MovieCardProps> = ({
+  movieCard
+}: MovieCardProps) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">

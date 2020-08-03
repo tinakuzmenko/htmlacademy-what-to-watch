@@ -4,10 +4,21 @@ import {connect} from "react-redux";
 
 import {Pages, AuthorizationStatus, AppRoute} from '../../helpers/constants';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user/selectors';
+import {UserInfoInterface} from '../../types';
 
-const PageHeader = (props) => {
-  const {currentPage, isSignedIn, userInfo, children} = props;
+interface PageHeaderProps {
+  currentPage: string;
+  isSignedIn: boolean;
+  userInfo: UserInfoInterface;
+  children: JSX.Element;
+}
 
+const PageHeader: React.FC<PageHeaderProps> = ({
+  currentPage,
+  isSignedIn,
+  userInfo,
+  children
+}: PageHeaderProps) => {
   const isSignInPage = currentPage === Pages.SIGN_IN;
   const isMyListPage = currentPage === Pages.MY_LIST;
   const isWithBreadcrumbs = currentPage === Pages.ADD_REVIEW;

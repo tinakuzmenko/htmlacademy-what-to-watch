@@ -1,12 +1,23 @@
 import * as React from 'react';
+import {RouterProps} from 'react-router';
 import {Route, Redirect} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from '../helpers/constants';
 import {getAuthorizationStatus} from '../store/user/selectors';
 import {connect} from 'react-redux';
 
-const PrivateRoute = (props) => {
-  const {exact, path, render, authorizationStatus} = props;
+interface PrivateRouteProps {
+  render: (routeProps: RouterProps) => React.ReactNode;
+  path: string;
+  exact: boolean;
+  authorizationStatus: string;
+}
 
+const PrivateRoute = ({
+  exact,
+  path,
+  render,
+  authorizationStatus
+}: PrivateRouteProps) => {
   return (
     <Route
       exact={exact}
