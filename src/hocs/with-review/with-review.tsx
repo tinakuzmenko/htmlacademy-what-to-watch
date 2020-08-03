@@ -4,9 +4,26 @@ import {connect} from 'react-redux';
 import {Operations as DataOperations, ActionCreator} from '../../store/data/data';
 import {getCurrentMovieById} from '../../store/app-state/selectors';
 import {getIsReviewSending, getIsSendingError} from '../../store/data/selectors';
+import {MovieInterface} from '../../types';
+
+interface WithReviewProps {
+  currentMovie: MovieInterface;
+  isDataSending: boolean;
+  clearSendingError(): void;
+  onReviewSubmit(movieId: number, review: {
+    rating: number;
+    comment: string;
+  }): void;
+}
+
+interface WithReviewState {
+  rating: number;
+  comment: string;
+  isSubmitDisabled: boolean;
+}
 
 const withReview = (Component) => {
-  class WithReview extends React.PureComponent {
+  class WithReview extends React.PureComponent<WithReviewProps, WithReviewState> {
     constructor(props) {
       super(props);
 

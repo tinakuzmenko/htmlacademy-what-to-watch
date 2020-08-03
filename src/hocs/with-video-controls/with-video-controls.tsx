@@ -1,33 +1,44 @@
 import * as React from 'react';
-import {TimeInSeconds} from '../../helpers/constants';
+import {TimeInSeconds, ERROR_MESSAGE} from '../../helpers/constants';
 import {getCurrentMovieById} from '../../store/app-state/selectors';
 import {connect} from 'react-redux';
 import history from '../../history';
+import {MovieInterface} from '../../types';
 
-const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
+interface WithVideoControlsProps {
+  currentMovie: MovieInterface;
+}
+
+interface WithVideoControlsState {
+  videoDuration: number;
+  currentTime: number;
+  isPlaying: boolean;
+}
 
 const withVideoControls = (Component) => {
-  class WithVideoControls extends React.PureComponent {
+  class WithVideoControls extends React.PureComponent<WithVideoControlsProps, WithVideoControlsState> {
+    private videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = React.React.createRef();
+      this.videoRef = React.createRef();
       this.state = {
         isPlaying: true,
         videoDuration: 0,
         currentTime: 0,
       };
 
-      this._renderVideoPlayer = this._renderVideoPlayer.bind(this);
-      this._renderPlayButton = this._renderPlayButton.bind(this);
-      this._renderPauseButton = this._renderPauseButton.bind(this);
-      this._handlePlayPauseChange = this._handlePlayPauseChange.bind(this);
-      this._handleFullScreenButtonClick = this._handleFullScreenButtonClick.bind(this);
-      this._handlePlayPauseChange = this._handlePlayPauseChange.bind(this);
+      this.renderVideoPlayer = this.renderVideoPlayer.bind(this);
+      this.renderPlayButton = this.renderPlayButton.bind(this);
+      this.renderPauseButton = this.renderPauseButton.bind(this);
+      this.handlePlayPauseChange = this.handlePlayPauseChange.bind(this);
+      this.handleFullScreenButtonClick = this.handleFullScreenButtonClick.bind(this);
+      this.handlePlayPauseChange = this.handlePlayPauseChange.bind(this);
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       video.play();
 
       video.onloadedmetadata = () => this.setState({
@@ -40,7 +51,7 @@ const withVideoControls = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = ``;
       video.poster = ``;
@@ -50,7 +61,7 @@ const withVideoControls = (Component) => {
 
     componentDidUpdate() {
       const {isPlaying} = this.state;
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       if (isPlaying) {
         video.play();
@@ -59,7 +70,7 @@ const withVideoControls = (Component) => {
       }
     }
 
-    _countTimeLeft() {
+    private countTimeLeft() {
       const {currentTime, videoDuration} = this.state;
       const timeDifference = videoDuration - currentTime;
 
@@ -74,7 +85,7 @@ const withVideoControls = (Component) => {
       ].join(`:`);
     }
 
-    _handlePlayPauseChange() {
+    private handlePlayPauseChange() {
       const {isPlaying} = this.state;
 
       this.setState({
@@ -82,16 +93,16 @@ const withVideoControls = (Component) => {
       });
     }
 
-    _handleFullScreenButtonClick() {
-      this._videoRef.current.requestFullscreen();
+    private handleFullScreenButtonClick() {
+      this.videoRef.current.requestFullscreen();
     }
 
-    _renderVideoPlayer() {
+    private renderVideoPlayer() {
       const {currentMovie} = this.props;
 
       return (
         <video
-          ref={this._videoRef}
+          ref={this.videoRef}
           className="player__video"
           poster={currentMovie.poster}
           src={currentMovie.videoLink}
@@ -101,12 +112,12 @@ const withVideoControls = (Component) => {
       );
     }
 
-    _renderPlayButton() {
+    private renderPlayButton() {
       return (
         <button
           type="button"
           className="player__play"
-          onClick={() => this._handlePlayPauseChange()}>
+          onClick={() => this.handlePlayPauseChange()}>
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s"></use>
           </svg>
@@ -115,11 +126,11 @@ const withVideoControls = (Component) => {
       );
     }
 
-    _renderPauseButton() {
+    private renderPauseButton() {
       return (<button
         type="button"
         className="player__play"
-        onClick={() => this._handlePlayPauseChange()}>
+        onClick={() => this.handlePlayPauseChange()}>
         <svg viewBox="0 0 14 21" width="14" height="21">
           <use xlinkHref="#pause"></use>
         </svg>
@@ -131,7 +142,7 @@ const withVideoControls = (Component) => {
       const {currentMovie} = this.props;
       const {videoDuration, currentTime, isPlaying} = this.state;
 
-      const timeLeft = this._countTimeLeft();
+      const timeLeft = this.countTimeLeft();
 
       return (
         <Component
@@ -142,10 +153,10 @@ const withVideoControls = (Component) => {
           currentTime={currentTime}
           isPlaying={isPlaying}
           timeLeft={timeLeft}
-          renderVideoPlayer={this._renderVideoPlayer}
-          renderPlayButton={this._renderPlayButton}
-          renderPauseButton={this._renderPauseButton}
-          onFullScreenButtonClick={this._handleFullScreenButtonClick}
+          renderVideoPlayer={this.renderVideoPlayer}
+          renderPlayButton={this.renderPlayButton}
+          renderPauseButton={this.renderPauseButton}
+          onFullScreenButtonClick={this.handleFullScreenButtonClick}
         />
       );
     }

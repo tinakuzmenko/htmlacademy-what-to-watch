@@ -1,7 +1,15 @@
 import * as React from 'react';
 
+interface WithActiveItemProps {
+  defaultActiveItem: string;
+}
+
+interface WithActiveItemState {
+  currentActiveItem: string;
+}
+
 const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent {
+  class WithActiveItem extends React.PureComponent<WithActiveItemProps, WithActiveItemState> {
     constructor(props) {
       super(props);
 
@@ -9,7 +17,7 @@ const withActiveItem = (Component) => {
         currentActiveItem: props.defaultActiveItem,
       };
 
-      this._handleItemClick = this._handleItemClick.bind(this);
+      this.handleItemClick = this.handleItemClick.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -20,7 +28,7 @@ const withActiveItem = (Component) => {
       }
     }
 
-    _handleItemClick(activeItem) {
+    private handleItemClick(activeItem) {
       this.setState({
         currentActiveItem: activeItem,
       });
@@ -30,7 +38,7 @@ const withActiveItem = (Component) => {
       return (
         <Component
           {...this.props}
-          onItemClick={this._handleItemClick}
+          onItemClick={this.handleItemClick}
           currentActiveItem={this.state.currentActiveItem}
         />
       );

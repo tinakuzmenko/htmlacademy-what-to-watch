@@ -3,10 +3,19 @@ import {connect} from 'react-redux';
 import {SHOWN_MOVIES, Pages} from '../../helpers/constants';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import {getFilteredMoviesByGenre, getFilteredMoviesLikeThis} from '../../store/data/selectors';
+import {MovieInterface} from '../../types';
+
+interface WithShowMoreProps {
+  movies: Array<MovieInterface>;
+}
+
+interface WithShowMoreState {
+  shownMovies: Array<MovieInterface>;
+}
 
 
 const withShowMore = (Component) => {
-  class WithShowMore extends React.PureComponent {
+  class WithShowMore extends React.PureComponent<WithShowMoreProps, WithShowMoreState> {
     constructor(props) {
       super(props);
 
@@ -14,8 +23,8 @@ const withShowMore = (Component) => {
         shownMovies: props.movies.slice(0, SHOWN_MOVIES),
       };
 
-      this._renderButtonShowMore = this._renderButtonShowMore.bind(this);
-      this._handleShowMoreButtonClick = this._handleShowMoreButtonClick.bind(this);
+      this.renderButtonShowMore = this.renderButtonShowMore.bind(this);
+      this.handleShowMoreButtonClick = this.handleShowMoreButtonClick.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -26,7 +35,7 @@ const withShowMore = (Component) => {
       }
     }
 
-    _handleShowMoreButtonClick() {
+    private handleShowMoreButtonClick() {
       this.setState((prevState) => ({
         shownMovies: [
           ...prevState.shownMovies,
@@ -38,10 +47,10 @@ const withShowMore = (Component) => {
       }));
     }
 
-    _renderButtonShowMore() {
+    private renderButtonShowMore() {
       return (
         this.props.movies.length > this.state.shownMovies.length && <ShowMoreButton
-          onShowMoreButtonClick={this._handleShowMoreButtonClick}
+          onShowMoreButtonClick={this.handleShowMoreButtonClick}
         />
       );
     }
@@ -51,7 +60,7 @@ const withShowMore = (Component) => {
         <Component
           {...this.props}
           movies={this.state.shownMovies}
-          render={this._renderButtonShowMore}
+          render={this.renderButtonShowMore}
         />
       );
     }

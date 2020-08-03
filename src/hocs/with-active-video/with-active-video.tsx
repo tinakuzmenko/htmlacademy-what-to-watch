@@ -1,7 +1,11 @@
 import * as React from 'react';
 
+interface WithActiveVideoState {
+  isPlaying: boolean;
+}
+
 const withActiveVideo = (Component) => {
-  class WithActiveVideo extends React.PureComponent {
+  class WithActiveVideo extends React.PureComponent<{}, WithActiveVideoState> {
     constructor(props) {
       super(props);
 
@@ -9,17 +13,17 @@ const withActiveVideo = (Component) => {
         isPlaying: false,
       };
 
-      this._handleSmallMovieCardMouseEnter = this._handleSmallMovieCardMouseEnter.bind(this);
-      this._handleSmallMovieCardMouseOut = this._handleSmallMovieCardMouseOut.bind(this);
+      this.handleSmallMovieCardMouseEnter = this.handleSmallMovieCardMouseEnter.bind(this);
+      this.handleSmallMovieCardMouseOut = this.handleSmallMovieCardMouseOut.bind(this);
     }
 
-    _handleSmallMovieCardMouseEnter() {
+    private handleSmallMovieCardMouseEnter() {
       this.setState({
         isPlaying: true
       });
     }
 
-    _handleSmallMovieCardMouseOut() {
+    private handleSmallMovieCardMouseOut() {
       this.setState({
         isPlaying: false
       });
@@ -30,8 +34,8 @@ const withActiveVideo = (Component) => {
         <Component
           {...this.props}
           isPlaying={this.state.isPlaying}
-          onSmallMovieCardMouseEnter={this._handleSmallMovieCardMouseEnter}
-          onSmallMovieCardMouseOut={this._handleSmallMovieCardMouseOut}
+          onSmallMovieCardMouseEnter={this.handleSmallMovieCardMouseEnter}
+          onSmallMovieCardMouseOut={this.handleSmallMovieCardMouseOut}
         />
       );
     }
