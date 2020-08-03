@@ -65,3 +65,8 @@ export const AppRoute = {
   MOVIE: `/films`,
   PLAYER: `/player`,
 };
+
+export const Favorites = {
+  ADD: 1,
+  REMOVE: 0,
+};

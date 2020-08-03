@@ -2,6 +2,7 @@ import {extend} from '../../helpers/utils';
 import {createMovie} from '../../adapters/adapters';
 import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 import history from '../../history';
+import {Favorites} from '../../helpers/constants';
 
 const initialState = {
   movieCard: {},
@@ -150,7 +151,7 @@ const Operations = {
 
   changeIsMovieFavorite: (movieId, isFavorite) => (dispatch, getState, api) => {
     dispatch(ActionCreator.checkIsDataSending(true));
-    return api.post(`/favorite/${movieId}/${isFavorite ? 1 : 0}`)
+    return api.post(`/favorite/${movieId}/${isFavorite ? Favorites.ADD : Favorites.REMOVE}`)
     .then(() => {
       dispatch(ActionCreator.checkIsDataSending(false));
       dispatch(ActionCreator.checkIsSendingSuccessfull(true));
