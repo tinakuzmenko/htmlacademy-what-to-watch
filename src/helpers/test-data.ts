@@ -1,7 +1,7 @@
 import {MovieInterface, ReviewInterface} from '../types';
 
-type DifferentOptions = {
-  [key: string]: string | number | boolean | Array<string>;
+export const noop = () => {
+  // Mock function for test props
 };
 
 export const movie: MovieInterface = {
