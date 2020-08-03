@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import MovieNav from './movie-nav';
 import {NavTabs} from '../../helpers/constants';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 
@@ -16,7 +16,6 @@ describe(`MovieNav e2e tests`, () => {
 
     const movieNavComponent = shallow(
         <MovieNav
-          navTabs={NavTabs}
           currentActiveItem={NavTabs.DETAILS}
           onItemClick={onItemClick}
         />

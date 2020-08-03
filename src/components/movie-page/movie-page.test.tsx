@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MoviePage from './movie-page';
-import {movies} from '../../helpers/test-data';
+import {movies, noop} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 import {Router} from 'react-router-dom';
 import history from '../../history';
@@ -37,7 +37,7 @@ describe(`MoviePage`, () => {
           <Router history={history}>
             <Provider store={store}>
               <MoviePage
-                loadMovieInformation={() => {}}
+                loadMovieInformation={noop}
                 routeProps={{match: {params: {id: 167456}, isExact: true, path: ``, url: ``}}} />
             </Provider>
           </Router>, {

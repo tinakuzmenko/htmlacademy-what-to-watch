@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
-import {movies} from '../../helpers/test-data';
+import {movies, noop} from '../../helpers/test-data';
 import MoviesList from './movies-list';
 import {Router} from 'react-router-dom';
 import history from '../../history';
@@ -24,10 +24,10 @@ describe(`MoviesList`, () => {
               <MoviesList
                 movies={movies}
                 moviesByGenre={movies}
-                onSmallMovieCardClick={() => {}}
-                onSmallMovieCardMouseEnter={() => {}}
-                onSmallMovieCardMouseOut={() => {}}
-                render={() => {}}
+                onSmallMovieCardClick={noop}
+                onSmallMovieCardMouseEnter={noop}
+                onSmallMovieCardMouseOut={noop}
+                render={noop}
                 isPlaying={true}
               />
             </Provider>

@@ -28,9 +28,7 @@ describe(`Catalog`, () => {
       .create(
           <Router history={history}>
             <Provider store={store}>
-              <Catalog
-                onSmallMovieCardClick={() => {}}
-              />
+              <Catalog />
             </Provider>
           </Router>, {
             createNodeMock: () => {

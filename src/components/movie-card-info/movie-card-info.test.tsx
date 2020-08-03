@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MovieCardInfo from './movie-card-info';
-import {movie, reviews} from '../../helpers/test-data';
+import {movie, reviews, noop} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 
 const mockStore = configureStore([]);
@@ -25,8 +25,7 @@ describe(`MovieCardInfo`, () => {
             <MovieCardInfo
               currentMovie={movie}
               currentActiveItem={`Overview`}
-              defaultActiveItem={`Reviews`}
-              onItemClick={() => {}}
+              onItemClick={noop}
             />
           </Provider>, {
             createNodeMock: () => {
