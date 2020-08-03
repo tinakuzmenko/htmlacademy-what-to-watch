@@ -1,8 +1,14 @@
-export const extend = (state, newStateValue) => {
+import {ReviewInterface} from '../types';
+
+interface ExtendInterface {
+    <T>(state: T, newStateValue: T): T;
+}
+
+export const extend: ExtendInterface = (state, newStateValue) => {
   return Object.assign({}, state, newStateValue);
 };
 
-export const sliceReviews = (reviews) => {
+export const sliceReviews = (reviews: Array<ReviewInterface>): Array<Array<ReviewInterface>> => {
   const sliceIndex = Math.ceil(reviews.length / 2);
   const firstColReviews = reviews.slice(0, sliceIndex);
   const secondColReviews = reviews.slice(sliceIndex, reviews.length);
@@ -10,7 +16,7 @@ export const sliceReviews = (reviews) => {
   return [firstColReviews, secondColReviews];
 };
 
-export const getRatingLevel = (rating) => {
+export const getRatingLevel = (rating: number): string | null => {
   if (rating >= 0 && rating < 3) {
     return `Bad`;
   }
@@ -34,14 +40,14 @@ export const getRatingLevel = (rating) => {
   return null;
 };
 
-export const getRunTimeFormat = (runTime) => {
+export const getRunTimeFormat = (runTime: number): string => {
   const hours = Math.trunc(runTime / 60);
   const minutes = runTime - (hours * 60);
 
   return `${hours}h ${minutes}m`;
 };
 
-export const getRatingFormat = (rating) => {
+export const getRatingFormat = (rating: number): string => {
   if (Math.trunc(rating) === rating) {
     return `${rating},0`;
   }
