@@ -38,18 +38,6 @@ export default class VideoPlayer extends React.PureComponent<VideoPlayerProps, {
     clearTimeout(this.playTimeout);
   }
 
-  render() {
-    return (
-      <video
-        ref={this.videoRef}
-        width={smallVideoPlayer.WIDTH}
-        height={smallVideoPlayer.HEIGHT}
-      >
-        {ERROR_MESSAGE}
-      </video>
-    );
-  }
-
   componentDidUpdate() {
     const {isPlaying} = this.props;
     const video = this.videoRef.current;
@@ -62,5 +50,17 @@ export default class VideoPlayer extends React.PureComponent<VideoPlayerProps, {
       video.load();
       clearTimeout(this.playTimeout);
     }
+  }
+
+  render() {
+    return (
+      <video
+        ref={this.videoRef}
+        width={smallVideoPlayer.WIDTH}
+        height={smallVideoPlayer.HEIGHT}
+      >
+        {ERROR_MESSAGE}
+      </video>
+    );
   }
 }

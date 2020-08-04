@@ -25,10 +25,10 @@ class SignIn extends React.PureComponent<SignInProps, {}> {
     this.loginRef = React.createRef();
     this.passwordRef = React.createRef();
 
-    this._handleSubmitClick = this._handleSubmitClick.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
-  _handleSubmitClick(evt) {
+  private handleSubmitClick(evt) {
     const {onFormSubmit} = this.props;
 
     const userSignInData = {
@@ -60,7 +60,7 @@ class SignIn extends React.PureComponent<SignInProps, {}> {
             <form
               action="#"
               className="sign-in__form"
-              onSubmit={this._handleSubmitClick}
+              onSubmit={this.handleSubmitClick}
               onChange={clearAuthError}
             >
               {isInvalidForm}

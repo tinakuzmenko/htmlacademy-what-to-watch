@@ -33,24 +33,24 @@ const withReview = (Component) => {
         isSubmitDisabled: true,
       };
 
-      this._handleFormChange = this._handleFormChange.bind(this);
-      this._handleSubmitClick = this._handleSubmitClick.bind(this);
-      this._handleReviewChange = this._handleReviewChange.bind(this);
-      this._handleRatingChange = this._handleRatingChange.bind(this);
+      this.handleFormChange = this.handleFormChange.bind(this);
+      this.handleSubmitClick = this.handleSubmitClick.bind(this);
+      this.handleReviewChange = this.handleReviewChange.bind(this);
+      this.handleRatingChange = this.handleRatingChange.bind(this);
     }
 
-    _handleFormChange() {
+    private handleFormChange() {
       const {clearSendingError} = this.props;
       clearSendingError();
     }
 
-    _handleRatingChange(evt) {
+    private handleRatingChange(evt) {
       this.setState({
         rating: evt.target.value,
       });
     }
 
-    _handleReviewChange(evt) {
+    private handleReviewChange(evt) {
       const {isDataSending} = this.props;
 
       this.setState({
@@ -59,7 +59,7 @@ const withReview = (Component) => {
       });
     }
 
-    _handleSubmitClick(evt) {
+    private handleSubmitClick(evt) {
       const {currentMovie, onReviewSubmit} = this.props;
       const review = {
         rating: this.state.rating,
@@ -77,10 +77,10 @@ const withReview = (Component) => {
         <Component
           {...this.props}
           currentMovie={currentMovie}
-          onFormChange={this._handleFormChange}
-          onSubmitClick={this._handleSubmitClick}
-          onRatingChange={this._handleRatingChange}
-          onReviewChange={this._handleReviewChange}
+          onFormChange={this.handleFormChange}
+          onSubmitClick={this.handleSubmitClick}
+          onRatingChange={this.handleRatingChange}
+          onReviewChange={this.handleReviewChange}
           isSubmitDisabled={this.state.isSubmitDisabled}
         />
       );

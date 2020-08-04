@@ -12,10 +12,12 @@ interface MovieCardInfoProps {
   onItemClick(): void;
 }
 
-class MovieCardInfo extends React.PureComponent<MovieCardInfoProps, {}> {
-  _renderScreen() {
-    const {currentMovie, currentActiveItem} = this.props;
-
+const MovieCardInfo: React.FC<MovieCardInfoProps> = ({
+  currentMovie,
+  onItemClick,
+  currentActiveItem
+}: MovieCardInfoProps) => {
+  const renderScreen = () => {
     switch (currentActiveItem) {
       case NavTabs.OVERVIEW:
         return <MovieOverview
@@ -34,30 +36,26 @@ class MovieCardInfo extends React.PureComponent<MovieCardInfoProps, {}> {
           movie={currentMovie}
         />;
     }
-  }
+  };
 
-  render() {
-    const {currentMovie, onItemClick, currentActiveItem} = this.props;
+  return (
+    <div className="movie-card__wrap movie-card__translate-top">
+      <div className="movie-card__info">
+        <div className="movie-card__poster movie-card__poster--big">
+          <img src={currentMovie.posterImage} alt={currentMovie.title} width="218" height="327" />
+        </div>
 
-    return (
-      <div className="movie-card__wrap movie-card__translate-top">
-        <div className="movie-card__info">
-          <div className="movie-card__poster movie-card__poster--big">
-            <img src={currentMovie.posterImage} alt={currentMovie.title} width="218" height="327" />
-          </div>
+        <div className="movie-card__desc">
+          <MovieNav
+            currentActiveItem={currentActiveItem}
+            onItemClick={onItemClick}
+          />
 
-          <div className="movie-card__desc">
-            <MovieNav
-              currentActiveItem={currentActiveItem}
-              onItemClick={onItemClick}
-            />
-
-            {this._renderScreen()}
-          </div>
+          {renderScreen()}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default MovieCardInfo;
