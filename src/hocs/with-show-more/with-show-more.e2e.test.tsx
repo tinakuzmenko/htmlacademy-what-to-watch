@@ -12,7 +12,11 @@ configure({
   adapter: new Adapter(),
 });
 
-const MockComponent = (props) => {
+interface MockComponentProps {
+  onShowMoreButtonClick(): void;
+}
+
+const MockComponent: React.FC<MockComponentProps> = (props: MockComponentProps) => {
   const {onShowMoreButtonClick} = props;
 
   return (

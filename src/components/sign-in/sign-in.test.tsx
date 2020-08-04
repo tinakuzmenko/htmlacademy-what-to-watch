@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import NameSpace from '../../store/name-space';
 import SignIn from './sign-in';
-import {movie} from '../../helpers/test-data';
+import {movie, noop} from '../../helpers/test-data';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 
@@ -33,8 +33,8 @@ describe(`SignIn`, () => {
           <Router history={history}>
             <Provider store={store}>
               <SignIn
-                onFormSubmit={() => {}}
-                clearAuthError={() => {}}
+                onFormSubmit={noop}
+                clearAuthError={noop}
               />
             </Provider>
           </Router>, {
@@ -69,8 +69,8 @@ describe(`SignIn`, () => {
           <Router history={history}>
             <Provider store={store}>
               <SignIn
-                onFormSubmit={() => {}}
-                clearAuthError={() => {}}
+                onFormSubmit={noop}
+                clearAuthError={noop}
               />
             </Provider>
           </Router>, {

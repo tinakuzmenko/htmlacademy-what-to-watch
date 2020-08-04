@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import SmallMovieCard from './small-movie-card';
-import {movie} from '../../helpers/test-data';
+import {movie, noop} from '../../helpers/test-data';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 
@@ -13,8 +13,8 @@ describe(`SmallMovieCard`, () => {
             <SmallMovieCard
               movie={movie}
               isPlaying={true}
-              onSmallMovieCardMouseEnter={() => {}}
-              onSmallMovieCardMouseOut={() => {}} />
+              onSmallMovieCardMouseEnter={noop}
+              onSmallMovieCardMouseOut={noop} />
           </Router>, {
             createNodeMock: () => {
               return {};
