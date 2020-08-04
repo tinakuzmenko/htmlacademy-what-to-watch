@@ -254,3 +254,23 @@ export const allGenresMovies: Array<MovieInterface> = [
     isFavorite: false,
   }
 ];
+
+export const serverMovie = {
+  [`name`]: `Snatch`,
+  [`genre`]: `Crime`,
+  [`released`]: 2000,
+  [`background_color`]: `#FFFFFF`,
+  [`background_image`]: `https://placeimg.com/1300/512/nature`,
+  [`preview_image`]: `img/snatch.jpg`,
+  [`poster_image`]: `img/snatch.jpg`,
+  [`id`]: 123890,
+  [`description`]: `Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.`,
+  [`rating`]: 8.3,
+  [`scores_count`]: 1500,
+  [`director`]: `Guy Ritchie`,
+  [`starring`]: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  [`run_time`]: 164,
+  [`preview_video_link`]: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
+  [`video_link`]: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  [`is_favorite`]: false,
+};

@@ -1,10 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
 import {initialState, ActionType, reducer, Operations} from './data';
-import {movie, movies, reviews} from '../../helpers/test-data';
+import {movie, movies, reviews, noop, serverMovie} from '../../helpers/test-data';
 import {createAPI} from '../../api';
 import {createMovie} from '../../adapters/adapters';
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 
 describe(`Data Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -130,14 +130,14 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/films/promo`)
-      .reply(200, [{fake: true}]);
+      .reply(200, serverMovie);
 
-    return movieCardLoader(dispatch, () => {}, api)
+    return movieCardLoader(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledTimes(2);
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_MOVIE_CARD,
-              payload: createMovie({fake: true}),
+              payload: createMovie(serverMovie),
             });
           });
   });
@@ -149,14 +149,14 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/films`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [serverMovie]);
 
-    return moviesLoader(dispatch, () => {}, api)
+    return moviesLoader(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledTimes(2);
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_MOVIES,
-              payload: [createMovie({fake: true})],
+              payload: [createMovie(serverMovie)],
             });
           });
   });
@@ -170,7 +170,7 @@ describe(`Operations work correctly`, () => {
       .onGet(`/comments/1`)
       .reply(200, [{fake: true}]);
 
-    return reviewsLoader(dispatch, () => {}, api)
+    return reviewsLoader(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledTimes(1);
             expect(dispatch).toHaveBeenCalledWith({
@@ -187,14 +187,14 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/favorite`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [serverMovie]);
 
-    return favoriteMoviesLoader(dispatch, () => {}, api)
+    return favoriteMoviesLoader(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledTimes(1);
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.LOAD_FAVORITE_MOVIES,
-              payload: [createMovie({fake: true})],
+              payload: [createMovie(serverMovie)],
             });
           });
   });
@@ -213,7 +213,7 @@ describe(`Operations work correctly`, () => {
       .onPost(`/comments/1`)
       .reply(200, [{fake: true}]);
 
-    return sendReview(dispatch, () => {}, api)
+    return sendReview(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.CHECK_IS_DATA_SENDING,
@@ -231,7 +231,7 @@ describe(`Operations work correctly`, () => {
       .onPost(`/favorite/1/1`)
       .reply(200, [{fake: true}]);
 
-    return sendMovieStatus(dispatch, () => {}, api)
+    return sendMovieStatus(dispatch, noop, api)
           .then(() => {
             expect(dispatch).toHaveBeenCalledWith({
               type: ActionType.CHECK_IS_DATA_SENDING,

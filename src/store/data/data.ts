@@ -3,8 +3,26 @@ import {createMovie} from '../../adapters/adapters';
 import {ActionCreator as AppStateActionCreator} from '../app-state/app-state';
 import history from '../../history';
 import {Favorites} from '../../helpers/constants';
+import {MovieInterface, ReviewInterface} from '../../types';
 
-const initialState = {
+interface DataActionInterface {
+  type?: string;
+  payload?: MovieInterface | Array<MovieInterface> | Array<ReviewInterface> | boolean;
+}
+
+interface InitialStateInterface {
+  movieCard?: MovieInterface | {};
+  movies?: Array<MovieInterface> | [];
+  movieReviews?: Array<ReviewInterface> | [];
+  favoriteMovies?: Array<MovieInterface> | [];
+  isLoading?: boolean;
+  isLoadError?: boolean;
+  isDataSending?: boolean;
+  isSendingSuccessfull?: boolean;
+  isSendingError?: boolean;
+}
+
+const initialState: InitialStateInterface = {
   movieCard: {},
   movies: [],
   movieReviews: [],
@@ -30,22 +48,22 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  loadMovieCard: (movieCard) => ({
+  loadMovieCard: (movieCard: MovieInterface) => ({
     type: ActionType.LOAD_MOVIE_CARD,
     payload: movieCard,
   }),
 
-  loadMovies: (movies) => ({
+  loadMovies: (movies: Array<MovieInterface>) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies,
   }),
 
-  loadMovieReviews: (movieReviews) => ({
+  loadMovieReviews: (movieReviews: Array<ReviewInterface>) => ({
     type: ActionType.LOAD_MOVIE_REVIEWS,
     payload: movieReviews,
   }),
 
-  loadFavoriteMovies: (movies) => ({
+  loadFavoriteMovies: (movies: Array<MovieInterface>) => ({
     type: ActionType.LOAD_FAVORITE_MOVIES,
     payload: movies,
   }),
@@ -60,17 +78,17 @@ const ActionCreator = {
     payload: true,
   }),
 
-  checkIsDataSending: (isDataSending) => ({
+  checkIsDataSending: (isDataSending: boolean) => ({
     type: ActionType.CHECK_IS_DATA_SENDING,
     payload: isDataSending,
   }),
 
-  checkIsSendingSuccessfull: (isSendingSuccessfull) => ({
+  checkIsSendingSuccessfull: (isSendingSuccessfull: boolean) => ({
     type: ActionType.CHECK_IS_SENDING_SUCCESSFULL,
     payload: isSendingSuccessfull,
   }),
 
-  checkIsSendingError: (isSendingError) => ({
+  checkIsSendingError: (isSendingError: boolean) => ({
     type: ActionType.CHECK_IS_SENDING_ERROR,
     payload: isSendingError,
   }),
@@ -167,51 +185,51 @@ const Operations = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: DataActionInterface) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIE_CARD:
       return extend(state, {
-        movieCard: action.payload,
+        movieCard: action.payload as MovieInterface,
       });
     case ActionType.LOAD_MOVIES:
       return extend(state, {
-        movies: action.payload,
+        movies: action.payload as Array<MovieInterface>,
       });
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
-        movieReviews: action.payload,
+        movieReviews: action.payload as Array<ReviewInterface>,
       });
     case ActionType.LOAD_FAVORITE_MOVIES:
       return extend(state, {
-        favoriteMovies: action.payload,
+        favoriteMovies: action.payload as Array<MovieInterface>,
       });
     case ActionType.FINISH_LOADING:
       return extend(state, {
-        isLoading: action.payload,
+        isLoading: action.payload as boolean,
       });
     case ActionType.CATCH_LOAD_ERROR:
       return extend(state, {
-        isLoadError: action.payload,
+        isLoadError: action.payload as boolean,
       });
     case ActionType.CHECK_IS_DATA_SENDING:
       return extend(state, {
-        isDataSending: action.payload,
+        isDataSending: action.payload as boolean,
       });
     case ActionType.CHECK_IS_SENDING_SUCCESSFULL:
       return extend(state, {
-        isSendingSuccessfull: action.payload,
+        isSendingSuccessfull: action.payload as boolean,
       });
     case ActionType.CHECK_IS_SENDING_ERROR:
       return extend(state, {
-        isSendingError: action.payload,
+        isSendingError: action.payload as boolean,
       });
     case ActionType.CLEAR_SENDING_ERROR:
       return extend(state, {
-        isSendingError: action.payload,
+        isSendingError: action.payload as boolean,
       });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export {ActionType, ActionCreator, Operations, reducer, initialState};

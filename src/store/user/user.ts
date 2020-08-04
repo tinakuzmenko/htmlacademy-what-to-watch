@@ -1,8 +1,21 @@
 import {extend} from '../../helpers/utils';
 import {createUser} from '../../adapters/adapters';
 import {AuthorizationStatus} from '../../helpers/constants';
+import {UserInfoInterface} from '../../types';
 
-const initialState = {
+interface UserActionInterface {
+  type?: string;
+  payload?: string | boolean | UserInfoInterface;
+}
+
+interface InitialStateInterface {
+  userInfo?: UserInfoInterface;
+  isAuthorizationError?: boolean;
+  isAuthorizationProgress?: boolean;
+  authorizationStatus?: string;
+}
+
+const initialState: InitialStateInterface = {
   userInfo: {
     id: 0,
     email: ``,
@@ -23,7 +36,7 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  setAuthorizationStatus: (status) => {
+  setAuthorizationStatus: (status: string) => {
     return {
       type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: status,
@@ -37,7 +50,7 @@ const ActionCreator = {
     };
   },
 
-  getUserData: (userData) => {
+  getUserData: (userData: UserInfoInterface) => {
     return {
       type: ActionType.GET_USER_DATA,
       payload: userData,
@@ -87,31 +100,31 @@ const Operations = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: UserActionInterface) => {
   switch (action.type) {
     case ActionType.SET_AUTHORIZATION_STATUS:
       return extend(state, {
-        authorizationStatus: action.payload,
+        authorizationStatus: action.payload as string,
       });
     case ActionType.FINISH_AUTHORIZATION_PROGRESS:
       return extend(state, {
-        isAuthorizationProgress: action.payload,
+        isAuthorizationProgress: action.payload as boolean,
       });
     case ActionType.GET_USER_DATA:
       return extend(state, {
-        userInfo: action.payload,
+        userInfo: action.payload as UserInfoInterface,
       });
     case ActionType.SHOW_AUTHORIZATION_ERROR:
       return extend(state, {
-        isAuthorizationError: action.payload,
+        isAuthorizationError: action.payload as boolean,
       });
     case ActionType.CLEAR_AUTHORIZATION_ERROR:
       return extend(state, {
-        isAuthorizationError: action.payload,
+        isAuthorizationError: action.payload as boolean,
       });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export {initialState, reducer, ActionType, ActionCreator, Operations};

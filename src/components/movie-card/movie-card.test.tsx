@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MovieCard from './movie-card';
-import {movie} from '../../helpers/test-data';
+import {movie, noop} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 import {Router} from 'react-router-dom';
 import history from '../../history';
@@ -36,7 +36,7 @@ describe(`MovieCard`, () => {
             <Provider store={store}>
               <MovieCard
                 movieCard={movie}
-                onPlayButtonClick={() => {}} />
+                onPlayButtonClick={noop} />
             </Provider>
           </Router>, {
             createNodeMock: () => {
