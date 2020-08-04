@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Enzyme, {mount} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+import {configure, mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import withShowMore from './with-show-more';
@@ -8,7 +8,7 @@ import {movie, movies} from '../../helpers/test-data';
 import NameSpace from '../../store/name-space';
 import {Pages} from '../../helpers/constants';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 

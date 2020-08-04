@@ -1,15 +1,19 @@
 import * as React from 'react';
-import Enzyme, {shallow, mount} from 'enzyme';
+import {configure, shallow, mount} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
 import withActiveItem from './with-active-item';
 import {movie} from '../../helpers/test-data';
 
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 
-const MockComponent = (props) => {
+interface MockComponentProps {
+  onItemClick(): void;
+}
+
+const MockComponent = (props: MockComponentProps) => {
   const {onItemClick} = props;
 
   return (
@@ -49,7 +53,7 @@ describe(`HOC withActiveItem e2e tests`, () => {
 
     expect(wrapper.state().currentActiveItem).toBe(`Overview`);
 
-    wrapper.instance()._handleItemClick(`Details`);
+    wrapper.instance().handleItemClick(`Details`);
 
     expect(wrapper.state().currentActiveItem).toEqual(`Details`);
   });

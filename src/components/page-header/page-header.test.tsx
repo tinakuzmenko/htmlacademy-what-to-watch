@@ -20,9 +20,7 @@ describe(`PageHeader`, () => {
           <Router history={history}>
             <PageHeader
               currentPage={Pages.MAIN}
-              isWithBreadcrubs={false}
               isSignedIn={true}
-              onSignInClick={() => {}}
               userInfo={userInfo}
             />
           </Router>)
@@ -37,9 +35,7 @@ describe(`PageHeader`, () => {
           <Router history={history}>
             <PageHeader
               currentPage={Pages.ADD_REVIEW}
-              isWithBreadcrubs={false}
               isSignedIn={false}
-              onSignInClick={() => {}}
               userInfo={userInfo}
             />
           </Router>)
@@ -54,10 +50,8 @@ describe(`PageHeader`, () => {
           <Router history={history}>
             <PageHeader
               currentPage={Pages.ADD_REVIEW}
-              isWithBreadcrubs={false}
               isSignedIn={true}
               userInfo={userInfo}
-              onSignInClick={() => {}}
             />
           </Router>)
       .toJSON();
@@ -71,10 +65,8 @@ describe(`PageHeader`, () => {
           <Router history={history}>
             <PageHeader
               currentPage={Pages.SIGN_IN}
-              isWithBreadcrubs={false}
               isSignedIn={false}
               userInfo={userInfo}
-              onSignInClick={() => {}}
             />
           </Router>)
       .toJSON();

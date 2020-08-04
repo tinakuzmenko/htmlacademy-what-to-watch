@@ -10,7 +10,7 @@ interface PageHeaderProps {
   currentPage: string;
   isSignedIn: boolean;
   userInfo: UserInfoInterface;
-  children: JSX.Element;
+  children?: React.ReactNode;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({

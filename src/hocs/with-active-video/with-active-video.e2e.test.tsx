@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {configure, mount} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+import {configure, mount} from 'enzyme';
 
 import withActiveVideo from './with-active-video';
 
@@ -8,13 +8,18 @@ configure({
   adapter: new Adapter(),
 });
 
-const MockComponent = (props) => {
-  const {onSmallMovieCardMouseEnter} = props;
+interface MockComponentProps {
+  onSmallMovieCardMouseEnter(): void;
+  onItemMouseOut(): void;
+}
+
+const MockComponent = (props: MockComponentProps) => {
+  const {onSmallMovieCardMouseEnter, onItemMouseOut} = props;
 
   return (
     <article
       onMouseEnter={onSmallMovieCardMouseEnter}
-      onMouseOut={onSmallMovieCardMouseEnter}
+      onMouseOut={onItemMouseOut}
     >
     </article>
   );
@@ -34,9 +39,9 @@ describe(`HOC withActiveVideo e2e tests`, () => {
     );
 
     expect(wrapper.state().isPlaying).toBe(false);
-    wrapper.instance()._handleSmallMovieCardMouseEnter();
+    wrapper.instance().handleSmallMovieCardMouseEnter();
     expect(wrapper.state().isPlaying).toBe(true);
-    wrapper.instance()._handleSmallMovieCardMouseOut();
+    wrapper.instance().handleSmallMovieCardMouseOut();
     expect(wrapper.state().isPlaying).toBe(false);
   });
 });

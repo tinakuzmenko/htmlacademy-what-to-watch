@@ -1,7 +1,9 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
 
-interface WithActiveItemProps {
+interface InjectingProps {
   defaultActiveItem: string;
+  onItemClick(): void;
 }
 
 interface WithActiveItemState {
@@ -9,7 +11,11 @@ interface WithActiveItemState {
 }
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent<WithActiveItemProps, WithActiveItemState> {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, WithActiveItemState> {
+
     constructor(props) {
       super(props);
 

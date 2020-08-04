@@ -1,11 +1,21 @@
 import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface InjectingProps {
+  isPlaying: boolean;
+  onSmallMovieCardMouseEnter(): void;
+  onSmallMovieCardMouseOut(): void;
+}
 
 interface WithActiveVideoState {
   isPlaying: boolean;
 }
 
 const withActiveVideo = (Component) => {
-  class WithActiveVideo extends React.PureComponent<{}, WithActiveVideoState> {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveVideo extends React.PureComponent<T, WithActiveVideoState> {
     constructor(props) {
       super(props);
 
