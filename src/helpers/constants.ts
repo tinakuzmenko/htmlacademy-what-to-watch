@@ -1,7 +1,6 @@
 export const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
 export const ALL_GENRES = `All genres`;
 export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
-export const MAX_SHOWN_GENRES = 10;
 export const RATINGS_QUANTITY = 5;
 export const SHOWN_MOVIES = 8;
 export const MAX_SHOWN_MOVIES_LIKE_THIS = 4;
@@ -9,7 +8,6 @@ export const MAX_SHOWN_MOVIES_LIKE_THIS = 4;
 export enum Pages {
   MAIN = `main`,
   MOVIE = `movie`,
-  VIDEO = `video`,
   SIGN_IN = `sign in`,
   ADD_REVIEW = `add review`,
   MY_LIST = `my list`,
@@ -64,7 +62,7 @@ interface ApiConfigInterface {
 }
 
 export const ApiConfig: ApiConfigInterface = {
-  URL: `https://4.react.pages.academy/wtw`,
+  URL: `https://5.react.pages.academy/wtw`,
   TIMEOUT: 5000,
   COOKIES: true
 };
